@@ -1,0 +1,147 @@
+> **Course 1:** Introduction to Data Engineering
+> **Module:** Full Course Index
+
+# Course Index: Introduction to Data Engineering
+
+## Overview
+
+This document provides the complete index of **Course 1: Introduction to Data Engineering**, organized by its four top-level modules. Each module is broken down into its constituent lessons/sections (submodules) and the individual learning items (videos, readings, quizzes, labs) within them.
+
+---
+
+## Module 1: What is Data Engineering?
+
+### 1.1 Modern Data Ecosystem and Role of Data Engineering
+- Welcome to Introduction to Data Engineering (Video, 3 min)
+- Discovering Your Path to Data Engineering (Dialogue, 15 min)
+- Modern Data Ecosystem (Video, 4 min)
+- Key Players in the Data Ecosystem (Video, 5 min)
+- Practice Quiz: Data Engineering Fundamentals
+- Specializations in Data Engineering (Video, 9 min)
+- What is Data Engineering? (Video, 4 min)
+- Practice Quiz: Understanding Data Roles and Responsibilities
+- Viewpoints: Defining Data Engineering (Video, 4 min)
+- Viewpoints: Evolution of Data Engineering (Video, 7 min)
+- Practice Quiz: Data Engineering Evolution and Roles
+- Summary and Highlights (Reading, 10 min)
+- Graded Quiz: Data Engineering
+
+### 1.2 Responsibilities and Skillsets of a Data Engineer
+- Responsibilities and Skillsets of a Data Engineer (Video, 5 min)
+- Viewpoints: Skills and Qualities to be a Data Engineer (Video, 6 min)
+- A Day in the Life of a Data Engineer (Video, 3 min)
+- Practice Quiz: Data Engineering Responsibilities and Skills
+- Summary and Highlights (Reading, 10 min)
+- Graded Quiz: Application of Data Engineering Skills
+
+---
+
+## Module 2: The Data Engineering Ecosystem
+
+### 2.1 The Data Ecosystem and Languages for Data Professionals
+- Overview of the Data Engineering Ecosystem (Video, 4 min)
+- Types of Data (Video, 4 min)
+- Understanding Different Types of File Formats (Video, 4 min)
+- Sources of Data (Video, 7 min)
+- Languages for Data Professionals (Video, 8 min)
+- Viewpoints: Working with Varied Data Sources and Types (Video, 6 min)
+- Metadata and Metadata Management (Reading, 10 min)
+- Summary and Highlights (Reading, 10 min)
+- Practice Quiz
+- Graded Quiz
+
+### 2.2 Data Repositories, Data Pipelines, and Data Integration Platforms
+- Overview of Data Repositories (Video, 4 min)
+- RDBMS (Video, 7 min)
+- NoSQL (Video, 7 min)
+- Data Warehouses, Data Marts, and Data Lakes (Video, 7 min)
+- (Optional) Data Lakehouses Explained (Video, 8 min)
+- Viewpoints: Considerations for Choice of Data Repository (Video, 6 min)
+- ETL, ELT, and Data Pipelines (Video, 6 min)
+- Data Integration Platforms (Video, 4 min)
+- Viewpoints: Tools, Databases, and Data Repositories of Choice (Video, 6 min)
+- Summary and Highlights (Reading, 10 min)
+- Practice Quiz
+- Graded Quiz
+- [Optional] Create an instance of IBM Db2 database (Reading, 10 min)
+- [Optional] Obtain IBM Cloud Feature Code and Activate Trial Account (Ungraded App Item, 1 hr)
+- [Optional] Hands-on Lab: Create your IBM Cloud account (Reading, 10 min)
+- [Optional] Hands-on Lab: Provision an instance of IBM Db2 Lite plan (Reading, 10 min)
+
+### 2.3 Big Data Platforms
+- Foundations of Big Data (Video, 5 min)
+- Big Data Processing Tools: Hadoop, HDFS, Hive, and Spark (Video, 6 min)
+- Viewpoints: Impact of Big Data on Data Engineering (Video, 3 min)
+- Summary and Highlights (Reading, 10 min)
+- Practice Quiz
+- Graded Quiz
+
+### 2.4 Data Platforms, Data Stores, and Security
+- Architecting the Data Platform (Video, 7 min)
+- Factors for Selecting and Designing Data Stores (Video, 6 min)
+- Security (Video, 6 min)
+- Viewpoints: Importance of Data Security (Video, 4 min)
+- Summary and Highlights (Reading, 10 min)
+- Practice Quiz
+- Graded Quiz
+
+---
+
+## Module 3: Data Engineering Lifecycle
+
+### 3.1 Data Collection and Data Wrangling
+- How to Gather and Import Data (Video, 6 min)
+- Data Wrangling (Video, 7 min)
+- Tools for Data Wrangling (Video, 5 min)
+- Hands-On Lab: Load data into the Datasette from a CSV file (Ungraded App Item, 15 min)
+- [Optional] Hands-on Lab: Load data into the Db2 Database from a CSV file (Reading, 15 min)
+- Summary and Highlights (Reading, 10 min)
+- Practice Quiz
+- Graded Quiz
+
+### 3.2 Querying Data, Performance Tuning, and Troubleshooting
+- Querying and Analyzing Data (Video, 5 min)
+- Performance Tuning and Troubleshooting (Video, 7 min)
+- Lab: Explore your dataset using SQL queries using Datasette (Ungraded App Item, 15 min)
+- [Optional] Hands-on Lab: Explore Your Dataset Using SQL Queries in DB2 (Reading, 15 min)
+- Summary and Highlights (Reading, 10 min)
+- Practice Quiz
+- Graded Quiz
+
+### 3.3 Governance and Compliance
+- Governance and Compliance (Video, 7 min)
+- Summary and Highlights (Reading, 10 min)
+- Practice Quiz
+- Graded Quiz
+- Optional: Overview of the DataOps Methodology (Reading, 10 min)
+
+---
+
+## Module 4: Career Opportunities and Data Engineering in Action
+
+### 4.1 Career Opportunities and Learning Paths
+- Career Opportunities in Data Engineering (Video, 5 min)
+- Data Warehousing Specialist (Reading, 15 min)
+- Data Manager (Reading, 10 min)
+- Viewpoints: Get into Data Engineering (Video, 7 min)
+- Data Engineering Learning Path (Video, 3 min)
+- Viewpoints: What Do Employers Look for in a Data Engineer (Video, 6 min)
+- Viewpoints: The Many Paths to Data Engineering (Video, 5 min)
+- Viewpoints: Advice to Aspiring Data Engineers (Video, 6 min)
+- Summary and Highlights (Reading, 10 min)
+- Practice Quiz
+- Graded Quiz
+
+### 4.2 Final Assignment
+- Final Quiz (Graded Assignment, 50 min)
+- Final Project Submission Guidelines and Deliverables (Reading, 2 min)
+- AI-Graded - Final Submission and Evaluation (Graded App Item, 20 min)
+
+### 4.3 Course Wrap-Up
+- Congratulations and Next Steps (Reading, 2 min)
+
+---
+
+## Summary
+
+Course 1 is organized into **4 modules**, comprising **12 sub-sections/lessons**, spanning concept introduction (Module 1), the surrounding ecosystem of tools and platforms (Module 2), the practical lifecycle of working with data (Module 3), and career/professional context (Module 4). This index can be used as a navigational reference when generating individual lesson notes (`c1_m{module#}_{topic}.md`).
