@@ -60,6 +60,12 @@ SECTIONS = [
         ("Data Platform Architecture", "data_platform_architecture.md", "processing"),
         ("SQL Vendors & Dialects", "sql_vendors_dialects.md", "processing"),
     ]),
+    ("governance", "Data Lifecycle & Governance", [
+        ("DataOps Methodology", "dataops_methodology.md", "governance"),
+        ("Governance & Compliance", "governance_compliance.md", "governance"),
+        ("Governance & Compliance Summary", "governance_compliance_summary.md", "governance"),
+        ("Data Volume Monitoring Q&A", "c1_m3_data_volume_monitoring_qa.md", "governance"),
+    ]),
     ("quiz", "Quiz & Exam Reference", [
         ("Quiz Study Reference", "quiz_study_reference.md", "quiz"),
         ("Weakness Review", "checkpoint_weakness_review.md", "quiz"),
@@ -70,6 +76,15 @@ SECTIONS = [
         ("Career Ladder & MVP", "career_ladder.md", "career"),
         ("Certification Roadmap", "certification_roadmap.md", "career"),
         ("Enhancement Modules", "enhancement_modules.md", "career"),
+        ("Full Course Index", "c1_full_course_index.md", "career"),
+        ("Career Opportunities", "c1_m4_career_opportunities.md", "career"),
+        ("Data Manager", "c1_m4_data_manager.md", "career"),
+        ("Data Warehousing Specialist", "c1_m4_data_warehousing_specialist.md", "career"),
+        ("Data Engineering Learning Path", "data_engineering_learning_path.md", "career"),
+        ("Viewpoints: Get into Data Engineering", "viewpoints_get_into_data_engineering.md", "career"),
+        ("Viewpoints: Employer Expectations", "viewpoints_employer_expectations.md", "career"),
+        ("Viewpoints: Many Paths to DE", "viewpoints_many_paths_to_de.md", "career"),
+        ("Viewpoints: Advice to Aspiring DEs", "viewpoints_advice_aspiring_de.md", "career"),
     ]),
 ]
 

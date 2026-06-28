@@ -274,7 +274,10 @@ Render `de_wiki/` to `output/option_a/index.html`:
 Only the repo-root `index.html` needs committing. The stale `wiki.html` at repo root (if present) must be `git rm`'d — the build no longer writes it there.
 
 ### Commit scope
-- Commit the entire `wiki-generation-pipeline/` directory
+- Stage the entire `wiki-generation-pipeline/` directory (excludes repo root; `node_modules/` is untracked)
+- **ALSO** stage `index.html` at repo root separately — it lives OUTSIDE `wiki-generation-pipeline/`
+- After `python scripts/build_wiki.py`, run `git diff --stat -- index.html` to verify the file changed
+- If `index.html` shows no diff, the new topic files are not wired into `build_wiki.py`'s `SECTIONS` — halt and fix before committing
 - No need to detail individual `.md` files in the `updates/` folder
 - The commit message should include a **brief abstract** of what new content was added (2–4 short lines)
 
