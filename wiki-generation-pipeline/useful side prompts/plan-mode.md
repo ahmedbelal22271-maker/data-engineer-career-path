@@ -403,3 +403,44 @@ New content — C1M3 Data Collection & Wrangling summary (gathering methods, tra
 ```
 
 Keep it high-level. Never enumerate individual update filenames.
+
+---
+
+## Git Workflow
+
+### Author identity
+Maintain `git config user.name` and `user.email` matching the GitHub account
+(`ahmedbelal22271-maker` / `ahmedbelal22271@gmail.com`) so commits are attributed
+correctly. Check with `git config user.name && git config user.email`.
+
+### What to stage (and what never to stage)
+
+**Always stage:**
+- `index.html` at repo root (GitHub Pages entry)
+- `wiki.html` at repo root
+- `wiki-generation-pipeline/wiki.html`
+- `wiki-generation-pipeline/wiki_template.html`
+- `wiki-generation-pipeline/scripts/build_wiki.py`
+- `wiki-generation-pipeline/useful side prompts/plan-mode.md`
+- `wiki-generation-pipeline/de_wiki/.lthp_state.json`
+- Any modified `de_wiki/topics/*.md`
+- Any new `updates/*.md` files added this session
+- `wiki-generation-pipeline/package.json` and `package-lock.json` (if deps changed)
+
+**Never stage:**
+- `node_modules/` — not tracked; do not `git add` it
+- Random PDFs, unrelated directories, stray `.md` files at repo root
+
+### Commit message format
+
+First line: `wiki: rebuild + <abstract>`
+
+Body (2-4 short lines, no file enumeration):
+```
+New content — <domain summary, e.g., C1M3 Data Collection & Wrangling>
+<other structural changes, e.g., Sidebar hierarchy fix>
+<other changes, e.g., Mermaid inlined for single-file offline use>
+```
+
+### After commit
+Always push: `git push origin main`

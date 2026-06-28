@@ -563,6 +563,9 @@ def main():
     repo_output = os.path.join(repo_root, 'wiki.html')
     with open(repo_output, 'w', encoding='utf-8') as f:
         f.write(html)
+    repo_index = os.path.join(repo_root, 'index.html')
+    with open(repo_index, 'w', encoding='utf-8') as f:
+        f.write(html)
 
     with open(MANIFEST, 'w', encoding='utf-8') as f:
         json.dump(new_manifest, f, indent=2)
