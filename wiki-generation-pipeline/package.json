@@ -1,0 +1,16 @@
+{
+  "name": "wiki-generation-pipeline",
+  "version": "1.0.0",
+  "description": "A self-contained processing pipeline that receives updates files and applies the **Large File Protocol** to extract, structure, and render data engineering knowledge into a self-contained HTML wiki.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "mermaid": "^11.16.0"
+  }
+}

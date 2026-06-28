@@ -370,3 +370,36 @@ Execute on the complete output before delivering:
 | Processing delta | Static file lists | **Index references vs. existing wiki = what's new** |
 
 The three-step structure now matches your original spec exactly: read indexes → load what they tell you is needed → execute.
+
+---
+
+## Post-Pipeline: Deployment & Commit
+
+### Output file
+- `wiki.html` — self-contained single-file SPA (~4 MB, mermaid inlined)
+- Written to **two locations** by `build_wiki.py`:
+  1. `wiki-generation-pipeline/wiki.html` (project source)
+  2. `wiki.html` at the **git repository root** (neighbouring `wiki-generation-pipeline/`)
+
+Only the repo-root copy needs committing.
+
+### Commit scope
+- Commit the entire `wiki-generation-pipeline/` directory
+- No need to detail individual `.md` files in the `updates/` folder
+- The commit message should include a **brief abstract** of what new content was added (2–4 short lines)
+
+### Suggested commit message format
+```
+wiki: rebuild + [very short abstract of new content]
+
+- e.g., "C1M3 summary: data collection, wrangling, wrangling tools"
+- e.g., "C2M1 intro: data platforms, security, big data lifecycle"
+```
+
+### Abstract line conventions
+One line per distinct content domain added, max 80 chars each:
+```
+New content — C1M3 Data Collection & Wrangling summary (gathering methods, transformation/cleansing, tool overview)
+```
+
+Keep it high-level. Never enumerate individual update filenames.

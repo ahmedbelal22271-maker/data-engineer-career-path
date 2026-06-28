@@ -1,23 +1,24 @@
 """
-Build complete self-contained HTML wiki from 34 markdown topic pages.
+Build complete self-contained HTML wiki with SPA page navigation.
 Usage: python scripts/build_wiki.py
 
-Hash-manifest auto-detection for LTHP highlighting:
-  - .lthp_state.json stores SHA-256 hashes of every source .md file
-  - On each build, compares current hashes to manifest to classify cards:
-    "new"       → file not in manifest (never seen before)
-    "modified"  → hash changed since last build
-    "original"  → hash unchanged
-  - First build (empty manifest) treats every card as "new"
+Features:
+  - Hash-manifest LTHP auto-detection (NEW / MODIFIED / ORIGINAL)
+  - SPA page navigation (one section at a time, hash-routed)
+  - Fixed left sidebar with section links
+  - Working cross-reference links (filename-to-anchor mapping)
+  - Content cleaning (strips course-ware artifacts)
+  - LOW-RELEVANCE / SUPERSEDED / REDUNDANT as styled semantic blocks
+  - Glossary tracked in manifest for highlighting
 """
 import os, re, json, hashlib
 
 WIKI_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOPICS_DIR = os.path.join(WIKI_DIR, "de_wiki", "topics")
-OUTPUT = os.path.join(WIKI_DIR, "output", "option_a", "index.html")
+OUTPUT = os.path.join(WIKI_DIR, "wiki.html")
 MANIFEST = os.path.join(WIKI_DIR, "de_wiki", ".lthp_state.json")
 
-# ── Section definition (from output_map.md) ──
+# ── Section definition ──
 SECTIONS = [
     ("overview", "Data Engineering Scope", [
         ("Data Engineering Scope", "data_engineering_scope.md", "overview"),
@@ -37,7 +38,7 @@ SECTIONS = [
         ("Skill Taxonomy", "skills_and_responsibilities.md", "skills"),
         ("Practitioner Viewpoints", "practitioner_skills_viewpoints.md", "skills"),
     ]),
-    ("ecosystem", "Data Ecosystem \u2014 Types, Sources & Languages", [
+    ("ecosystem", "Data Ecosystem — Types, Sources & Languages", [
         ("Types of Data", "data_types.md", "ecosystem"),
         ("File Formats", "file_formats.md", "ecosystem"),
         ("Data Sources", "data_sources.md", "ecosystem"),
@@ -72,28 +73,49 @@ SECTIONS = [
     ]),
 ]
 
-# ── Hash manifest logic ──
-def compute_status_map():
-    """Return (status_map, new_manifest).
+# ── Helpers ──
+def url_to_anchor(text):
+    t = text.lower()
+    t = re.sub(r'[^a-z0-9]+', '-', t)
+    return t.strip('-')[:50]
 
-    status_map: {md_file: "new"|"modified"|"original"}
-    new_manifest: {md_file: sha256_hex}
-    """
+def escape_html(text):
+    text = text.replace('&', '&amp;')
+    text = text.replace('<', '&lt;')
+    text = text.replace('>', '&gt;')
+    text = text.replace('"', '&quot;')
+    return text
+
+# ── Filename → anchor map for cross-ref resolution ──
+def build_filename_to_anchor_map():
+    m = {}
+    for _, _, cards in SECTIONS:
+        for title, md_file, _ in cards:
+            anchor = url_to_anchor(title)
+            m[md_file] = anchor
+            m[f"topics/{md_file}"] = anchor
+    m["glossary.md"] = "glossary"
+    m["topics/glossary.md"] = "glossary"
+    return m
+
+# ── Hash manifest ──
+def compute_status_map():
     manifest = {}
     if os.path.exists(MANIFEST):
         try:
             with open(MANIFEST, encoding="utf-8") as f:
                 manifest = json.load(f)
             if not isinstance(manifest, dict):
-                raise ValueError("manifest root is not a dict")
+                raise ValueError("not a dict")
         except (json.JSONDecodeError, OSError, ValueError):
-            print("Warning: corrupt .lthp_state.json — treating as first build")
+            print("Warning: corrupt .lthp_state.json — treating as fresh")
             manifest = {}
 
     status, new_manifest = {}, {}
-    all_md_files = [md for _, _, cards in SECTIONS for _, md, _ in cards]
+    all_md = [md for _, _, cards in SECTIONS for _, md, _ in cards] + ["glossary.md"]
+    is_first_build = (len(manifest) == 0)
 
-    for md_file in all_md_files:
+    for md_file in all_md:
         path = os.path.join(TOPICS_DIR, md_file)
         if not os.path.exists(path):
             status[md_file] = "original"
@@ -101,7 +123,9 @@ def compute_status_map():
         h = hashlib.sha256(open(path, "rb").read()).hexdigest()
         new_manifest[md_file] = h
 
-        if md_file not in manifest:
+        if is_first_build:
+            status[md_file] = "original"
+        elif md_file not in manifest:
             status[md_file] = "new"
         elif manifest[md_file] != h:
             status[md_file] = "modified"
@@ -110,10 +134,58 @@ def compute_status_map():
 
     return status, new_manifest
 
+# ── Content cleaning ──
+def clean_content(text):
+    """Strip course-ware structural artifacts from markdown before rendering."""
+    lines = text.split('\n')
+    out = []
+    skip_table = False
+    table_lines = []
 
-# ── Markdown → HTML conversion ──
-def md_to_html(text, card_id=""):
-    """Convert markdown text to HTML, handling wiki-specific patterns."""
+    for line in lines:
+        # Skip numbered section headings like "### 4.3 Course Wrap-Up"
+        if re.match(r'^#{1,5}\s+\d+\.\d+\s', line):
+            continue
+
+        # Skip low-value boilerplate lines
+        low_val = ["course wrap-up", "congratulations and next steps",
+                    "summary and highlights", "practice quiz", "graded quiz"]
+        if any(p in line.lower() for p in low_val):
+            if not line.strip().startswith('|'):  # don't break table detection
+                continue
+
+        # Detect and skip content-map tables (sequential number in col 1)
+        if line.strip().startswith('|'):
+            table_lines.append(line)
+            if not line.strip().endswith('|'):
+                skip_table = True
+                continue
+            # Check if this is a content map row: first cell is a bare number
+            cells = [c.strip() for c in line.split('|')]
+            cells = [c for c in cells if c]
+            if len(cells) >= 2 and re.match(r'^\d+$', cells[0]):
+                skip_table = True
+                continue
+            if skip_table:
+                continue
+            out.append(line)
+        else:
+            if skip_table and table_lines:
+                table_lines = []
+                skip_table = False
+            elif table_lines:
+                out.extend(table_lines)
+                table_lines = []
+            out.append(line)
+
+    # Flush remaining table buffer
+    if not skip_table and table_lines:
+        out.extend(table_lines)
+
+    return '\n'.join(out)
+
+# ── Markdown → HTML ──
+def md_to_html(text):
     lines = text.split('\n')
     html = []
     i = 0
@@ -125,6 +197,8 @@ def md_to_html(text, card_id=""):
     list_buf = []
     in_blockquote = False
     quote_buf = []
+
+    FILENAME_ANCHOR_MAP = build_filename_to_anchor_map()
 
     def close_list():
         nonlocal in_list, list_buf
@@ -191,22 +265,49 @@ def md_to_html(text, card_id=""):
             i += 1
             continue
 
-        if line.strip().startswith('[Cross-ref:') or line.strip().startswith('[cross-ref:'):
+        # ── LOW-RELEVANCE ──
+        if line.strip().startswith('[LOW-RELEVANCE'):
             close_table(); close_list(); close_blockquote()
-            ref = line.strip()
-            m = re.match(r'\[(?:Cross-ref|cross-ref):\s*(.+?)(?:\s*\u2014\s*(.+))?\]', ref)
-            if m:
-                url = m.group(1).strip()
-                text = m.group(2).strip() if m.group(2) else url
-                html.append(f'<div class="cross-ref"><a href="#{url_to_anchor(url)}" class="cross-ref">{escape_html(text)}</a></div>\n')
-            else:
-                html.append(f'<div class="cross-ref">{escape_html(ref)}</div>\n')
+            text = escape_html(line.strip())
+            html.append(f'<details class="low-relevance-note"><summary>Low relevance</summary>{text}</details>\n')
             i += 1
             continue
 
-        if line.strip().startswith('[LOW-RELEVANCE') or line.strip().startswith('[SUPERSEDED') or line.strip().startswith('[REDUNDANT'):
+        # ── SUPERSEDED ──
+        if line.strip().startswith('[SUPERSEDED'):
             close_table(); close_list(); close_blockquote()
-            html.append(f'<div class="cross-ref">{escape_html(line.strip())}</div>\n')
+            text = escape_html(line.strip())
+            html.append(f'<div class="superseded-note"><span class="tag-icon">&#x26A0;</span> {text}</div>\n')
+            i += 1
+            continue
+
+        # ── REDUNDANT ──
+        if line.strip().startswith('[REDUNDANT'):
+            close_table(); close_list(); close_blockquote()
+            text = escape_html(line.strip())
+            html.append(f'<div class="redundant-note"><span class="tag-icon">&#x21BB;</span> {text}</div>\n')
+            i += 1
+            continue
+
+        # ── OFF-TOPIC inline (handle without dedicated block) ──
+        if line.strip().startswith('[OFF-TOPIC'):
+            close_table(); close_list(); close_blockquote()
+            html.append(f'<div class="redundant-note">{escape_html(line.strip())}</div>\n')
+            i += 1
+            continue
+
+        # ── Cross-ref ──
+        if line.strip().startswith('[Cross-ref:') or line.strip().startswith('[cross-ref:'):
+            close_table(); close_list(); close_blockquote()
+            ref = line.strip()
+            m = re.match(r'\[(?:Cross-ref|cross-ref):\s*(.+?)(?:\s*(?:—|-)\s*(.+))?\]', ref)
+            if m:
+                url = m.group(1).strip()
+                text = m.group(2).strip() if m.group(2) else url
+                anchor = FILENAME_ANCHOR_MAP.get(url) or url_to_anchor(url)
+                html.append(f'<div class="cross-ref"><a href="#{anchor}" class="cross-ref-link">{escape_html(text)}</a></div>\n')
+            else:
+                html.append(f'<div class="cross-ref">{escape_html(ref)}</div>\n')
             i += 1
             continue
 
@@ -286,21 +387,6 @@ def md_to_html(text, card_id=""):
     return ''.join(html)
 
 
-def url_to_anchor(text):
-    text = text.lower()
-    text = re.sub(r'[^a-z0-9]+', '-', text)
-    text = text.strip('-')
-    return text[:50]
-
-
-def escape_html(text):
-    text = text.replace('&', '&amp;')
-    text = text.replace('<', '&lt;')
-    text = text.replace('>', '&gt;')
-    text = text.replace('"', '&quot;')
-    return text
-
-
 def inline_html(text):
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
     text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
@@ -310,7 +396,6 @@ def inline_html(text):
 
 
 def build_card_html(title, md_file, category):
-    """Read a markdown file and convert to HTML card body (no outer div)."""
     filepath = os.path.join(TOPICS_DIR, md_file)
     if not os.path.exists(filepath):
         return f'<h3>{escape_html(title)}</h3><p><em>Content pending.</em></p>\n'
@@ -320,23 +405,11 @@ def build_card_html(title, md_file, category):
 
     content = re.sub(r'^# .+\n?', '', content, count=1)
     content = re.sub(r'\n\*Source:.*?\*', '', content)
+    content = clean_content(content)
     return md_to_html(content)
 
 
-# ── Build HTML sections ──
-def build_toc():
-    groups_html = []
-    for section_id, section_title, cards in SECTIONS:
-        links = ''.join(
-            f'<a href="#{url_to_anchor(title)}" class="toc-link">{escape_html(title)}</a>\n'
-            for title, _, _ in cards
-        )
-        groups_html.append(
-            f'<div class="toc-group">\n<div class="toc-group-title">{escape_html(section_title)}</div>\n{links}</div>'
-        )
-    return '\n'.join(groups_html)
-
-
+# ── Build sections ──
 def build_sections(status_map):
     sections_html = []
     for section_id, section_title, cards in SECTIONS:
@@ -356,25 +429,22 @@ def build_sections(status_map):
                 cls = "card"
                 tag = ""
 
-            # Inject tag at top of card body, after the first h3
-            # If body doesn't start with h3, prepend one
             if not body.lstrip().startswith('<h3'):
                 body = f'<h3>{escape_html(title)}</h3>\n{tag}\n{body}'
             else:
-                # Insert tag right after opening h3 tag
                 body = re.sub(r'(<h3>.*?</h3>)', lambda m: f'{m.group(1)}\n{tag}', body, count=1)
 
             cards_html.append(f'<div class="{cls}" id="{anchor}">\n{body}\n</div>')
 
         sections_html.append(
-            f'<section class="category">\n<div class="category-header">\n<h2>{escape_html(section_title)}</h2>\n'
+            f'<section class="category" id="{section_id}">\n<div class="category-header">\n<h2>{escape_html(section_title)}</h2>\n'
             f'<span class="category-count">{escape_html(category)}</span>\n</div>\n{"".join(cards_html)}\n</section>'
         )
     return '\n'.join(sections_html)
 
 
-def build_glossary():
-    """Parse glossary.md and build HTML table."""
+# ── Glossary ──
+def build_glossary(status_map):
     gpath = os.path.join(TOPICS_DIR, "glossary.md")
     if not os.path.exists(gpath):
         return ""
@@ -392,12 +462,25 @@ def build_glossary():
                 defn = escape_html(parts[1])
                 src = escape_html(parts[2]) if len(parts) > 2 else ''
                 rows_html.append(f'<tr><td>{term}</td><td>{defn}</td><td>{src}</td></tr>\n')
+
+    st = status_map.get("glossary.md", "original")
+    if st == "new":
+        cls = "card lthp-highlight"
+        tag = '<span class="tag green">NEW</span>'
+    elif st == "modified":
+        cls = "card lthp-highlight"
+        tag = '<span class="tag amber">MODIFIED</span>'
+    else:
+        cls = "card"
+        tag = ""
+
     return f'''<section class="category" id="glossary">
 <div class="category-header">
 <h2>Consolidated Glossary</h2>
 <span class="category-count">Reference</span>
 </div>
-<div class="card">
+<div class="{cls}">
+{tag}
 <p>{len(rows_html)} data engineering terms from all source files.</p>
 <table>
 <thead><tr><th>Term</th><th>Definition</th><th>Source Files</th></tr></thead>
@@ -405,304 +488,82 @@ def build_glossary():
 {"".join(rows_html)}
 </tbody>
 </table>
-<div class="cross-ref"><a href="#overview" class="cross-ref">All topic pages \u2014 this glossary consolidates terms from every source file</a></div>
+<div class="cross-ref"><a href="#data-engineering-scope" class="cross-ref-link">All topic pages — this glossary consolidates terms from every source file</a></div>
 </div>
 </section>'''
 
 
+# ── Future ──
 def build_future():
     return """<section class="category" id="future">
 <div class="category-header">
-<h2>Coming Next \u2014 Modules 3\u201310</h2>
+<h2>Coming Next — Modules 3–10</h2>
 <span class="category-count">Preview</span>
 </div>
-<div class="future-card"><h3>Module 3 (Course 3) \u2014 Data Collection and Data Wrangling</h3><p>How to Gather and Import Data, Data Wrangling, Tools for Data Wrangling, CSV/Db2 lab exercises. <span class="tag">Course 1</span></p></div>
-<div class="future-card"><h3>Module 4 (Course 3) \u2014 Querying Data, Performance Tuning, and Troubleshooting</h3><p>Querying and Analyzing Data, Performance Tuning and Troubleshooting, SQL exploration labs. <span class="tag">Course 1</span></p></div>
-<div class="future-card"><h3>Module 5 (Course 3) \u2014 Governance and Compliance</h3><p>Governance frameworks, compliance regulations, DataOps methodology overview. <span class="tag">Course 1</span></p></div>
-<div class="future-card"><h3>Courses 2\u201316 \u2014 Full IBM Certificate</h3><p>Python, SQL, Linux, DBA, ETL/Airflow/Kafka, Data Warehousing, BI, NoSQL, Big Data/Spark, ML, Capstone, GenAI, Career. See 16-Course Sequence card for details. <span class="tag">Full Track</span></p></div>
+<div class="future-card"><h3>Module 3 (Course 3) — Data Collection and Data Wrangling</h3><p>How to Gather and Import Data, Data Wrangling, Tools for Data Wrangling, CSV/Db2 lab exercises. <span class="tag">Course 1</span></p></div>
+<div class="future-card"><h3>Module 4 (Course 3) — Querying Data, Performance Tuning, and Troubleshooting</h3><p>Querying and Analyzing Data, Performance Tuning and Troubleshooting, SQL exploration labs. <span class="tag">Course 1</span></p></div>
+<div class="future-card"><h3>Module 5 (Course 3) — Governance and Compliance</h3><p>Governance frameworks, compliance regulations, DataOps methodology overview. <span class="tag">Course 1</span></p></div>
+<div class="future-card"><h3>Courses 2–16 — Full IBM Certificate</h3><p>Python, SQL, Linux, DBA, ETL/Airflow/Kafka, Data Warehousing, BI, NoSQL, Big Data/Spark, ML, Capstone, GenAI, Career. See 16-Course Sequence card for details. <span class="tag">Full Track</span></p></div>
 </section>"""
 
 
-# ── CSS ──
-CSS = """:root {
-  --accent: #3b82f6;
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --border: #334155;
-  --bg-subtle: #1e293b;
-  --bg-card: #0f172a;
-  --bg-body: #0b1120;
-  --shadow: 0 1px 2px rgba(0,0,0,0.04);
-  --highlight-bg: rgba(234, 179, 8, 0.12);
-  --highlight-border: rgba(234, 179, 8, 0.9);
-}
-html.light body {
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  --border: #e2e8f0;
-  --bg-subtle: #f8fafc;
-  --bg-card: #ffffff;
-  --bg-body: #ffffff;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1rem; line-height: 1.6;
-  color: var(--text-primary); background: var(--bg-body);
-}
-.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
-h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin: 0 0 16px; }
-h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.4; margin: 0 0 8px; }
-h4 { font-size: 1.05rem; font-weight: 600; line-height: 1.4; margin: 16px 0 6px; }
-h5 { font-size: 0.95rem; font-weight: 600; line-height: 1.4; margin: 12px 0 6px; color: var(--text-secondary); }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-.doc-header { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
-.doc-header h1 { margin-bottom: 8px; }
-.doc-subtitle { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 16px; }
-.doc-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-.meta-badge {
-  font-size: 0.8rem; font-weight: 600;
-  padding: 4px 12px; border-radius: 999px;
-  background: var(--bg-subtle); border: 1px solid var(--border);
-  color: var(--text-secondary);
-}
-.controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-.search-input {
-  flex: 1; min-width: 200px;
-  padding: 8px 14px; border: 1px solid var(--border);
-  border-radius: 8px; font-size: 0.9rem;
-  background: var(--bg-body); color: var(--text-primary);
-}
-.search-input:focus { outline: none; border-color: var(--accent); }
-.dark-toggle {
-  padding: 8px 16px; border: 1px solid var(--border);
-  border-radius: 8px; cursor: pointer;
-  font-size: 0.85rem; font-weight: 600;
-  background: var(--bg-card); color: var(--text-primary);
-  white-space: nowrap;
-}
-.dark-toggle:hover { background: var(--bg-subtle); }
-.toc {
-  background: var(--bg-subtle); border: 1px solid var(--border);
-  border-radius: 12px; padding: 24px; margin-bottom: 48px;
-}
-.toc-title {
-  font-size: 0.85rem; text-transform: uppercase;
-  letter-spacing: 0.08em; color: var(--text-muted);
-  margin-bottom: 16px; cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.toc-title::after { content: "\\25bc"; font-size: 0.7rem; }
-.toc.collapsed .toc-title::after { content: "\\25b6"; }
-.toc.collapsed .toc-body { display: none; }
-.toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-.toc-group-title { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
-.toc-link {
-  display: block; font-size: 0.85rem; color: var(--text-secondary);
-  padding: 3px 0; transition: color 0.15s;
-}
-.toc-link:hover { color: var(--accent); text-decoration: none; }
-.category { margin-bottom: 48px; }
-.category-header {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 20px; padding-bottom: 8px;
-  border-bottom: 2px solid var(--accent);
-}
-.category-header h2 { margin: 0; }
-.category-count {
-  font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
-  background: var(--bg-subtle); padding: 2px 10px;
-  border-radius: 999px; border: 1px solid var(--border);
-}
-.card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 12px; padding: 20px;
-  box-shadow: var(--shadow); margin-bottom: 16px;
-}
-.lthp-highlight {
-  box-shadow: inset 0 0 0 2px var(--highlight-border);
-  background: var(--highlight-bg);
-  border-radius: 4px;
-  transition: background 0.3s ease;
-}
-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 12px 0; }
-th, td { padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; }
-th { font-weight: 600; color: var(--text-secondary); background: var(--bg-subtle); }
-blockquote {
-  border-left: 3px solid var(--accent);
-  padding: 8px 16px; margin: 12px 0;
-  color: var(--text-secondary);
-  background: var(--bg-subtle);
-  border-radius: 0 8px 8px 0;
-  font-size: 0.9rem;
-}
-code {
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  background: var(--bg-subtle); border-radius: 4px;
-  padding: 2px 6px; font-size: 0.85rem;
-}
-pre {
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  background: var(--bg-subtle); border-radius: 8px;
-  padding: 12px 16px; overflow-x: auto;
-  font-size: 0.85rem; margin: 12px 0;
-}
-ul, ol { padding-left: 20px; margin: 8px 0; }
-li { margin-bottom: 4px; }
-hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-.future-card {
-  background: var(--bg-subtle); border: 1px dashed var(--border);
-  border-radius: 12px; padding: 20px; margin-bottom: 12px;
-  opacity: 0.6;
-}
-.future-card h3 { color: var(--text-muted); }
-.future-card p { color: var(--text-muted); font-size: 0.85rem; }
-.cross-ref {
-  font-size: 0.8rem; color: var(--text-muted);
-  margin-top: 8px;
-}
-.tag {
-  display: inline-block; font-size: 0.7rem; font-weight: 600;
-  padding: 2px 8px; border-radius: 999px;
-  background: rgba(37,99,235,0.1); color: var(--accent);
-  margin-right: 4px;
-  margin-bottom: 8px;
-}
-.tag.green { background: rgba(22,163,74,0.1); color: #16a34a; }
-.tag.amber { background: rgba(217,119,6,0.1); color: #d97706; }
-.tag.purple { background: rgba(139,92,246,0.1); color: #8b5cf6; }
-.search-highlight { background: rgba(234,179,8,0.25); border-radius: 2px; }
-footer {
-  margin-top: 48px; padding: 24px 0;
-  border-top: 1px solid var(--border);
-  text-align: center; font-size: 0.8rem; color: var(--text-muted);
-}
-@media (max-width: 768px) {
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.25rem; }
-  .toc-grid { grid-template-columns: 1fr; }
-  .container { padding: 0 16px; }
-  .doc-header { padding: 24px 0 16px; }
-}
-@media (max-width: 480px) {
-  table { font-size: 0.75rem; }
-  th, td { padding: 6px 8px; }
-  .controls { flex-direction: column; }
-  .search-input { min-width: 100%; }
-}"""
+# ── Sidebar ──
+def build_sidebar():
+    items = []
+    for section_id, section_title, cards in SECTIONS:
+        first_anchor = url_to_anchor(cards[0][0])
+        items.append(f'<a href="#{first_anchor}" class="sidebar-link" data-section="{section_id}">{escape_html(section_title)}</a>')
+        for title, _, _ in cards:
+            anchor = url_to_anchor(title)
+            items.append(f'<a href="#{anchor}" class="sidebar-sub-link" data-section="{section_id}">{escape_html(title)}</a>')
+    items.append('<div class="sidebar-divider"></div>')
+    items.append('<a href="#glossary" class="sidebar-link" data-section="glossary">Glossary</a>')
+    items.append('<a href="#future" class="sidebar-link" data-section="future">Coming Next</a>')
+    return ''.join(items)
 
 
-# ── JavaScript ──
-JS = """(() => {
-  const toggle = document.getElementById('darkToggle');
-  const stored = localStorage.getItem('de-wiki-light');
-  if (stored === 'true') { document.documentElement.classList.add('light'); toggle.textContent = 'Dark Mode'; }
-  toggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('light');
-    const isLight = document.documentElement.classList.contains('light');
-    localStorage.setItem('de-wiki-light', isLight);
-    toggle.textContent = isLight ? 'Dark Mode' : 'Light Mode';
-  });
-  const tocToggle = document.getElementById('tocToggle');
-  const toc = document.getElementById('toc');
-  tocToggle.addEventListener('click', () => { toc.classList.toggle('collapsed'); });
-  const input = document.getElementById('searchInput');
-  input.addEventListener('input', () => {
-    const q = input.value.toLowerCase().trim();
-    const cards = document.querySelectorAll('.card, .future-card');
-    if (!q) {
-      cards.forEach(c => { c.style.display = ''; });
-      document.querySelectorAll('.category').forEach(s => { s.style.display = ''; });
-      return;
-    }
-    cards.forEach(c => {
-      const text = c.textContent.toLowerCase();
-      c.style.display = text.includes(q) ? '' : 'none';
-    });
-    document.querySelectorAll('.category').forEach(s => {
-      const visible = Array.from(s.querySelectorAll('.card, .future-card')).some(c => c.style.display !== 'none');
-      s.style.display = visible ? '' : 'none';
-    });
-  });
-})();"""
+# ── Template ──
+TEMPLATE_PATH = os.path.join(WIKI_DIR, "wiki_template.html")
 
 
 # ── Main ──
 def main():
-    # Compute status from hash manifest
     status_map, new_manifest = compute_status_map()
 
-    toc_html = build_toc()
     sections_html = build_sections(status_map)
-    glossary_html = build_glossary()
+    glossary_html = build_glossary(status_map)
     future_html = build_future()
+    sidebar_html = build_sidebar()
+
+    content = sections_html + '\n\n' + glossary_html + '\n\n' + future_html
+
+    with open(TEMPLATE_PATH, 'r', encoding='utf-8') as f:
+        html = f.read()
+    html = html.replace('{{WIKI_CONTENT}}', content)
+    html = html.replace('{{SIDEBAR_NAV}}', sidebar_html)
 
     total_cards = sum(len(cards) for _, _, cards in SECTIONS)
 
-    html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark light">
-<title>Data Engineering Wiki</title>
-<script>if(localStorage.getItem('de-wiki-light')==='true'){{document.documentElement.classList.add('light')}}</script>
-<style>
-{CSS}
-</style>
-</head>
-<body>
-<div class="container">
-
-<header class="doc-header">
-  <h1>Data Engineering Wiki</h1>
-  <p class="doc-subtitle">Technical reference covering the IBM Data Engineering Professional Certificate \u2014 Modules 1 &amp; 2 in depth, plus the full 16-course career blueprint.</p>
-  <div class="doc-meta">
-    <span class="meta-badge">{total_cards} Topic Cards</span>
-    <span class="meta-badge">{len(SECTIONS)} Categories</span>
-    <span class="meta-badge">63 Source Files</span>
-  </div>
-  <div class="controls">
-    <input type="text" class="search-input" id="searchInput" placeholder="Search topics, roles, tools, or concepts...">
-    <button class="dark-toggle" id="darkToggle">Light Mode</button>
-  </div>
-</header>
-
-<nav class="toc" id="toc">
-  <div class="toc-title" id="tocToggle">Contents</div>
-  <div class="toc-body">
-    <div class="toc-grid">
-{toc_html}
-    </div>
-  </div>
-</nav>
-
-{sections_html}
-
-{glossary_html}
-
-{future_html}
-
-<footer>
-  <p>Generated from IBM Data Engineering Professional Certificate source files. 63 source files, {total_cards} topic cards.</p>
-</footer>
-
-</div>
-
-<script>{JS}</script>
-
-</body>
-</html>"""
-
     os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
+
+    # Inline Mermaid JS into the HTML for a single self-contained file
+    mermaid_src = os.path.join(WIKI_DIR, 'node_modules', 'mermaid', 'dist', 'mermaid.min.js')
+    if os.path.exists(mermaid_src):
+        with open(mermaid_src, 'r', encoding='utf-8') as f:
+            mermaid_js = f.read()
+        html = html.replace('{{MERMAID_JS}}', '<script>' + mermaid_js + '</script>')
+    else:
+        html = html.replace('{{MERMAID_JS}}', '<script>console.warn("Mermaid not bundled")</script>')
+
     with open(OUTPUT, 'w', encoding='utf-8') as f:
         f.write(html)
 
-    # Write manifest only on success
+    # Copy to git repo root (neighbour to wiki-generation-pipeline/)
+    repo_root = os.path.dirname(WIKI_DIR)
+    repo_output = os.path.join(repo_root, 'wiki.html')
+    with open(repo_output, 'w', encoding='utf-8') as f:
+        f.write(html)
+
     with open(MANIFEST, 'w', encoding='utf-8') as f:
         json.dump(new_manifest, f, indent=2)
 
@@ -712,6 +573,7 @@ def main():
 
     file_size = os.path.getsize(OUTPUT)
     print(f"Written: {OUTPUT}")
+    print(f"Written: {repo_output}")
     print(f"Size: {file_size:,} bytes ({file_size/1024:.1f} KB)")
     print(f"Cards: {total_cards} (NEW: {new_count}, MODIFIED: {mod_count}, ORIGINAL: {orig_count})")
 

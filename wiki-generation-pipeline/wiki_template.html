@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<title>Data Engineering Wiki</title>
+<script>if(localStorage.getItem('de-wiki-light')==='true'){document.documentElement.classList.add('light')}</script>
+{{MERMAID_JS}}
+<script>mermaid.initialize({startOnLoad:false});</script>
+<style>
+:root {
+  --accent: #3b82f6;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: #334155;
+  --bg-subtle: #1e293b;
+  --bg-card: #0f172a;
+  --bg-body: #0b1120;
+  --bg-sidebar: #0a0f1a;
+  --shadow: 0 1px 2px rgba(0,0,0,0.04);
+  --highlight-bg: rgba(234, 179, 8, 0.12);
+  --highlight-border: rgba(234, 179, 8, 0.9);
+  --sidebar-width: 240px;
+}
+html.light {
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --bg-subtle: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-body: #ffffff;
+  --bg-sidebar: #f1f5f9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1rem; line-height: 1.6;
+  color: var(--text-primary); background: var(--bg-body);
+  display: flex; min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed; top: 0; left: 0;
+  width: var(--sidebar-width); height: 100vh;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  z-index: 100; overflow-y: auto;
+}
+.sidebar-header {
+  padding: 20px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-title {
+  font-size: 1.1rem; font-weight: 700; color: var(--text-primary);
+  text-decoration: none; display: block;
+}
+.sidebar-title:hover { color: var(--accent); }
+.sidebar-search { padding: 12px 16px; }
+.sidebar-search-input {
+  width: 100%; padding: 8px 12px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 0.8rem; background: var(--bg-body); color: var(--text-primary);
+  outline: none;
+}
+.sidebar-search-input:focus { border-color: var(--accent); }
+.sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
+.sidebar-link {
+  display: block; padding: 8px 16px;
+  font-size: 0.85rem; color: var(--text-secondary);
+  text-decoration: none; transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+.sidebar-link:hover { color: var(--text-primary); background: var(--bg-subtle); }
+.sidebar-link.active {
+  color: var(--accent); background: var(--bg-subtle);
+  border-left-color: var(--accent); font-weight: 600;
+}
+.sidebar-divider {
+  height: 1px; background: var(--border);
+  margin: 8px 16px;
+}
+.sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+}
+.sidebar-dark-toggle {
+  width: 100%; padding: 8px;
+  border: 1px solid var(--border); border-radius: 8px;
+  cursor: pointer; font-size: 0.8rem; font-weight: 600;
+  background: var(--bg-card); color: var(--text-primary);
+}
+.sidebar-dark-toggle:hover { background: var(--bg-subtle); }
+
+/* ── Mobile top bar ── */
+.mobile-header {
+  display: none;
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg-body);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+}
+.mobile-header-row {
+  display: flex; align-items: center; gap: 12px;
+}
+.mobile-title {
+  font-size: 1rem; font-weight: 700; color: var(--text-primary);
+  white-space: nowrap; text-decoration: none;
+}
+.mobile-section-select {
+  flex: 1; padding: 6px 10px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 0.8rem; background: var(--bg-body); color: var(--text-primary);
+  outline: none; cursor: pointer;
+}
+.mobile-section-select:focus { border-color: var(--accent); }
+.mobile-search-row {
+  margin-top: 8px;
+}
+.mobile-search-input {
+  width: 100%; padding: 8px 12px;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 0.8rem; background: var(--bg-card); color: var(--text-primary);
+  outline: none;
+}
+.mobile-search-input:focus { border-color: var(--accent); }
+
+/* ── Main content ── */
+.main {
+  margin-left: var(--sidebar-width);
+  flex: 1; min-height: 100vh;
+}
+.container {
+  max-width: 960px; margin: 0 auto; padding: 0 32px 48px;
+}
+
+/* ── Header ── */
+.doc-header { padding: 32px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+.doc-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+.doc-subtitle { color: var(--text-secondary); font-size: 1rem; margin-bottom: 16px; }
+.doc-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.meta-badge {
+  font-size: 0.78rem; font-weight: 600;
+  padding: 4px 12px; border-radius: 999px;
+  background: var(--bg-subtle); border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* ── Sections / pages ── */
+.category { margin-bottom: 48px; }
+.category:not(.active-page) { display: none; }
+.category-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+}
+.category-header h2 { margin: 0; font-size: 1.4rem; }
+.category-count {
+  font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+  background: var(--bg-subtle); padding: 2px 10px;
+  border-radius: 999px; border: 1px solid var(--border);
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
+  box-shadow: var(--shadow); margin-bottom: 16px;
+}
+.lthp-highlight {
+  box-shadow: inset 0 0 0 2px var(--highlight-border);
+  background: var(--highlight-bg);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin: 0 0 16px; }
+h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.4; margin: 0 0 8px; }
+h4 { font-size: 1.05rem; font-weight: 600; line-height: 1.4; margin: 16px 0 6px; }
+h5 { font-size: 0.95rem; font-weight: 600; line-height: 1.4; margin: 12px 0 6px; color: var(--text-secondary); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Tables ── */
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 12px 0; }
+th, td { padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+th { font-weight: 600; color: var(--text-secondary); background: var(--bg-subtle); }
+
+/* ── Blockquote ── */
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 8px 16px; margin: 12px 0;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+}
+
+/* ── Code ── */
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--bg-subtle); border-radius: 4px;
+  padding: 2px 6px; font-size: 0.85rem;
+}
+pre {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--bg-subtle); border-radius: 8px;
+  padding: 12px 16px; overflow-x: auto;
+  font-size: 0.85rem; margin: 12px 0;
+}
+
+/* ── Lists ── */
+ul, ol { padding-left: 20px; margin: 8px 0; }
+li { margin-bottom: 4px; }
+hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+/* ── Future cards ── */
+.future-card {
+  background: var(--bg-subtle); border: 1px dashed var(--border);
+  border-radius: 12px; padding: 20px; margin-bottom: 12px;
+  opacity: 0.6;
+}
+.future-card h3 { color: var(--text-muted); }
+.future-card p { color: var(--text-muted); font-size: 0.85rem; }
+
+/* ── Cross-ref ── */
+.cross-ref {
+  font-size: 0.8rem; color: var(--text-muted);
+  margin-top: 8px;
+}
+.cross-ref-link { color: var(--accent); }
+
+/* ── Tags ── */
+.tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px;
+  background: rgba(37,99,235,0.1); color: var(--accent);
+  margin-right: 4px; margin-bottom: 8px;
+}
+.tag.green { background: rgba(22,163,74,0.1); color: #16a34a; }
+.tag.amber { background: rgba(217,119,6,0.1); color: #d97706; }
+
+/* ── LOW-RELEVANCE ── */
+.low-relevance-note {
+  font-size: 0.78rem; opacity: 0.5; margin: 8px 0;
+  padding: 6px 12px; background: var(--bg-subtle);
+  border-radius: 6px;
+}
+.low-relevance-note summary {
+  cursor: pointer; color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ── SUPERSEDED / REDUNDANT ── */
+.superseded-note {
+  font-size: 0.78rem; margin: 8px 0;
+  padding: 6px 12px; background: rgba(234,179,8,0.08);
+  border-left: 3px solid #d97706; border-radius: 0 6px 6px 0;
+  color: var(--text-muted);
+}
+.redundant-note {
+  font-size: 0.78rem; margin: 8px 0;
+  padding: 6px 12px; background: var(--bg-subtle);
+  border-left: 3px solid var(--text-muted); border-radius: 0 6px 6px 0;
+  color: var(--text-muted);
+}
+.tag-icon { font-size: 0.85rem; margin-right: 4px; }
+
+/* ── Footer ── */
+footer {
+  margin-top: 48px; padding: 24px 0;
+  border-top: 1px solid var(--border);
+  text-align: center; font-size: 0.8rem; color: var(--text-muted);
+}
+
+/* ── Sidebar sub-links ── */
+.sidebar-sub-link {
+  display: block; padding: 4px 16px 4px 28px;
+  font-size: 0.78rem; color: var(--text-muted);
+  text-decoration: none; transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+.sidebar-sub-link:hover { color: var(--text-secondary); background: var(--bg-subtle); }
+.sidebar-sub-link.active {
+  color: var(--accent); background: var(--bg-subtle);
+  border-left-color: var(--accent); font-weight: 500;
+}
+
+/* ── Mermaid ── */
+.mermaid {
+  background: var(--bg-card); border-radius: 8px;
+  padding: 12px; margin: 12px 0;
+  overflow-x: auto;
+}
+
+/* ── Search highlight ── */
+.search-highlight { background: rgba(234,179,8,0.25); border-radius: 2px; }
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .mobile-header { display: block; }
+  .main { margin-left: 0; }
+  .container { padding: 0 16px; }
+  .doc-header { padding: 20px 0 16px; }
+  .doc-header h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+}
+@media (max-width: 480px) {
+  table { font-size: 0.75rem; }
+  th, td { padding: 6px 8px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a href="#" class="sidebar-title" id="sidebarHomeLink">Data Engineering Wiki</a>
+</div>
+<div class="sidebar-search">
+<input type="text" id="sidebarSearch" placeholder="Search topics, roles, tools..." class="sidebar-search-input">
+</div>
+<div class="sidebar-nav">
+{{SIDEBAR_NAV}}
+</div>
+<div class="sidebar-footer">
+<button class="sidebar-dark-toggle" id="sidebarDarkToggle">Dark Mode</button>
+</div>
+</nav>
+
+<div class="mobile-header">
+<div class="mobile-header-row">
+<a href="#" class="mobile-title" id="mobileHomeLink">DE Wiki</a>
+<select class="mobile-section-select" id="mobileSectionSelect">
+<option value="">Overview</option><option value="data-engineering-scope">Data Engineering Scope</option><option value="practitioner-definitions">Defining Data Engineering</option><option value="data-roles-overview">Data Roles &amp; Responsibilities</option><option value="skill-taxonomy">Skills &amp; Qualities</option><option value="types-of-data">Data Ecosystem — Types, Sources &amp; Languages</option><option value="data-repositories">Data Storage &amp; Repositories</option><option value="etl-elt-data-pipelines">Data Processing &amp; Big Data Platforms</option><option value="quiz-study-reference">Quiz &amp; Exam Reference</option><option value="course-syllabus-index">Course &amp; Career</option><option value="glossary">Glossary</option><option value="future">Coming Next</option>
+</select>
+</div>
+<div class="mobile-search-row">
+<input type="text" class="mobile-search-input" id="mobileSearch" placeholder="Search topics, roles, tools...">
+</div>
+</div>
+
+<div class="main">
+<div class="container">
+
+<header class="doc-header">
+<h1>Data Engineering Wiki</h1>
+<p class="doc-subtitle">Technical reference covering the IBM Data Engineering Professional Certificate — Modules 1 &amp; 2 in depth, plus the full 16-course career blueprint.</p>
+<div class="doc-meta">
+<span class="meta-badge">33 Topic Cards</span>
+<span class="meta-badge">9 Categories</span>
+<span class="meta-badge">63 Source Files</span>
+</div>
+</header>
+
+{{WIKI_CONTENT}}
+
+<footer>
+<p>Generated from IBM Data Engineering Professional Certificate source files. 63 source files, 33 topic cards.</p>
+</footer>
+
+</div>
+</div>
+
+<script>(() => {
+  /* ── Page routing ── */
+  function showPage(hash) {
+    hash = (hash || '').replace(/^#/, '');
+    var sections = document.querySelectorAll('.category');
+    sections.forEach(function(s) { s.style.display = 'none'; });
+    var target = null;
+
+    if (hash) {
+      target = document.getElementById(hash);
+      if (target && target.classList.contains('category')) {
+        target.style.display = 'block';
+      } else if (target) {
+        var parent = target.closest('.category');
+        if (parent) { parent.style.display = 'block'; }
+        else { target.style.display = 'block'; }
+      } else {
+        target = document.querySelector('[data-section="' + hash + '"]');
+        if (target) {
+          var secId = target.getAttribute('data-section');
+          var sec = document.getElementById(secId);
+          if (sec) sec.style.display = 'block';
+        }
+      }
+    }
+
+    if (!target || (sections.length > 0 && Array.from(sections).every(function(s) { return s.style.display === 'none'; }))) {
+      var first = sections[0];
+      if (first) first.style.display = 'block';
+    }
+
+    /* Render mermaid diagrams in visible section */
+    var visibleSection = target && target.classList.contains('category') ? target : (target ? target.closest('.category') : sections[0]);
+    if (visibleSection && typeof mermaid !== 'undefined') {
+      var mermaidNodes = visibleSection.querySelectorAll('.mermaid:not([data-processed])');
+      if (mermaidNodes.length > 0) {
+        mermaidNodes.forEach(function(n) { n.setAttribute('data-processed', 'true'); });
+        mermaid.run({ nodes: Array.from(mermaidNodes) });
+      }
+    }
+
+    /* Update sidebar active link */
+    var allLinks = document.querySelectorAll('.sidebar-link, .sidebar-sub-link');
+    allLinks.forEach(function(l) { l.classList.remove('active'); });
+    if (hash) {
+      var activeLink = document.querySelector('.sidebar-link[href="#' + hash + '"], .sidebar-sub-link[href="#' + hash + '"]');
+      if (activeLink) activeLink.classList.add('active');
+      else {
+        /* Try data-section match */
+        var sectionLink = document.querySelector('.sidebar-link[data-section="' + hash + '"]');
+        if (sectionLink) sectionLink.classList.add('active');
+      }
+    }
+  }
+
+  window.addEventListener('hashchange', function() {
+    showPage(location.hash);
+    if (location.hash) {
+      var el = document.getElementById(location.hash.replace(/^#/, ''));
+      if (el) {
+        setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+      }
+    }
+  });
+
+  /* Handle initial load */
+  showPage(location.hash);
+  if (location.hash) {
+    var el = document.getElementById(location.hash.replace(/^#/, ''));
+    if (el) {
+      setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
+    }
+  }
+
+  /* Sidebar home link - show overview */
+  document.getElementById('sidebarHomeLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    location.hash = '';
+    showPage('');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    /* Update active - first section link */
+    var first = document.querySelector('.sidebar-link');
+    if (first) first.classList.add('active');
+  });
+
+  /* ── Sidebar dark toggle ── */
+  var dt = document.getElementById('sidebarDarkToggle');
+  var stored = localStorage.getItem('de-wiki-light');
+  if (stored === 'true') {
+    document.documentElement.classList.add('light');
+    dt.textContent = 'Light Mode';
+  }
+  dt.addEventListener('click', function() {
+    document.documentElement.classList.toggle('light');
+    var isLight = document.documentElement.classList.contains('light');
+    localStorage.setItem('de-wiki-light', isLight);
+    dt.textContent = isLight ? 'Light Mode' : 'Dark Mode';
+  });
+
+  /* ── Mobile section select ── */
+  var sel = document.getElementById('mobileSectionSelect');
+  if (sel) {
+    sel.addEventListener('change', function() {
+      var val = this.value;
+      if (val) location.hash = val;
+    });
+    /* Update select on hash change */
+    window.addEventListener('hashchange', function() {
+      var hash = location.hash.replace(/^#/, '');
+      var opt = sel.querySelector('option[value="' + hash + '"]');
+      if (opt) sel.value = hash;
+    });
+  }
+
+  /* ── Sidebar search ── */
+  var sidebarSearch = document.getElementById('sidebarSearch');
+  var mainSearch = document.getElementById('mobileSearch');
+  function doSearch(input, e) {
+    var q = input.value.toLowerCase().trim();
+    var allCards = document.querySelectorAll('.card, .future-card');
+    var sections = document.querySelectorAll('.category');
+    if (!q) {
+      allCards.forEach(function(c) { c.style.display = 'block'; });
+      sections.forEach(function(s) {
+        s.style.display = 'block';
+        s.classList.remove('search-mode');
+      });
+      showPage(location.hash.replace(/^#/, ''));
+      return;
+    }
+    /* Show all sections during search */
+    sections.forEach(function(s) { s.style.display = 'block'; s.classList.add('search-mode'); });
+    allCards.forEach(function(c) {
+      var text = c.textContent.toLowerCase();
+      c.style.display = text.includes(q) ? 'block' : 'none';
+    });
+    sections.forEach(function(s) {
+      var visible = Array.from(s.querySelectorAll('.card, .future-card')).some(function(c) { return c.style.display !== 'none'; });
+      s.style.display = visible ? 'block' : 'none';
+    });
+  }
+  if (sidebarSearch) {
+    sidebarSearch.addEventListener('input', function(e) { doSearch(this, e); });
+  }
+  if (mainSearch) {
+    mainSearch.addEventListener('input', function(e) { doSearch(this, e); });
+  }
+
+  /* Sync sidebar search & mobile search */
+  if (sidebarSearch && mainSearch) {
+    sidebarSearch.addEventListener('input', function() { mainSearch.value = this.value; });
+    mainSearch.addEventListener('input', function() { sidebarSearch.value = this.value; });
+  }
+})();</script>
+
+</body>
+</html>
+

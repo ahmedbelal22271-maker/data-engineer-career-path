@@ -1,5 +1,5 @@
 {
-  "data_engineering_scope.md": "b6e8972fce9b70b1e8d55ce03b379f2a8bb60c57db25ff5ea6e7917067bbf0b3",
+  "data_engineering_scope.md": "750a4a86d0135b886d23de173cf4aad717690bc6a9829c89fa4dfae405151ddc",
   "modern_data_ecosystem.md": "a3010eb85875c25bfe99e9f36d1126c029bad2a2fed0e26b4f6ee6a8fe3009f6",
   "defining_data_engineering.md": "76f9177193375675bed264a1d42cca0fdd6ddf40ce36e40836e47c7e70da3f30",
   "evolution_of_data_engineering.md": "293cdcdce64d8ba16eb1c8eb54b91bb37a69b20273f7efe2ac8c60646dbb8fd5",
@@ -31,5 +31,6 @@
   "course_sequence_16.md": "aede9018479367e1ad9bb13db36431892a9fb2ca43c43fac9bd27b4e43937cec",
   "career_ladder.md": "7f0903f8c2cdc343711132fb50c502e442510c23292b60a3238ee0ca3ab96aa3",
   "certification_roadmap.md": "915cd506f0fc091b2a37470c423e04c4359d74f6a7728af5bb774fff2eedffd5",
-  "enhancement_modules.md": "ce405a41bbf32896422269c7f0ec5b0a546f4d69f0ff3275b4e16e98139119b8"
+  "enhancement_modules.md": "ce405a41bbf32896422269c7f0ec5b0a546f4d69f0ff3275b4e16e98139119b8",
+  "glossary.md": "06ac8ee08fa4096e0247dad516006ab852b4963320f970467315f3c717cc223a"
 }
