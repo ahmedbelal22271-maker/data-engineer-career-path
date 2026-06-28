@@ -379,9 +379,9 @@ The three-step structure now matches your original spec exactly: read indexes �
 - `wiki.html` — self-contained single-file SPA (~4 MB, mermaid inlined)
 - Written to **two locations** by `build_wiki.py`:
   1. `wiki-generation-pipeline/wiki.html` (project source)
-  2. `wiki.html` at the **git repository root** (neighbouring `wiki-generation-pipeline/`)
+  2. `index.html` at the **git repository root** (GitHub Pages entry)
 
-Only the repo-root copy needs committing.
+Only the repo-root `index.html` needs committing. The stale `wiki.html` at repo root (if present) must be `git rm`'d — the build no longer writes it there.
 
 ### Commit scope
 - Commit the entire `wiki-generation-pipeline/` directory
@@ -417,7 +417,6 @@ correctly. Check with `git config user.name && git config user.email`.
 
 **Always stage:**
 - `index.html` at repo root (GitHub Pages entry)
-- `wiki.html` at repo root
 - `wiki-generation-pipeline/wiki.html`
 - `wiki-generation-pipeline/wiki_template.html`
 - `wiki-generation-pipeline/scripts/build_wiki.py`
@@ -429,6 +428,7 @@ correctly. Check with `git config user.name && git config user.email`.
 
 **Never stage:**
 - `node_modules/` — not tracked; do not `git add` it
+- `wiki.html` at repo root — stale file; `git rm` to delete from tracking
 - Random PDFs, unrelated directories, stray `.md` files at repo root
 
 ### Commit message format

@@ -558,11 +558,8 @@ def main():
     with open(OUTPUT, 'w', encoding='utf-8') as f:
         f.write(html)
 
-    # Copy to git repo root (neighbour to wiki-generation-pipeline/)
+    # Copy to git repo root as index.html (GitHub Pages entry)
     repo_root = os.path.dirname(WIKI_DIR)
-    repo_output = os.path.join(repo_root, 'wiki.html')
-    with open(repo_output, 'w', encoding='utf-8') as f:
-        f.write(html)
     repo_index = os.path.join(repo_root, 'index.html')
     with open(repo_index, 'w', encoding='utf-8') as f:
         f.write(html)
@@ -576,7 +573,7 @@ def main():
 
     file_size = os.path.getsize(OUTPUT)
     print(f"Written: {OUTPUT}")
-    print(f"Written: {repo_output}")
+    print(f"Written: {repo_index}")
     print(f"Size: {file_size:,} bytes ({file_size/1024:.1f} KB)")
     print(f"Cards: {total_cards} (NEW: {new_count}, MODIFIED: {mod_count}, ORIGINAL: {orig_count})")
 
