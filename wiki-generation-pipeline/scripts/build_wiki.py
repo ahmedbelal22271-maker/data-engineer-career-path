@@ -16,6 +16,7 @@ import os, re, json, hashlib
 WIKI_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOPICS_DIR = os.path.join(WIKI_DIR, "de_wiki", "topics")
 OUTPUT = os.path.join(WIKI_DIR, "wiki.html")
+OUTPUT_OPTION_A = os.path.join(WIKI_DIR, "output", "option_a", "index.html")
 MANIFEST = os.path.join(WIKI_DIR, "de_wiki", ".lthp_state.json")
 
 # ── Section definition ──
@@ -65,6 +66,27 @@ SECTIONS = [
         ("Governance & Compliance", "governance_compliance.md", "governance"),
         ("Governance & Compliance Summary", "governance_compliance_summary.md", "governance"),
         ("Data Volume Monitoring Q&A", "c1_m3_data_volume_monitoring_qa.md", "governance"),
+    ]),
+    ("lifecycle", "Data Collection & Wrangling", [
+        ("Data Collection Methods", "c1_m3_data_collection.md", "lifecycle"),
+        ("Data Wrangling", "c1_m3_data_wrangling.md", "lifecycle"),
+        ("Querying & Performance Tuning", "c1_m3_querying_performance.md", "lifecycle"),
+    ]),
+    ("python", "Python for Data Science", [
+        ("Python Basics", "c2_python_basics.md", "python"),
+        ("String Operations", "c2_string_operations.md", "python"),
+        ("Jupyter Notebooks", "c2_jupyter_intro.md", "python"),
+        ("Lists and Tuples", "c2_lists_and_tuples.md", "python"),
+        ("Dictionaries", "c2_dictionaries.md", "python"),
+        ("Sets", "c2_sets.md", "python"),
+        ("Conditions & Branching", "c2_conditions_branching.md", "python"),
+        ("Loops", "c2_loops.md", "python"),
+        ("Functions", "c2_functions.md", "python"),
+        ("Exception Handling", "c2_exception_handling.md", "python"),
+        ("Objects & Classes", "c2_objects_classes.md", "python"),
+    ]),
+    ("bigdata", "Big Data Specialization (UCSD)", [
+        ("Big Data Specialization — UC San Diego", "big_data_specialization_ucsd.md", "bigdata"),
     ]),
     ("quiz", "Quiz & Exam Reference", [
         ("Quiz Study Reference", "quiz_study_reference.md", "quiz"),
@@ -571,6 +593,11 @@ def main():
         html = html.replace('{{MERMAID_JS}}', '<script>console.warn("Mermaid not bundled")</script>')
 
     with open(OUTPUT, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+    # Copy to output/option_a/ (pipeline HTML output target)
+    os.makedirs(os.path.dirname(OUTPUT_OPTION_A), exist_ok=True)
+    with open(OUTPUT_OPTION_A, 'w', encoding='utf-8') as f:
         f.write(html)
 
     # Copy to git repo root as index.html (GitHub Pages entry)

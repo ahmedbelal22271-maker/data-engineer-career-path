@@ -120,6 +120,54 @@ Maps all 34 wiki topic pages to the downstream HTML wiki output at `output/optio
 
 ---
 
+## Section 10: Data Collection and Wrangling (C1M3)
+
+| Card Title | Primary Source Page | Description |
+|------------|--------------------|-------------|
+| Data Collection | c1_m3_data_collection.md | Gathering methods (SQL, APIs, web scraping, streaming), import considerations |
+| Data Wrangling | c1_m3_data_wrangling.md | Data munging lifecycle, structural transformations, cleaning, tools |
+| Querying & Performance | c1_m3_querying_performance.md | Query analysis, monitoring types, tuning strategies, troubleshooting |
+
+**Key content:** Full data lifecycle from collection through wrangling to analysis and optimization.
+
+**Contradictions/caveats:** None. **Coverage confidence:** HIGH.
+
+---
+
+## Section 11: Python for Data Science (Course 2)
+
+| Card Title | Primary Source Page | Description |
+|------------|--------------------|-------------|
+| Python Basics | c2_python_basics.md | Types, typecasting, expressions, variables, arithmetic operators |
+| String Operations | c2_string_operations.md | Indexing, slicing, methods, formatting (f-strings, str.format, %) |
+| Jupyter Notebooks | c2_jupyter_intro.md | Notebook environment, cells, keyboard shortcuts, best practices |
+| Lists and Tuples | c2_lists_and_tuples.md | Ordered sequences, mutability, list vs tuple, methods, copying |
+| Dictionaries | c2_dictionaries.md | Key-value pairs, dict operations, keys and values |
+| Sets | c2_sets.md | Unordered unique elements, set operations, typecasting |
+| Conditions & Branching | c2_conditions_branching.md | Comparison operators, if/elif/else, logical operators |
+| Loops | c2_loops.md | For loops, while loops, range(), enumerate() |
+| Functions | c2_functions.md | Defining/calling functions, built-ins, scope, *args |
+| Exception Handling | c2_exception_handling.md | try/except/else/finally, common exceptions |
+| Objects & Classes | c2_objects_classes.md | Classes, objects, constructors, methods, dir() |
+
+**Key content:** Full Python programming fundamentals — from basics through data structures to programming constructs and OOP.
+
+**Contradictions/caveats:** None. **Coverage confidence:** HIGH.
+
+---
+
+## Section 12: Big Data Specialization (UC San Diego)
+
+| Card Title | Primary Source Page | Description |
+|------------|--------------------|-------------|
+| Big Data Specialization | big_data_specialization_ucsd.md | UCSD 6-course specialization overview, Course 1 full index |
+
+**Key content:** Big Data specialization structure, Course 1 syllabus covering the V's, data science process, Hadoop ecosystem, hands-on MapReduce.
+
+**Contradictions/caveats:** None. **Coverage confidence:** HIGH.
+
+---
+
 ## Section 9: Course and Career
 
 | Card Title | Primary Source Page | Description |
@@ -156,9 +204,12 @@ Maps all 34 wiki topic pages to the downstream HTML wiki output at `output/optio
 | 6. Data Storage | 5 | HIGH |
 | 7. Data Processing & Big Data | 6 | HIGH |
 | 8. Quiz Reference | 2 | HIGH |
-| 9. Course & Career | 5 | HIGH |
+| 9. Course & Career | 14 | HIGH |
+| 10. Data Collection & Wrangling | 3 | HIGH |
+| 11. Python for Data Science | 11 | HIGH |
+| 12. Big Data Specialization (UCSD) | 1 | HIGH |
 | Glossary | 1 (embedded) | HIGH |
-| **Total** | **34** | **100% coverage** |
+| **Total** | **62** | **100% coverage** |
 
 **Pages not mapped:** 0
 **Unresolved issues:** 0
