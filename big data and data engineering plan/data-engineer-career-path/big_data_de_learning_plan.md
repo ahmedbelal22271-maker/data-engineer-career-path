@@ -20,6 +20,7 @@
 - v8.0 — 2026-06-27: Integrated 4 items from Claude-curated resources + wiki gap analysis. 3 new post-track enhancements (E: Data Lakehouse Architecture ~10h, F: Data Architecture Patterns ~10h, G: Data Cataloging & Discovery ~10h). 1 new Tier 2 row in Enhancement C (DataKitchen Data Observability Certification ~10h + data contracts supplements ~2h). Coursera-first enforced in 3 new modules. Enhancement C total 17h→27h. Post-track total 49h→89h. Full plan total 801h→841h. Brain verification: APPROVED.
 - v9.0 — 2026-06-27: Integrated 9 items from DataTalks.Club DE Zoomcamp repo audit by Claude. 4 new supplement rows in Course 8 (dlt ingestion +4h, Terraform GCP +5h, PyFlink/Spark Streaming +8h, RisingWave +3h). 1 new row in Course 9 (BigQuery ML + cost optimization, +8h). 1 new row in Course 12 (Dataproc + Spark-to-BigQuery, +8h). 1 new row in Enhancement C (Kestra alternative orchestration, +4h). 2 new enhancements (H: Bruin Unified Platform ~5h, I: Capstone Pipeline Project ~25h). Full plan total 841h→910h. Brain verification: APPROVED.
 - v10.0 — 2026-06-29: Integrated 5 items from first full wiki-to-plan sync (51 files scanned, 5 actionable). 2 inline notes added: Big Data Five V's framework + "store everything" philosophy (Course 12), column-oriented storage explanation (Course 11). 1 combined career insight callout in Course 16 synthesizing 3 viewpoint files (career path diversity, DBA→DE transition, hiring manager 4-layer evaluation framework). 10 SUPPLEMENT files recognized as already-covered. Full plan total unchanged at ~910h. Brain verification: APPROVED.
+- v10.1 — 2026-06-29: Integrated 2 actionable items from wiki-to-plan sync (7 new files after wiki pipeline rebuild). 2 practitioner callouts added: Jupyter best practices (Course 2) and diagnostic troubleshooting patterns (Course 7). 5 new files recognized as already-covered. 7 legacy files marked REMOVED (replaced by consolidated versions). Full plan total unchanged at ~910h. Brain verification: APPROVED.
 
 ---
 
@@ -155,6 +156,8 @@
 
 **Combined total: ~39h | IBM: 24h | Tier 1 supplements: 12h | Tier 2 supplements: 13.5h**
 
+> 💡 **Practitioner tip (Jupyter best practices):** Use markdown cells liberally to document your reasoning — a notebook should tell a story, not just show code. Keep each code cell focused on a single logical step. Restart the kernel and run all cells periodically to verify your notebook runs end-to-end before sharing. Track notebook files with git from day one.
+
 ### 💼 Portfolio Project Ideas (Course 2)
 
 | Project | Difficulty | Stack | Demonstrates |
@@ -286,6 +289,8 @@
 **Combined total: ~28h | IBM: 21h | Tier 1 supplements: 7h | Tier 2 supplements: 0h**
 
 > ⚡ *All resources in this section are Tier 1 — essential.*
+
+> 💡 **Practitioner tip (Performance troubleshooting):** When diagnosing pipeline or query issues, follow a pattern-based approach: slow queries almost always trace to missing indexes or inefficient joins — check the query plan first. Pipeline failures during ingestion are usually schema drift or data quality issues at the source. Memory errors point to insufficient resources or data skew. For data inconsistencies, implement idempotent writes and checkpointing. These diagnostic patterns apply across databases, warehouses, and streaming systems alike.
 
 > ### 🎯 Self-Assessment Gate — Foundations (after Course 7)
 > Before moving to Course 8, you should be able to:
