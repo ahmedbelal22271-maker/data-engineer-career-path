@@ -1,6 +1,6 @@
 # IBM Data Engineering Professional Certificate — Full Learning Plan
 
-**Target total:** ~262h (IBM track) + ~553h (supplements) + ~123h (post-track enhancements) = ~938h all-inclusive; realistically ~400–550h following the IBM track with selective supplements  
+**Target total:** ~262h (IBM track) + ~554h (supplements) + ~123h (post-track enhancements) = ~939h all-inclusive; realistically ~400–550h following the IBM track with selective supplements  
 **Format:** 16 IBM courses in official order → 9 post-track enhancement modules (A-I) → Appendices (certs + playlist index)  
 **Use it as a menu:** Follow the IBM courses sequentially for the most structured path. Add supplements based on your weak areas. Complete Post-Track Enhancements after Course 16 for topics IBM doesn't cover (Hive/Impala, Apache Ranger/Atlas, dbt, UCSD Big Data Specialization electives).
 
@@ -21,7 +21,7 @@
 - v9.0 — 2026-06-27: Integrated 9 items from DataTalks.Club DE Zoomcamp repo audit by Claude. 4 new supplement rows in Course 8 (dlt ingestion +4h, Terraform GCP +5h, PyFlink/Spark Streaming +8h, RisingWave +3h). 1 new row in Course 9 (BigQuery ML + cost optimization, +8h). 1 new row in Course 12 (Dataproc + Spark-to-BigQuery, +8h). 1 new row in Enhancement C (Kestra alternative orchestration, +4h). 2 new enhancements (H: Bruin Unified Platform ~5h, I: Capstone Pipeline Project ~25h). Full plan total 841h→910h. Brain verification: APPROVED.
 - v10.0 — 2026-06-29: Integrated 5 items from first full wiki-to-plan sync (51 files scanned, 5 actionable). 2 inline notes added: Big Data Five V's framework + "store everything" philosophy (Course 12), column-oriented storage explanation (Course 11). 1 combined career insight callout in Course 16 synthesizing 3 viewpoint files (career path diversity, DBA→DE transition, hiring manager 4-layer evaluation framework). 10 SUPPLEMENT files recognized as already-covered. Full plan total unchanged at ~910h. Brain verification: APPROVED.
 - v10.1 — 2026-06-29: Integrated 2 actionable items from wiki-to-plan sync (7 new files after wiki pipeline rebuild). 2 practitioner callouts added: Jupyter best practices (Course 2) and diagnostic troubleshooting patterns (Course 7). 5 new files recognized as already-covered. 7 legacy files marked REMOVED (replaced by consolidated versions). Full plan total unchanged at ~910h. Brain verification: APPROVED.
-- v10.2 — 2026-06-30: Corrected 3 UCSD Big Data Specialization course hours (Course 1: 6h→18h, Course 2: 8h→15h, Course 4: 10h→20h) after Coursera quiz cross-reference. Updated section totals (Course 1: 24h→36h, Course 12: 134h→141h, Course 13: 58h→68h) and master total 910h→939h. Fixed AWS explainer page hours 1h→0.1h (5-min read). Course 1 total 36h→35h, master total 939h→938h. No new resources added.
+- v10.2 — 2026-06-30: Corrected 3 UCSD Big Data Specialization course hours (Course 1: 6h→18h, Course 2: 8h→15h, Course 4: 10h→20h) after Coursera quiz cross-reference. Updated section totals (Course 1: 24h→36h, Course 12: 134h→141h, Course 13: 58h→68h) and master total 910h→939h. Added note to AWS "What Is Big Data?" resource clarifying that following its linked articles (Spark, Kafka, Kinesis, streaming, security) yields ~1h of reading. No new resources added.
 
 ---
 
@@ -104,7 +104,7 @@
 
 ---
 
-## IBM Track — Course 1: Introduction to Data Engineering (~35h total)
+## IBM Track — Course 1: Introduction to Data Engineering (~36h total)
 
 > 🎓 **Primary:** [Introduction to Data Engineering](https://www.coursera.org/learn/introduction-to-data-engineering) — DE lifecycle, data repositories, data pipelines, Big Data engines, data security, governance, and compliance | ~14h | Free-audit
 
@@ -114,7 +114,7 @@
 | Resource | Type | Hours | Cost |
 |---|---|---|---|
 | [Coursera — "Introduction to Big Data" (UCSD, Big Data Specialization, Course 1)](https://www.coursera.org/learn/big-data-introduction) | MOOC, audit mode | 18 | Free-audit |
-| [AWS — "What Is Big Data?"](https://aws.amazon.com/what-is/big-data/) explainer page | Official docs | 0.1 | Free |
+| [AWS — "What Is Big Data?"](https://aws.amazon.com/what-is/big-data/) explainer page — also follow its linked articles (Spark, Kafka, Kinesis, streaming data, security) for a full AWS big data ecosystem tour | Official docs | 1 | Free |
 | [Martin Kleppmann's site](https://martin.kleppmann.com/) — free blog posts/talks related to *Designing Data-Intensive Applications* (concepts only) | Free blog/author site | 1 | Free |
 
 **🟡 Tier 2 — Valuable but Optional**
@@ -123,7 +123,7 @@
 | [GitHub — AlessandroCorradini/University-of-California-San-Diego-Big-Data-Specialization](https://github.com/AlessandroCorradini/University-of-California-San-Diego-Big-Data-Specialization) — use to cross-check your own work | Repo/reference | 1 | Free |
 | [Google Cloud — "What Is Edge Computing?"](https://cloud.google.com/learn/what-is-edge-computing) overview | Official docs | 1 | Free |
 
-**Combined total: ~35h | IBM: 14h | Tier 1 supplements: 19h | Tier 2 supplements: 2h**
+**Combined total: ~36h | IBM: 14h | Tier 1 supplements: 20h | Tier 2 supplements: 2h**
 
 > 💡 **Practitioner tip (IBM Data Engineering Viewpoints):** Focus on the theory beneath the tools. How data is structured, how it flows, and how storage and retrieval trade-offs work remain stable even as frameworks come and go. Engineers who understand the fundamentals can learn any new tool quickly; engineers who only know specific tools are stranded when those tools are replaced.
 
