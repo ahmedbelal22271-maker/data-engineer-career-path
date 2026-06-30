@@ -121,7 +121,7 @@
 | Resource | Type | Hours | Cost |
 |---|---|---|---|
 | [GitHub — AlessandroCorradini/University-of-California-San-Diego-Big-Data-Specialization](https://github.com/AlessandroCorradini/University-of-California-San-Diego-Big-Data-Specialization) — use to cross-check your own work | Repo/reference | 1 | Free |
-| [Google Cloud — "What Is Edge Computing?"](https://cloud.google.com/learn/what-is-edge-computing) overview | Official docs | 1 | Free |
+| [AWS — "What Is Edge Computing?"](https://aws.amazon.com/what-is/edge-computing/) overview | Official docs | 1 | Free |
 
 **Combined total: ~36h | IBM: 14h | Tier 1 supplements: 20h | Tier 2 supplements: 2h**
 
