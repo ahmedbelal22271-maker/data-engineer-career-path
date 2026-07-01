@@ -1,6 +1,6 @@
 # IBM Data Engineering Professional Certificate — Full Learning Plan
 
-**Target total:** ~262h (IBM track) + ~554h (supplements) + ~123h (post-track enhancements) = ~939h all-inclusive; realistically ~400–550h following the IBM track with selective supplements  
+**Target total:** ~262h (IBM track) + ~562h (supplements) + ~126h (post-track enhancements) = ~950h all-inclusive; realistically ~400–550h following the IBM track with selective supplements  
 **Format:** 16 IBM courses in official order → 9 post-track enhancement modules (A-I) → Appendices (certs + playlist index)  
 **Use it as a menu:** Follow the IBM courses sequentially for the most structured path. Add supplements based on your weak areas. Complete Post-Track Enhancements after Course 16 for topics IBM doesn't cover (Hive/Impala, Apache Ranger/Atlas, dbt, UCSD Big Data Specialization electives).
 
@@ -22,6 +22,7 @@
 - v10.0 — 2026-06-29: Integrated 5 items from first full wiki-to-plan sync (51 files scanned, 5 actionable). 2 inline notes added: Big Data Five V's framework + "store everything" philosophy (Course 12), column-oriented storage explanation (Course 11). 1 combined career insight callout in Course 16 synthesizing 3 viewpoint files (career path diversity, DBA→DE transition, hiring manager 4-layer evaluation framework). 10 SUPPLEMENT files recognized as already-covered. Full plan total unchanged at ~910h. Brain verification: APPROVED.
 - v10.1 — 2026-06-29: Integrated 2 actionable items from wiki-to-plan sync (7 new files after wiki pipeline rebuild). 2 practitioner callouts added: Jupyter best practices (Course 2) and diagnostic troubleshooting patterns (Course 7). 5 new files recognized as already-covered. 7 legacy files marked REMOVED (replaced by consolidated versions). Full plan total unchanged at ~910h. Brain verification: APPROVED.
 - v10.2 — 2026-06-30: Corrected 3 UCSD Big Data Specialization course hours (Course 1: 6h→18h, Course 2: 8h→15h, Course 4: 10h→20h) after Coursera quiz cross-reference. Updated section totals (Course 1: 24h→36h, Course 12: 134h→141h, Course 13: 58h→68h) and master total 910h→939h. Added note to AWS "What Is Big Data?" resource clarifying that following its linked articles (Spark, Kafka, Kinesis, streaming, security) yields ~1h of reading. No new resources added.
+- v11.0 — 2026-07-01: DE Master Tree gap-fill from Muhammad Hasaan infographic vision analysis (13 new sub-topics beyond post text). 7 new Tier 2 supplement rows across Courses 8, 9, 14, and Enhancements A & C (Event-Driven Architecture + EventBridge, OLAP Systems + Snowflake Schema, Metrics Layer, Deduplication, Autonomous Data Platforms). Cloud Provider Reference section added (4 tables: Compute, Storage, Integration, Monitoring across AWS/Azure/GCP). Master total 939h→950h. Brain verification: APPROVED.
 
 ---
 
@@ -33,6 +34,52 @@
 - Hours are realistic *active* study/lab hours, not video runtime.
 - Resource order within each supplement table = recommended order, not interchangeable alternatives (unless marked "OR").
 - Links were verified at the time this plan was written; if a link breaks, search the resource name directly.
+
+---
+
+## ☁️ Cloud Service Provider Reference
+
+A quick-reference mapping of each data engineering concept to its equivalent service across AWS, Azure, and GCP. Use this as a lookup table when a course section mentions a cloud service.
+
+### Compute & Processing
+
+| Concept | AWS | Azure | GCP |
+|---------|-----|-------|-----|
+| Virtual Machines | EC2 | Virtual Machines | Compute Engine |
+| Container Orchestration | EKS / ECS | AKS | GKE |
+| Serverless Compute | Lambda | Functions | Cloud Functions |
+| Big Data Processing | EMR | HDInsight | Dataproc |
+| Stream Processing | Kinesis | Stream Analytics | Dataflow |
+
+### Storage
+
+| Concept | AWS | Azure | GCP |
+|---------|-----|-------|-----|
+| Object Storage | S3 | Blob Storage / ADLS | Cloud Storage (GCS) |
+| Relational Database | RDS | SQL Database | Cloud SQL |
+| NoSQL Database | DynamoDB | Cosmos DB | Firestore / Bigtable |
+| Data Warehouse | Redshift | Synapse Analytics | BigQuery |
+| Data Lake | Lake Formation | Data Lake | Analytics Hub |
+
+### Integration & Orchestration
+
+| Concept | AWS | Azure | GCP |
+|---------|-----|-------|-----|
+| ETL / Data Integration | Glue | Data Factory | Dataflow |
+| Workflow Orchestration | MWAA (Airflow managed) | Data Factory | Cloud Composer (Airflow managed) |
+| Message Queue | SQS | Queue Storage | Pub/Sub |
+| Event Bus | EventBridge | Event Grid | Eventarc |
+
+### Monitoring & Governance
+
+| Concept | AWS | Azure | GCP |
+|---------|-----|-------|-----|
+| Data Catalog | Glue Data Catalog | Purview | Data Catalog |
+| Access Control | IAM | Azure AD / RBAC | IAM |
+| Monitoring | CloudWatch | Monitor | Cloud Monitoring |
+| Audit / Logging | CloudTrail | Audit Logs | Cloud Audit Logs |
+
+*~2h reference, Free. Return here whenever a course mentions a cloud service you haven't used before.*
 
 ---
 
@@ -261,6 +308,15 @@
 | [GitHub — "Introduction to Git and GitHub" (Google, via Coursera, audit mode)](https://www.coursera.org/learn/introduction-git-github) | MOOC, audit mode | 3 | Free-audit |
 | [بالعربي Big Data — Linux, Git & Dev Tools](https://www.youtube.com/@bigdata4756) — three deep-dive Arabic-language series directly supporting this course: [Linux for Data Engineers / البطريق العضاض يعظ](https://www.youtube.com/@bigdata4756) (11h 25min) · [Git and GitHub / شخبط وانت متطمن](https://www.youtube.com/@bigdata4756) (~6h) · [Visual Studio Code / هنشخبط الكود على إيه؟](https://www.youtube.com/watch?v=DsJOSKyxqMc) (~57min) — use Linux series alongside Course 6, Git series alongside the Google Git course, VS Code as a one-session setup walkthrough | YouTube series (Arabic) | 23h | Free |
 
+### 🏋️ Practice Grid — Programming Foundations
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Python scripting | Python docs | Python + Jupyter Notebook | AWS Lambda / Google Colab |
+| SQL queries | PostgreSQL docs | PostgreSQL (Docker) | Amazon RDS / Cloud SQL |
+| Shell scripting | Linux Journey | WSL / Linux terminal | AWS CloudShell / Azure Cloud Shell |
+| Version control (Git) | Git docs | Git CLI + GitHub Desktop | GitHub / GitLab / Bitbucket |
+
 **Combined total: ~24h | IBM: 17h | Tier 1 supplements: 8h | Tier 2 supplements: 26h**
 
 > 💡 **Practitioner tip (IBM Data Engineering Viewpoints):** Automation is one of the most valuable skills in today's DE landscape. Modern data teams run on fast turnaround expectations — scripting repetitive tasks, building CI/CD pipelines for data workflows, and managing infrastructure as code are what separate a productive DE from one who is constantly firefighting.
@@ -351,7 +407,28 @@
 
 > **Tool choice note:** Airflow is the industry standard for orchestration. Alternatives (Prefect, Dagster, Mage, Kestra) are worth knowing exist — [Prefect documentation](https://docs.prefect.io/), [Dagster documentation](https://docs.dagster.io/), and [Kestra Academy](https://academy.kestra.io/) are all free. Kestra's YAML-first declarative paradigm is a fundamentally different approach from Python-DAG frameworks; see Enhancement C for a dedicated Kestra orientation. Do not split time across all of them during your first pass.
 
-**Combined total: ~91h | IBM: 18h | Tier 1 supplements: 19h | Tier 2 supplements: 54h**
+| [Martin Fowler — "Event-Driven Architecture" overview](https://martinfowler.com/articles/201701-event-driven.html) + Confluent blog — event sourcing, CQRS, event notifications, event-carried state transfer | Free articles | 2 | Free |
+| [Amazon EventBridge — "Getting Started" (AWS)](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-get-started.html) — serverless event bus; complements the Event-Driven Architecture reading above with a concrete cloud implementation | Official docs | 1 | Free |
+
+### 🏋️ Practice Grid — Data Pipelines (ETL & Orchestration)
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Pipeline orchestration | Airflow docs | Airflow (Docker Compose) | Amazon MWAA / Cloud Composer |
+| Message queuing | Kafka docs | Kafka (Docker Compose) | Amazon MSK / Confluent Cloud |
+| Data ingestion | dlt docs | dlt (Python library) | AWS Glue / Azure Data Factory |
+| Event-driven architecture | Martin Fowler article | RabbitMQ (Docker) | Amazon EventBridge / Azure Event Grid |
+
+### 🏋️ Practice Grid — Streaming Systems
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Stream processing | Spark Structured Streaming | Spark (local) + Kafka | Amazon Kinesis / Stream Analytics / Dataflow |
+| SQL stream processing | RisingWave docs | Flink (Docker) / RisingWave | Confluent Cloud ksqlDB |
+| Real-time dashboards | Stream processing docs | Streamlit + Kafka | AWS QuickSight / Power BI real-time |
+| Schema management | Confluent Schema Registry | Schema Registry (Docker) | AWS Glue Schema Registry |
+
+**Combined total: ~94h | IBM: 18h | Tier 1 supplements: 19h | Tier 2 supplements: 57h**
 
 ### 💼 Portfolio Project Ideas (Course 8)
 
@@ -400,7 +477,28 @@
 | [AWS Skill Builder — "Data Engineering on AWS" free modules](https://skillbuilder.aws/) | Official vendor course | 4 | Free |
 | [Kimball Group — free design tips archive](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/) — reference companion to the dbt course above; classic design patterns (conformed dimensions, junk dimensions, degenerate dimensions) | Free reference | 2 | Free |
 
-**Combined total: ~51h | IBM: 16h | Tier 1 supplements: 19h | Tier 2 supplements: 16h**
+| [Microsoft — "OLAP Systems" overview (SQL Server docs)](https://learn.microsoft.com/en-us/sql/analysis-services/multidimensional-models-olap/understanding-olap-storage) — MOLAP, ROLAP, HOLAP; cube design, aggregations, vs star schema / Snowflake Schema approaches (the dbt course covers implementation; this covers the storage-engine theory) | Official docs | 2 | Free |
+| [Snowflake — "Snowflake Schema" deep-dive (Snowflake docs)](https://docs.snowflake.com/en/user-guide/schemas) — normalized dimension modeling trade-offs; complements the Kimball-style dimensional modeling in the dbt course | Official docs | 1 | Free |
+
+### 🏋️ Practice Grid — Data Warehousing
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Star schema design | Kimball techniques | dbt (local PostgreSQL) | dbt Cloud + BigQuery |
+| OLAP cube design | Microsoft OLAP docs | Apache Druid (Docker) | Amazon Redshift / BigQuery |
+| Snowflake Schema | Snowflake docs | dbt (local) | Snowflake / Azure Synapse |
+| Lakehouse patterns | Databricks Lakehouse | Apache Iceberg (local Spark) | Databricks / AWS Lake Formation |
+
+### 🏋️ Practice Grid — Cloud Data Stack
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Object storage | AWS S3 docs | MinIO (Docker) | Amazon S3 / Azure ADLS / GCS |
+| IaC / provisioning | Terraform docs | Terraform (local) | AWS CloudFormation / Terraform Cloud |
+| Container orchestration | Docker Compose | Docker Compose | Amazon ECS / AKS / GKE |
+| Serverless compute | Cloud service docs | Apache OpenWhisk | AWS Lambda / Azure Functions / GCF |
+
+**Combined total: ~54h | IBM: 16h | Tier 1 supplements: 19h | Tier 2 supplements: 19h**
 
 > ### 🎯 Self-Assessment Gate — Core DE (after Course 9)
 > Before moving to Course 10, you should be able to:
@@ -442,6 +540,15 @@
 | [Guy in a Cube (YouTube channel)](https://www.youtube.com/@GuyInACube) — Power BI tips/tutorials | YouTube channel | 3 | Free |
 | [Apache Hue — official site/live demo](https://gethue.com/) | Official docs/live demo | 2 | Free |
 
+### 🏋️ Practice Grid — Analytics & BI
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| BI dashboards | BI best practices | Apache Superset (Docker) / Metabase | Power BI / AWS QuickSight / Looker |
+| Metrics layer | dbt Metrics docs | dbt Metrics + Superset | Transform / dbt Cloud |
+| Embedded analytics | Embedded BI patterns | Evidence.dev (Markdown) | Power BI Embedded / Looker Embedded |
+| Notebook-based reporting | Jupyter docs | Jupyter Notebook | Google Colab / Databricks Notebooks |
+
 **Combined total: ~28h | IBM: 12h | Tier 1 supplements: 8h | Tier 2 supplements: 8h**
 
 ### 💼 Portfolio Project Ideas (Course 10)
@@ -475,6 +582,15 @@
 | [AWS — Amazon S3 documentation](https://aws.amazon.com/s3/) | Official docs | 2 | Free |
 
 > 💡 **Wiki integration — How column-oriented storage works (and why it matters):** Cassandra and HBase are *column-oriented* databases, meaning they store data one column at a time on disk rather than one row at a time. In a row-oriented DB (PostgreSQL), a single disk read fetches all columns for a set of rows — ideal for OLTP (many columns, few rows). In a column-oriented DB, a disk read fetches one column's values across many rows — ideal for analytical queries that scan large ranges but access few columns. For Cassandra specifically: each partition key maps to a row, and within that row, column names are sorted. This design makes Cassandra excel at high-write, time-series workloads where queries always include the partition key. Understanding this storage layout difference is essential for schema design — creating a good Cassandra model requires thinking backward from your query patterns to your partition key strategy.
+
+### 🏋️ Practice Grid — Databases (Relational & NoSQL)
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Relational DB (PostgreSQL) | PostgreSQL docs | PostgreSQL (Docker) | Amazon RDS / Cloud SQL |
+| Document DB (MongoDB) | MongoDB University M001 | MongoDB Community (Docker) | MongoDB Atlas / Azure Cosmos DB |
+| Wide-column DB (Cassandra) | Cassandra docs | Cassandra (Docker) | Amazon Keyspaces / Cosmos DB |
+| Column-oriented storage | Course 11 wiki note above | Apache HBase (Docker) | Amazon S3 + Athena / Bigtable |
 
 **Combined total: ~50h | IBM: 18h | Tier 1 supplements: 16h | Tier 2 supplements: 16h**
 
@@ -527,6 +643,15 @@
 | [Mahmoud Mohsen — Spark series (playlist vids 17–18)](https://www.youtube.com/playlist?list=PLQhTr3lsMLujYMxra8scZxLTS_0J5PyQI) — concise lecture-style intro to Spark concepts; use as a warmup before the Databricks hands-on labs: [#17 Introduction & RDDs](https://www.youtube.com/watch?v=tejR_7HgXcc&list=PLQhTr3lsMLujYMxra8scZxLTS_0J5PyQI&index=17) (55 min) · [#18 DataFrames, MLlib & Streaming](https://www.youtube.com/watch?v=mp7LFZFfDAU&list=PLQhTr3lsMLujYMxra8scZxLTS_0J5PyQI&index=18) (55 min) | YouTube series | 2 | Free |
 
 > 💡 **Wiki integration — Big Data's Five V's Framework:** Before diving into Hadoop/Spark internals, internalize the Five V's that define Big Data: **Volume** (scale — TB/PB+), **Velocity** (speed — real-time vs batch), **Variety** (diversity — structured, semi-structured, unstructured), **Veracity** (quality — trustworthiness of data), **Value** (business outcome — the ultimate measure). Practitioners emphasize that a dataset is only "Big Data" when traditional RDBMS approaches break down on at least 2–3 of these dimensions. The field itself was born because engineers embraced a "store everything" philosophy — keep raw data indefinitely rather than pre-aggregating, because you don't yet know which questions you'll ask. This shift from schema-on-write (traditional DB) to schema-on-read (Hadoop/Spark) is the conceptual foundation beneath every tool in this course.
+
+### 🏋️ Practice Grid — Big Data Processing
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Distributed storage (HDFS) | HDFS docs | Hadoop (Docker) | Amazon EMR HDFS / Dataproc GCS |
+| Batch processing (MapReduce) | Hadoop docs | Hadoop (local) | Amazon EMR / Azure HDInsight |
+| Distributed computing (Spark) | Spark docs | PySpark (local) | Amazon EMR / Databricks / Dataproc |
+| SQL-on-Hadoop (Hive) | Hive docs | Hive (Docker) | Amazon Athena / Azure HDInsight |
 
 **Combined total: ~141h | IBM: 20h | Tier 1 supplements: 30h | Tier 2 supplements: 91h**
 
@@ -619,7 +744,9 @@
 |---|---|---|---|---|
 | [Coursera — "Big Data - Capstone Project" (UCSD, Big Data Specialization, Course 6)](https://www.coursera.org/learn/big-data-capstone-project) — five-week end-to-end big data project using Splunk, KNIME, Spark MLlib, and Gephi; complements the IBM capstone by providing a second full-cycle project narrative for your portfolio | MOOC, audit mode | 22 | Free-audit |
 
-**Combined total: ~43h | IBM: 18h | Tier 1 supplements: 3h | Tier 2 supplements: 22h**
+| [Transform — "Metrics Layer" overview (Transform blog)](https://transform.co/blog/metrics-layer) + [dbt Metrics docs](https://docs.getdbt.com/docs/build/metrics) — semantic metrics definitions, metric flow, headless BI; bridges the gap between your warehouse and the dashboard | Free articles | 2 | Free |
+
+**Combined total: ~45h | IBM: 18h | Tier 1 supplements: 3h | Tier 2 supplements: 24h**
 
 > ⚡ *All resources in this section are Tier 1 — essential.*
 
@@ -738,7 +865,18 @@
 | [Jay Kreps — "Questioning the Lambda Architecture" (O'Reilly Radar)](https://www.oreilly.com/radar/questioning-the-lambda-architecture/) + Confluent Kappa blog posts | Free articles | 2 | Free |
 | **Project checkpoint:** Load NYC Taxi or NOAA weather data into Hive-style partitioned tables; write 5 analytical queries; document Lambda vs Kappa design for the same data | Hands-on project | 5 | Free |
 
-**Total: ~23h**
+| [Autonomous Data Platforms — "What Is an Autonomous Database?" (Oracle)](https://www.oracle.com/autonomous-database/what-is-autonomous-database/) + [Gartner — "Future of Data Management" overview](https://www.gartner.com/en/documents/) — self-driving, self-securing, self-repairing database systems; forward-looking context for the Lambda/Kappa architecture debate | Free articles | 2 | Free |
+
+### 🏋️ Practice Grid — Advanced / Future Data
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Lambda vs Kappa architecture | Jay Kreps article | Kafka + Flink (Docker) | Amazon Kinesis + Lambda / Dataflow |
+| Autonomous databases | Oracle autonomous docs | PostgreSQL auto-tuning | Oracle Autonomous / Azure SQL Auto |
+| Lakehouse architecture | Databricks Lakehouse | Apache Iceberg + Spark | Databricks / AWS Lake Formation |
+| Data cataloging | Data catalog docs | Apache Atlas (Docker) | AWS Glue Catalog / Azure Purview |
+
+**Total: ~25h**
 
 ---
 
@@ -780,7 +918,18 @@
 | [DataKitchen — "Data Observability and Data Quality Testing Certification"](https://info.datakitchen.io/data-observability-and-data-quality-testing-certification) — 4-part on-demand series: pre-production data profiling, production data testing (28 profiling checks, 11 custom validation patterns), regression and impact assessment, SLA/SLO metrics, Data Testing Maturity Model; hands-on labs with open-source DataOps TestGen and Observability software. Supplement with [Soda "Guide to Data Contracts"](https://soda.io/blog/guide-to-data-contracts) (~1h read) and [Data Contract Specification](https://datacontract.com) (~1h self-study) for full data contracts coverage. | Official vendor certification | 10 | Free |
 | [Kestra Academy — "Kestra Fundamentals" (official free certification course)](https://academy.kestra.io/) — YAML-first declarative orchestration: flow anatomy, event-driven vs scheduled triggers, backfill patterns, KV store, GCP plugin integration (GCS + BigQuery ingestion flows), Gantt/log UI inspection | Official vendor certification | 4 | Free |
 
-**Total: ~31h**
+| [Deduplication patterns — "Data Deduplication 101" (Monte Carlo)](https://www.montecarlodata.com/blog-data-deduplication/) + [Great Expectations "Expectation" patterns for deduplication](https://docs.greatexpectations.io/docs/guides/expectations/) | Free articles | 1 | Free |
+
+### 🏋️ Practice Grid — Data Quality
+
+| Concept | Theory | Local Tool | Cloud Service |
+|---------|--------|------------|---------------|
+| Data testing | Great Expectations docs | Great Expectations (local) | GE Cloud |
+| dbt testing | dbt test docs | dbt test (local) | dbt Cloud |
+| Data contracts | Soda data contracts guide | Soda Core (local) | Soda Cloud |
+| Deduplication | Monte Carlo dedup patterns | Great Expectations (expectations) | Monte Carlo / Soda Cloud |
+
+**Total: ~32h**
 
 ---
 
