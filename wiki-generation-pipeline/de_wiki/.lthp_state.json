@@ -24,6 +24,7 @@
   "big_data_foundations.md": "9c92818e0d1706863f584bc004e3bf9ce49ee18ac6ee5fa7862ec59315ece49c",
   "big_data_case_studies.md": "cfe7edc633ed1507a06a4008be46b85540088f3792afd2bf9f6647e12f2a2a6e",
   "data_science_process.md": "672a028ba325f2ac7daeea919decd52c76130025b1b48735fe24a13f5fd379c4",
+  "big_data_specialization_ucsd.md": "cacb0d371866e11d4da151964dae38d5f7363c3634f83b36b72d617d1433c05c",
   "hadoop_ecosystem.md": "4f1a8e27ed6a170d04a95120e7795d9d3b5881094ff4df9d18fff2a48e92a4b3",
   "data_platform_architecture.md": "f64a0631d42c4636cd43b4aa6f7d65938536e59ac293a4549a0b66d2d9053254",
   "sql_vendors_dialects.md": "7250b59eb081997f5133219dda6f39d2160570b3ae4a8c29c60fe5d2b67b2646",
@@ -55,5 +56,11 @@
   "viewpoints_employer_expectations.md": "09f15e5a41d8b60d7b734d4b57eb79fcf0a702b69a7d0827a0f0e40316221f57",
   "viewpoints_many_paths_to_de.md": "65081426348797d1a7f638771fc6dd9d693acb8c921aded94961341e7be02182",
   "viewpoints_advice_aspiring_de.md": "056a954b7487caf1363861a304ea69fe1699bd9555bd44a98c0f3642519117f1",
+  "c1_full_course_index.md": "a8ab672748b8b4027f968d8c0ab974cd6f81b9bad0ab90596e415fb2b0c2d91b",
+  "course_syllabus_and_index.md": "4f27f991804ce1ca2f0cc8408a695849480af2c0fdbb10bd073e9397000739a3",
+  "course_sequence_16.md": "aede9018479367e1ad9bb13db36431892a9fb2ca43c43fac9bd27b4e43937cec",
+  "career_ladder.md": "7f0903f8c2cdc343711132fb50c502e442510c23292b60a3238ee0ca3ab96aa3",
+  "certification_roadmap.md": "915cd506f0fc091b2a37470c423e04c4359d74f6a7728af5bb774fff2eedffd5",
+  "enhancement_modules.md": "ce405a41bbf32896422269c7f0ec5b0a546f4d69f0ff3275b4e16e98139119b8",
   "glossary.md": "06ac8ee08fa4096e0247dad516006ab852b4963320f970467315f3c717cc223a"
 }

@@ -7,7 +7,7 @@
 <title>Data Engineering Wiki</title>
 <script>if(localStorage.getItem('de-wiki-light')==='true'){document.documentElement.classList.add('light')}</script>
 {{MERMAID_JS}}
-<script>mermaid.initialize({startOnLoad:false});</script>
+<script>mermaid.initialize({startOnLoad:true});</script>
 <style>
 :root {
   --accent: #3b82f6;
@@ -60,7 +60,10 @@ body {
   text-decoration: none; display: block;
 }
 .sidebar-title:hover { color: var(--accent); }
-.sidebar-search { padding: 12px 16px; }
+.sidebar-search {
+  position: relative;
+  padding: 12px 16px;
+}
 .sidebar-search-input {
   width: 100%; padding: 8px 12px;
   border: 1px solid var(--border); border-radius: 8px;
@@ -68,18 +71,93 @@ body {
   outline: none;
 }
 .sidebar-search-input:focus { border-color: var(--accent); }
-.sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
-.sidebar-link {
-  display: block; padding: 8px 16px;
-  font-size: 0.85rem; color: var(--text-secondary);
+.sidebar-nav { flex: 1; padding: 4px 0; overflow-y: auto; }
+
+/* ── Search dropdown ── */
+.search-dropdown {
+  position: absolute; top: 100%; left: 16px; right: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: 8px;
+  max-height: 280px; overflow-y: auto;
+  z-index: 200; display: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  margin-top: 2px;
+}
+.search-dd-item {
+  padding: 8px 12px; cursor: pointer;
+  font-size: 0.8rem; color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.search-dd-item:last-child { border-bottom: none; }
+.search-dd-item:hover, .search-dd-item.active { background: var(--bg-subtle); }
+.search-dd-item .dd-title { font-weight: 500; }
+.search-dd-item .dd-section {
+  font-size: 0.7rem; color: var(--text-muted);
+  margin-top: 1px;
+}
+.search-dd-item .dd-match {
+  color: var(--accent); font-weight: 600;
+}
+.search-dd-empty {
+  padding: 12px; font-size: 0.78rem; color: var(--text-muted);
+  text-align: center;
+}
+.search-dd-footer {
+  padding: 6px 12px; font-size: 0.75rem; color: var(--text-muted);
+  border-top: 1px solid var(--border); cursor: pointer;
+  text-align: center;
+}
+.search-dd-footer:hover { background: var(--bg-subtle); }
+
+/* ── Collapsible sidebar sections ── */
+.sidebar-section-header {
+  display: flex; align-items: center; gap: 4px;
+  padding: 8px 16px; cursor: pointer;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.15s;
+  border-left: 3px solid transparent;
+  user-select: none;
+}
+.sidebar-section-header:hover {
+  color: var(--text-primary); background: var(--bg-subtle);
+}
+.sidebar-section-header.lthp-highlight {
+  background: var(--highlight-bg);
+  border-left-color: var(--highlight-border);
+}
+.sidebar-toggle {
+  font-size: 0.6rem; width: 12px; text-align: center;
+  flex-shrink: 0; transition: transform 0.2s;
+  color: var(--text-muted);
+}
+.sidebar-section-title { flex: 1; }
+.sidebar-subs { overflow: hidden; }
+.sidebar-sub-link {
+  display: block; padding: 4px 16px 4px 32px;
+  font-size: 0.78rem; color: var(--text-muted);
   text-decoration: none; transition: all 0.15s;
   border-left: 3px solid transparent;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.sidebar-link:hover { color: var(--text-primary); background: var(--bg-subtle); }
-.sidebar-link.active {
+.sidebar-sub-link:hover { color: var(--text-secondary); background: var(--bg-subtle); }
+.sidebar-sub-link.active {
   color: var(--accent); background: var(--bg-subtle);
-  border-left-color: var(--accent); font-weight: 600;
+  border-left-color: var(--accent); font-weight: 500;
 }
+.sidebar-sub-link.lthp-highlight {
+  background: var(--highlight-bg);
+  border-left-color: var(--highlight-border);
+}
+.sub-tag {
+  display: inline-block; font-size: 0.6rem; font-weight: 700;
+  padding: 1px 5px; border-radius: 4px; margin-left: 4px;
+  vertical-align: middle; line-height: 1.2;
+}
+.lthp-highlight .sub-tag { background: rgba(234,179,8,0.25); }
+.sub-tag { background: rgba(37,99,235,0.15); color: var(--accent); }
+
 .sidebar-divider {
   height: 1px; background: var(--border);
   margin: 8px 16px;
@@ -277,19 +355,6 @@ footer {
   text-align: center; font-size: 0.8rem; color: var(--text-muted);
 }
 
-/* ── Sidebar sub-links ── */
-.sidebar-sub-link {
-  display: block; padding: 4px 16px 4px 28px;
-  font-size: 0.78rem; color: var(--text-muted);
-  text-decoration: none; transition: all 0.15s;
-  border-left: 3px solid transparent;
-}
-.sidebar-sub-link:hover { color: var(--text-secondary); background: var(--bg-subtle); }
-.sidebar-sub-link.active {
-  color: var(--accent); background: var(--bg-subtle);
-  border-left-color: var(--accent); font-weight: 500;
-}
-
 /* ── Mermaid ── */
 .mermaid {
   background: var(--bg-card); border-radius: 8px;
@@ -323,7 +388,8 @@ footer {
 <a href="#" class="sidebar-title" id="sidebarHomeLink">Data Engineering Wiki</a>
 </div>
 <div class="sidebar-search">
-<input type="text" id="sidebarSearch" placeholder="Search topics, roles, tools..." class="sidebar-search-input">
+<input type="text" id="sidebarSearch" placeholder="Search topics..." class="sidebar-search-input" autocomplete="off">
+<div class="search-dropdown" id="searchDropdown"></div>
 </div>
 <div class="sidebar-nav">
 {{SIDEBAR_NAV}}
@@ -337,11 +403,11 @@ footer {
 <div class="mobile-header-row">
 <a href="#" class="mobile-title" id="mobileHomeLink">DE Wiki</a>
 <select class="mobile-section-select" id="mobileSectionSelect">
-<option value="">Overview</option><option value="data-engineering-scope">Data Engineering Scope</option><option value="practitioner-definitions">Defining Data Engineering</option><option value="data-roles-overview">Data Roles &amp; Responsibilities</option><option value="skill-taxonomy">Skills &amp; Qualities</option><option value="types-of-data">Data Ecosystem — Types, Sources &amp; Languages</option><option value="data-repositories">Data Storage &amp; Repositories</option><option value="etl-elt-data-pipelines">Data Processing &amp; Big Data Platforms</option><option value="quiz-study-reference">Quiz &amp; Exam Reference</option><option value="course-syllabus-index">Course &amp; Career</option><option value="glossary">Glossary</option><option value="future">Coming Next</option>
+{{MOBILE_SELECT_OPTIONS}}
 </select>
 </div>
 <div class="mobile-search-row">
-<input type="text" class="mobile-search-input" id="mobileSearch" placeholder="Search topics, roles, tools...">
+<input type="text" class="mobile-search-input" id="mobileSearch" placeholder="Search topics..." autocomplete="off">
 </div>
 </div>
 
@@ -352,22 +418,25 @@ footer {
 <h1>Data Engineering Wiki</h1>
 <p class="doc-subtitle">Technical reference covering the IBM Data Engineering Professional Certificate — Modules 1 &amp; 2 in depth, plus the full 16-course career blueprint.</p>
 <div class="doc-meta">
-<span class="meta-badge">33 Topic Cards</span>
-<span class="meta-badge">9 Categories</span>
-<span class="meta-badge">63 Source Files</span>
+<span class="meta-badge">{{CARD_COUNT}} Topic Cards</span>
+<span class="meta-badge">{{SECTION_COUNT}} Categories</span>
+<span class="meta-badge">{{SOURCE_FILE_COUNT}} Source Files</span>
 </div>
 </header>
 
 {{WIKI_CONTENT}}
 
 <footer>
-<p>Generated from IBM Data Engineering Professional Certificate source files. 63 source files, 33 topic cards.</p>
+<p>{{FOOTER_TEXT}}</p>
 </footer>
 
 </div>
 </div>
 
-<script>(() => {
+<script>
+var SEARCH_INDEX = {{SEARCH_INDEX}};
+
+(function() {
   /* ── Page routing ── */
   function showPage(hash) {
     hash = (hash || '').replace(/^#/, '');
@@ -398,26 +467,31 @@ footer {
       if (first) first.style.display = 'block';
     }
 
-    /* Render mermaid diagrams in visible section */
-    var visibleSection = target && target.classList.contains('category') ? target : (target ? target.closest('.category') : sections[0]);
-    if (visibleSection && typeof mermaid !== 'undefined') {
-      var mermaidNodes = visibleSection.querySelectorAll('.mermaid:not([data-processed])');
-      if (mermaidNodes.length > 0) {
-        mermaidNodes.forEach(function(n) { n.setAttribute('data-processed', 'true'); });
-        mermaid.run({ nodes: Array.from(mermaidNodes) });
+    /* Render any unprocessed mermaid diagrams */
+    if (typeof mermaid !== 'undefined') {
+      var unprocessed = document.querySelectorAll('.mermaid:not([data-processed])');
+      if (unprocessed.length > 0) {
+        unprocessed.forEach(function(n) { n.setAttribute('data-processed', 'true'); });
+        mermaid.run({ nodes: Array.from(unprocessed) }).catch(function(e) {
+          console.error('Mermaid render error:', e);
+        });
       }
     }
 
-    /* Update sidebar active link */
-    var allLinks = document.querySelectorAll('.sidebar-link, .sidebar-sub-link');
-    allLinks.forEach(function(l) { l.classList.remove('active'); });
+    /* Update sidebar active link and expand parent section */
+    var allSubLinks = document.querySelectorAll('.sidebar-sub-link');
+    allSubLinks.forEach(function(l) { l.classList.remove('active'); });
     if (hash) {
-      var activeLink = document.querySelector('.sidebar-link[href="#' + hash + '"], .sidebar-sub-link[href="#' + hash + '"]');
-      if (activeLink) activeLink.classList.add('active');
-      else {
-        /* Try data-section match */
-        var sectionLink = document.querySelector('.sidebar-link[data-section="' + hash + '"]');
-        if (sectionLink) sectionLink.classList.add('active');
+      var activeLink = document.querySelector('.sidebar-sub-link[href="#' + hash + '"]');
+      if (activeLink) {
+        activeLink.classList.add('active');
+        /* Expand parent section */
+        var subs = activeLink.closest('.sidebar-subs');
+        if (subs && subs.style.display === 'none') {
+          subs.style.display = 'block';
+          var toggle = subs.previousElementSibling.querySelector('.sidebar-toggle');
+          if (toggle) toggle.textContent = '\u25BC';
+        }
       }
     }
   }
@@ -432,7 +506,6 @@ footer {
     }
   });
 
-  /* Handle initial load */
   showPage(location.hash);
   if (location.hash) {
     var el = document.getElementById(location.hash.replace(/^#/, ''));
@@ -441,15 +514,30 @@ footer {
     }
   }
 
-  /* Sidebar home link - show overview */
+  /* Sidebar home link */
   document.getElementById('sidebarHomeLink').addEventListener('click', function(e) {
     e.preventDefault();
     location.hash = '';
     showPage('');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    /* Update active - first section link */
-    var first = document.querySelector('.sidebar-link');
-    if (first) first.classList.add('active');
+  });
+
+  /* ── Sidebar section collapse/expand ── */
+  document.querySelectorAll('.sidebar-section-header').forEach(function(header) {
+    header.addEventListener('click', function(e) {
+      /* Don't toggle if the click is on a link inside the header */
+      if (e.target.tagName === 'A') return;
+      var subs = this.nextElementSibling;
+      var toggle = this.querySelector('.sidebar-toggle');
+      if (!subs || !subs.classList.contains('sidebar-subs')) return;
+      if (subs.style.display === 'none') {
+        subs.style.display = 'block';
+        if (toggle) toggle.textContent = '\u25BC';
+      } else {
+        subs.style.display = 'none';
+        if (toggle) toggle.textContent = '\u25B6';
+      }
+    });
   });
 
   /* ── Sidebar dark toggle ── */
@@ -473,7 +561,6 @@ footer {
       var val = this.value;
       if (val) location.hash = val;
     });
-    /* Update select on hash change */
     window.addEventListener('hashchange', function() {
       var hash = location.hash.replace(/^#/, '');
       var opt = sel.querySelector('option[value="' + hash + '"]');
@@ -481,47 +568,162 @@ footer {
     });
   }
 
-  /* ── Sidebar search ── */
-  var sidebarSearch = document.getElementById('sidebarSearch');
-  var mainSearch = document.getElementById('mobileSearch');
-  function doSearch(input, e) {
-    var q = input.value.toLowerCase().trim();
-    var allCards = document.querySelectorAll('.card, .future-card');
-    var sections = document.querySelectorAll('.category');
-    if (!q) {
-      allCards.forEach(function(c) { c.style.display = 'block'; });
-      sections.forEach(function(s) {
-        s.style.display = 'block';
-        s.classList.remove('search-mode');
-      });
-      showPage(location.hash.replace(/^#/, ''));
+  /* ── Search ── */
+  function highlightMatch(text, query) {
+    var re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return text.replace(re, '<span class="dd-match">$1</span>');
+  }
+
+  function showSearchDropdown(input, dropdown) {
+    var q = input.value.trim().toLowerCase();
+    if (!q) { dropdown.style.display = 'none'; return; }
+
+    var matches = SEARCH_INDEX.filter(function(item) {
+      return item.title.toLowerCase().indexOf(q) !== -1;
+    });
+
+    if (matches.length === 0) {
+      dropdown.innerHTML = '<div class="search-dd-empty">No topic matches — press Enter to search content</div>';
+      dropdown.style.display = 'block';
       return;
     }
-    /* Show all sections during search */
+
+    var html = '';
+    var maxResults = 12;
+    for (var i = 0; i < Math.min(matches.length, maxResults); i++) {
+      var m = matches[i];
+      html += '<div class="search-dd-item" data-anchor="' + m.anchor + '">';
+      html += '<div class="dd-title">' + highlightMatch(escapeHtml(m.title), q) + '</div>';
+      html += '<div class="dd-section">' + escapeHtml(m.section) + '</div>';
+      html += '</div>';
+    }
+    if (matches.length > maxResults) {
+      html += '<div class="search-dd-empty">+' + (matches.length - maxResults) + ' more matches</div>';
+    }
+    if (matches.length > 0) {
+      html += '<div class="search-dd-footer" data-fulltext="1">Search content for "' + escapeHtml(q) + '"</div>';
+    }
+    dropdown.innerHTML = html;
+    dropdown.style.display = 'block';
+
+    /* Click handlers */
+    dropdown.querySelectorAll('.search-dd-item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        var anchor = this.getAttribute('data-anchor');
+        if (anchor) {
+          input.value = '';
+          dropdown.style.display = 'none';
+          location.hash = anchor;
+          /* Also sync mobile search */
+          var ms = document.getElementById('mobileSearch');
+          if (ms) ms.value = '';
+        }
+      });
+    });
+    var footer = dropdown.querySelector('.search-dd-footer');
+    if (footer) {
+      footer.addEventListener('click', function() {
+        doFullTextSearch(q, input, dropdown);
+      });
+    }
+  }
+
+  function doFullTextSearch(q, input, dropdown) {
+    dropdown.style.display = 'none';
+    var allCards = document.querySelectorAll('.card, .future-card');
+    var sections = document.querySelectorAll('.category');
     sections.forEach(function(s) { s.style.display = 'block'; s.classList.add('search-mode'); });
     allCards.forEach(function(c) {
       var text = c.textContent.toLowerCase();
-      c.style.display = text.includes(q) ? 'block' : 'none';
+      c.style.display = text.indexOf(q) !== -1 ? 'block' : 'none';
     });
     sections.forEach(function(s) {
       var visible = Array.from(s.querySelectorAll('.card, .future-card')).some(function(c) { return c.style.display !== 'none'; });
       s.style.display = visible ? 'block' : 'none';
     });
-  }
-  if (sidebarSearch) {
-    sidebarSearch.addEventListener('input', function(e) { doSearch(this, e); });
-  }
-  if (mainSearch) {
-    mainSearch.addEventListener('input', function(e) { doSearch(this, e); });
+    /* Sync mobile search */
+    var ms = document.getElementById('mobileSearch');
+    if (ms) ms.value = input.value;
   }
 
-  /* Sync sidebar search & mobile search */
-  if (sidebarSearch && mainSearch) {
-    sidebarSearch.addEventListener('input', function() { mainSearch.value = this.value; });
-    mainSearch.addEventListener('input', function() { sidebarSearch.value = this.value; });
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(text));
+    return div.innerHTML;
   }
-})();</script>
+
+  /* Sidebar search */
+  var sidebarSearch = document.getElementById('sidebarSearch');
+  var searchDropdown = document.getElementById('searchDropdown');
+  if (sidebarSearch) {
+    sidebarSearch.addEventListener('input', function() {
+      showSearchDropdown(this, searchDropdown);
+      /* Sync mobile */
+      var ms = document.getElementById('mobileSearch');
+      if (ms) ms.value = this.value;
+    });
+    sidebarSearch.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        var q = this.value.trim().toLowerCase();
+        if (q) doFullTextSearch(q, this, searchDropdown);
+      }
+      if (e.key === 'Escape') {
+        this.value = '';
+        searchDropdown.style.display = 'none';
+        /* Restore normal view */
+        var allCards = document.querySelectorAll('.card, .future-card');
+        var sections = document.querySelectorAll('.category');
+        sections.forEach(function(s) { s.style.display = ''; s.classList.remove('search-mode'); });
+        allCards.forEach(function(c) { c.style.display = 'block'; });
+        showPage(location.hash.replace(/^#/, ''));
+        /* Sync mobile */
+        var ms = document.getElementById('mobileSearch');
+        if (ms) ms.value = '';
+      }
+    });
+    /* Close dropdown on blur */
+    sidebarSearch.addEventListener('blur', function() {
+      setTimeout(function() { searchDropdown.style.display = 'none'; }, 200);
+    });
+    sidebarSearch.addEventListener('focus', function() {
+      if (this.value.trim()) showSearchDropdown(this, searchDropdown);
+    });
+  }
+
+  /* Mobile search */
+  var mobileSearch = document.getElementById('mobileSearch');
+  if (mobileSearch) {
+    mobileSearch.addEventListener('input', function() {
+      /* Sync sidebar search */
+      if (sidebarSearch) sidebarSearch.value = this.value;
+      var q = this.value.trim().toLowerCase();
+      if (!q) {
+        searchDropdown.style.display = 'none';
+        var allCards = document.querySelectorAll('.card, .future-card');
+        var sections = document.querySelectorAll('.category');
+        sections.forEach(function(s) { s.style.display = ''; s.classList.remove('search-mode'); });
+        allCards.forEach(function(c) { c.style.display = 'block'; });
+        showPage(location.hash.replace(/^#/, ''));
+        return;
+      }
+      /* On mobile, do full-text search directly since dropdown might be hidden */
+      doFullTextSearch(q, this, { style: { display: 'none' } });
+    });
+  }
+
+  /* Restore normal page view after full-text search */
+  window.addEventListener('hashchange', function() {
+    var allCards = document.querySelectorAll('.card, .future-card');
+    var sections = document.querySelectorAll('.category');
+    sections.forEach(function(s) { s.style.display = ''; s.classList.remove('search-mode'); });
+    allCards.forEach(function(c) { c.style.display = 'block'; });
+    var ss = document.getElementById('sidebarSearch');
+    if (ss) ss.value = '';
+    var ms = document.getElementById('mobileSearch');
+    if (ms) ms.value = '';
+  });
+})();
+</script>
 
 </body>
 </html>
-

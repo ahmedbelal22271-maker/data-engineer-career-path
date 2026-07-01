@@ -59,6 +59,7 @@ SECTIONS = [
         ("Big Data Foundations", "big_data_foundations.md", "processing"),
         ("Big Data Case Studies", "big_data_case_studies.md", "processing"),
         ("Data Science Process", "data_science_process.md", "processing"),
+        ("UCSD Big Data Specialization", "big_data_specialization_ucsd.md", "processing"),
         ("Hadoop Ecosystem", "hadoop_ecosystem.md", "processing"),
         ("Data Platform Architecture", "data_platform_architecture.md", "processing"),
         ("SQL Vendors & Dialects", "sql_vendors_dialects.md", "processing"),
@@ -100,6 +101,12 @@ SECTIONS = [
         ("Viewpoints: Employer Expectations", "viewpoints_employer_expectations.md", "career"),
         ("Viewpoints: Many Paths to DE", "viewpoints_many_paths_to_de.md", "career"),
         ("Viewpoints: Advice to Aspiring DEs", "viewpoints_advice_aspiring_de.md", "career"),
+        ("Full Course 1 Index", "c1_full_course_index.md", "career"),
+        ("Course Syllabus & Module Index", "course_syllabus_and_index.md", "career"),
+        ("16-Course Sequence", "course_sequence_16.md", "career"),
+        ("Career Ladder", "career_ladder.md", "career"),
+        ("Certification Roadmap", "certification_roadmap.md", "career"),
+        ("Enhancement Modules", "enhancement_modules.md", "career"),
     ]),
 ]
 
@@ -171,6 +178,8 @@ def clean_content(text):
     out = []
     skip_table = False
     table_lines = []
+    numbered_rows = 0
+    total_rows = 0
 
     for line in lines:
         # Skip numbered section headings like "### 4.3 Course Wrap-Up"
@@ -181,36 +190,40 @@ def clean_content(text):
         low_val = ["course wrap-up", "congratulations and next steps",
                     "summary and highlights", "practice quiz", "graded quiz"]
         if any(p in line.lower() for p in low_val):
-            if not line.strip().startswith('|'):  # don't break table detection
+            if not line.strip().startswith('|'):
                 continue
 
-        # Detect and skip content-map tables (sequential number in col 1)
+        # Detect and skip content-map tables
+        # Only skip if multiple rows have a numbered first cell (syllabus/index pattern)
         if line.strip().startswith('|'):
             table_lines.append(line)
+            total_rows += 1
             if not line.strip().endswith('|'):
-                skip_table = True
                 continue
-            # Check if this is a content map row: first cell is a bare number
-            cells = [c.strip() for c in line.split('|')]
-            cells = [c for c in cells if c]
+            cells = [c.strip() for c in line.split('|') if c.strip()]
             if len(cells) >= 2 and re.match(r'^\d+$', cells[0]):
-                skip_table = True
-                continue
-            if skip_table:
-                continue
-            out.append(line)
+                numbered_rows += 1
+            continue
         else:
-            if skip_table and table_lines:
+            # End of table: decide whether to keep or skip
+            if table_lines:
+                if total_rows >= 3 and numbered_rows >= total_rows * 0.5:
+                    # Content-map table — skip it entirely
+                    pass
+                else:
+                    out.extend(table_lines)
                 table_lines = []
+                total_rows = 0
+                numbered_rows = 0
                 skip_table = False
-            elif table_lines:
-                out.extend(table_lines)
-                table_lines = []
             out.append(line)
 
     # Flush remaining table buffer
-    if not skip_table and table_lines:
-        out.extend(table_lines)
+    if table_lines:
+        if total_rows >= 3 and numbered_rows >= total_rows * 0.5:
+            pass  # skip
+        else:
+            out.extend(table_lines)
 
     return '\n'.join(out)
 
@@ -537,20 +550,63 @@ def build_future():
 </section>"""
 
 
+# ── Search index ──
+def build_search_index():
+    entries = []
+    for section_id, section_title, cards in SECTIONS:
+        for title, _, _ in cards:
+            anchor = url_to_anchor(title)
+            entries.append({"title": title, "anchor": anchor, "section": section_title})
+    entries.append({"title": "Glossary", "anchor": "glossary", "section": "Reference"})
+    return json.dumps(entries)
+
+# ── Mobile select options ──
+def build_mobile_select_options():
+    opts = ['<option value="">Select section…</option>']
+    for section_id, section_title, cards in SECTIONS:
+        first_anchor = url_to_anchor(cards[0][0])
+        opts.append(f'<option value="{first_anchor}">{escape_html(section_title)}</option>')
+    opts.append('<option value="glossary">Glossary</option>')
+    opts.append('<option value="future">Coming Next</option>')
+    return ''.join(opts)
+
 # ── Sidebar ──
 def build_sidebar(status_map):
     items = []
     for section_id, section_title, cards in SECTIONS:
-        first_anchor = url_to_anchor(cards[0][0])
         section_has_updates = any(status_map.get(md_file, "original") in ("new", "modified") for _, md_file, _ in cards)
-        link_cls = 'sidebar-link lthp-highlight' if section_has_updates else 'sidebar-link'
-        items.append(f'<a href="#{first_anchor}" class="{link_cls}" data-section="{section_id}">{escape_html(section_title)}</a>')
-        for title, _, _ in cards:
+        header_cls = 'sidebar-section-header'
+        if section_has_updates:
+            header_cls += ' lthp-highlight'
+        items.append(f'<div class="sidebar-section">')
+        items.append(f'<div class="{header_cls}" data-section="{section_id}">')
+        items.append(f'<span class="sidebar-toggle">&#x25B6;</span>')
+        items.append(f'<span class="sidebar-section-title">{escape_html(section_title)}</span>')
+        items.append(f'</div>')
+        items.append(f'<div class="sidebar-subs" style="display:none;">')
+        for title, md_file, _ in cards:
             anchor = url_to_anchor(title)
-            items.append(f'<a href="#{anchor}" class="sidebar-sub-link" data-section="{section_id}">{escape_html(title)}</a>')
+            sub_cls = 'sidebar-sub-link'
+            st = status_map.get(md_file, "original")
+            if st in ("new", "modified"):
+                sub_cls += ' lthp-highlight'
+            tag_html = ''
+            if st == "new":
+                tag_html = ' <span class="sub-tag">NEW</span>'
+            elif st == "modified":
+                tag_html = ' <span class="sub-tag">MOD</span>'
+            items.append(f'<a href="#{anchor}" class="{sub_cls}">{escape_html(title)}{tag_html}</a>')
+        items.append(f'</div></div>')
     items.append('<div class="sidebar-divider"></div>')
-    items.append('<a href="#glossary" class="sidebar-link" data-section="glossary">Glossary</a>')
-    items.append('<a href="#future" class="sidebar-link" data-section="future">Coming Next</a>')
+    items.append('<div class="sidebar-section">')
+    items.append('<div class="sidebar-section-header" data-section="glossary">')
+    items.append('<span class="sidebar-toggle">&#x25B6;</span>')
+    items.append('<span class="sidebar-section-title">Reference</span>')
+    items.append('</div>')
+    items.append('<div class="sidebar-subs" style="display:none;">')
+    items.append('<a href="#glossary" class="sidebar-sub-link">Glossary</a>')
+    items.append('<a href="#future" class="sidebar-sub-link">Coming Next</a>')
+    items.append('</div></div>')
     return ''.join(items)
 
 
@@ -566,15 +622,31 @@ def main():
     glossary_html = build_glossary(status_map)
     future_html = build_future()
     sidebar_html = build_sidebar(status_map)
+    search_index_json = build_search_index()
+    mobile_select_html = build_mobile_select_options()
 
     content = sections_html + '\n\n' + glossary_html + '\n\n' + future_html
 
+    total_cards = sum(len(cards) for _, _, cards in SECTIONS)
+    total_sections = len(SECTIONS)
+    source_count = len([f for f in os.listdir(TOPICS_DIR) if f.endswith('.md')])
+
     with open(TEMPLATE_PATH, 'r', encoding='utf-8') as f:
         html = f.read()
-    html = html.replace('{{WIKI_CONTENT}}', content)
-    html = html.replace('{{SIDEBAR_NAV}}', sidebar_html)
 
-    total_cards = sum(len(cards) for _, _, cards in SECTIONS)
+    replacements = {
+        '{{WIKI_CONTENT}}': content,
+        '{{SIDEBAR_NAV}}': sidebar_html,
+        '{{CARD_COUNT}}': str(total_cards),
+        '{{SECTION_COUNT}}': str(total_sections),
+        '{{SOURCE_FILE_COUNT}}': str(source_count),
+        '{{MOBILE_SELECT_OPTIONS}}': mobile_select_html,
+        '{{SEARCH_INDEX}}': search_index_json,
+        '{{FOOTER_TEXT}}': f'Generated from IBM Data Engineering Professional Certificate source files. {source_count} source files, {total_cards} topic cards across {total_sections} sections.',
+    }
+
+    for ph, val in replacements.items():
+        html = html.replace(ph, val)
 
     os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
 
