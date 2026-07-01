@@ -183,3 +183,86 @@ Existing topic pages: 54 topic files in de_wiki/topics/
 Missing referenced files: None
 Content dependencies identified: C2 M3 builds sequentially on C2 M1-M2; UCSD Big Data is independent
 Status: INDEXES READ — PROCEEDING TO CONTEXT LOADING
+Converted: Applications-Altintas-Final.pdf -> Applications-Altintas-Final.md with 0 images
+Converted: MachineGeneratedData-Part1-Altintas-Final.pdf -> MachineGeneratedData-Part1-Altintas-Final.md with 0 images
+Converted: MachineGeneratedData-Part2-Altintas-Final.pdf -> MachineGeneratedData-Part2-Altintas-Final.md with 0 images
+Converted: OrganizationGeneratedData-Part1-Altintas-Final.pdf -> OrganizationGeneratedData-Part1-Altintas-Final.md with 0 images
+Converted: OrganizationGeneratedData-Part2-Altintas-Final.pdf -> OrganizationGeneratedData-Part2-Altintas-Final.md with 0 images
+Converted: PeopleGeneratedData-Part1-Altintas-Final.pdf -> PeopleGeneratedData-Part1-Altintas-Final.md with 0 images
+Converted: Precision-Medicine-Gupta-FinalBM2 (1) (1).pdf -> Precision-Medicine-Gupta-FinalBM2 (1) (1).md with 0 images
+Converted: TheKeyIsIntegratingDiverseData-Altintas-Final (1).pdf -> TheKeyIsIntegratingDiverseData-Altintas-Final (1).md with 0 images
+Converted: WhatLaunchedTheBigDataEra-Altintas-Final.pdf -> WhatLaunchedTheBigDataEra-Altintas-Final.md with 0 images
+Converted: WIFIRE-Altintas-Final.pdf -> WIFIRE-Altintas-Final.md with 0 images
+Converted: CharacteristicsOfBigData-Altintas-Final.pdf -> CharacteristicsOfBigData-Altintas-Final.md with 0 images
+Converted: Scalability-Variety.pdf -> Scalability-Variety.md with 0 images
+Converted: Applications-Altintas-Final.pdf -> Applications-Altintas-Final.md with 0 images
+Converted: MachineGeneratedData-Part1-Altintas-Final.pdf -> MachineGeneratedData-Part1-Altintas-Final.md with 0 images
+Converted: MachineGeneratedData-Part2-Altintas-Final.pdf -> MachineGeneratedData-Part2-Altintas-Final.md with 0 images
+Converted: OrganizationGeneratedData-Part1-Altintas-Final.pdf -> OrganizationGeneratedData-Part1-Altintas-Final.md with 0 images
+Converted: OrganizationGeneratedData-Part2-Altintas-Final.pdf -> OrganizationGeneratedData-Part2-Altintas-Final.md with 0 images
+Converted: PeopleGeneratedData-Part1-Altintas-Final.pdf -> PeopleGeneratedData-Part1-Altintas-Final.md with 0 images
+Converted: Precision-Medicine-Gupta-FinalBM2 (1) (1).pdf -> Precision-Medicine-Gupta-FinalBM2 (1) (1).md with 0 images
+Converted: TheKeyIsIntegratingDiverseData-Altintas-Final (1).pdf -> TheKeyIsIntegratingDiverseData-Altintas-Final (1).md with 0 images
+Converted: WhatLaunchedTheBigDataEra-Altintas-Final.pdf -> WhatLaunchedTheBigDataEra-Altintas-Final.md with 0 images
+Converted: WIFIRE-Altintas-Final.pdf -> WIFIRE-Altintas-Final.md with 0 images
+Converted: CharacteristicsOfBigData-Altintas-Final.pdf -> CharacteristicsOfBigData-Altintas-Final.md with 0 images
+Converted: Scalability-Valence.pdf -> Scalability-Valence.md with 0 images
+Converted: Scalability-Variety.pdf -> Scalability-Variety.md with 0 images
+Converted: Value-Altintas-Final.pdf -> Value-Altintas-Final.md with 0 images
+Converted: Velocity-Altintas-Final.pdf -> Velocity-Altintas-Final.md with 0 images
+Converted: Veracity-Altintas-Final.pdf -> Veracity-Altintas-Final.md with 0 images
+Converted: Volume-Altintas-Final.pdf -> Volume-Altintas-Final.md with 0 images
+Converted: 0A.DataScience-GettingValueOutOfBigData-Altintas.pdf -> 0A.DataScience-GettingValueOutOfBigData-Altintas.md with 0 images
+Converted: 1A.BuildingABigDataStrategy-Altintas.pdf -> 1A.BuildingABigDataStrategy-Altintas.md with 0 images
+Converted: 1B.5PsOfDataScience-Altintas.pdf -> 1B.5PsOfDataScience-Altintas.md with 0 images
+Converted: 2.AskingTheRightQuestion-Altintas.pdf -> 2.AskingTheRightQuestion-Altintas.md with 0 images
+Converted: 3.IntroducingThe6StepProcess-Altintas.pdf -> 3.IntroducingThe6StepProcess-Altintas.md with 0 images
+Converted: 4.Step1-AccessingAndRetrievingData-Altintas.pdf -> 4.Step1-AccessingAndRetrievingData-Altintas.md with 0 images
+Converted: 5.Step2A-ExploringData-Altintas.pdf -> 5.Step2A-ExploringData-Altintas.md with 0 images
+Converted: 6.Step2B-PreprocessingData-Altintas.pdf -> 6.Step2B-PreprocessingData-Altintas.md with 0 images
+Converted: 7.Step3-DataAnalysis-Altintas.pdf -> 7.Step3-DataAnalysis-Altintas.md with 0 images
+Converted: 8.Step4-ReportingInsights-Altintas.pdf -> 8.Step4-ReportingInsights-Altintas.md with 0 images
+Converted: 0A.DataScience-GettingValueOutOfBigData-Altintas.pdf -> 0A.DataScience-GettingValueOutOfBigData-Altintas.md with 0 images
+Converted: 1A.BuildingABigDataStrategy-Altintas.pdf -> 1A.BuildingABigDataStrategy-Altintas.md with 0 images
+Converted: 1B.5PsOfDataScience-Altintas.pdf -> 1B.5PsOfDataScience-Altintas.md with 0 images
+Converted: 2.AskingTheRightQuestion-Altintas.pdf -> 2.AskingTheRightQuestion-Altintas.md with 0 images
+Converted: 3.IntroducingThe6StepProcess-Altintas.pdf -> 3.IntroducingThe6StepProcess-Altintas.md with 0 images
+Converted: 4.Step1-AccessingAndRetrievingData-Altintas.pdf -> 4.Step1-AccessingAndRetrievingData-Altintas.md with 0 images
+Converted: 5.Step2A-ExploringData-Altintas.pdf -> 5.Step2A-ExploringData-Altintas.md with 0 images
+Converted: 6.Step2B-PreprocessingData-Altintas.pdf -> 6.Step2B-PreprocessingData-Altintas.md with 0 images
+Converted: 7.Step3-DataAnalysis-Altintas.pdf -> 7.Step3-DataAnalysis-Altintas.md with 0 images
+Converted: 8.Step4-ReportingInsights-Altintas.pdf -> 8.Step4-ReportingInsights-Altintas.md with 0 images
+Converted: 9.Step6-TurningInsightsIntoAction-Altintas.pdf -> 9.Step6-TurningInsightsIntoAction-Altintas.md with 0 images
+Converted: 4.ProgrammingModelsForBigData-Altintas-FINAL.pdf -> 4.ProgrammingModelsForBigData-Altintas-FINAL.md with 0 images
+Converted: GettingStarted-WhyDoYouNeedFoundations-Altintas (1).pdf -> GettingStarted-WhyDoYouNeedFoundations-Altintas (1).md with 0 images
+Converted: ScalableComputingOverTheInternet-Altintas.pdf -> ScalableComputingOverTheInternet-Altintas.md with 0 images
+Converted: CloudComputing.pdf -> CloudComputing.md with 0 images
+Converted: CloudServiceModels.pdf -> CloudServiceModels.md with 0 images
+Converted: HadoopEcosystem.pdf -> HadoopEcosystem.md with 0 images
+Converted: HDFS.pdf -> HDFS.md with 0 images
+Converted: MapReduce.pdf -> MapReduce.md with 0 images
+Converted: PreBuiltHadoopImages.pdf -> PreBuiltHadoopImages.md with 0 images
+Converted: When2ReconsiderHadoop.pdf -> When2ReconsiderHadoop.md with 0 images
+Converted: WhyHadoop.pdf -> WhyHadoop.md with 0 images
+Converted: Yarn.pdf -> Yarn.md with 0 images
+
+## [STEP 2.5] PDF Preprocessing — COMPLETE
+PDFs converted: 40 (across 6 modules)
+New markdown files generated: 38 (2 duplicates skipped: TheKeyIsIntegratingDiverseData, GettingStarted-WhyDoYouNeedFoundations)
+Images extracted: 0 (lecture slides — no embedded images)
+Total API cost: ~$3.50 (cached re-runs may have added ~$0.84)
+Content assessment:
+  - Modules 2-3 (16 files): supplemental slide-level content — has some novel technical content not in hand-written files
+  - Modules 4-6 (22 files): largely redundant with existing hand-written c1_m4_*/bd_c1_m4_*/c1_m5_*/c1_m6_* and wiki pages
+  - Strategy: pipeline process only modules 2-3 Datalab files + any genuinely novel content from modules 4-6
+Status: PDFs EXTRACTED — PROCEEDING TO PIPELINE EXECUTION
+
+## [2026-07-01] Data Science Process page created from UCSD Module 4
+Created `de_wiki/topics/data_science_process.md` from 14 UCSD hand-written summaries:
+  - Asking the Right Questions (problem formulation: 4 steps)
+  - Five P's of Data Science (People, Purpose, Process, Platforms, Programmability → Product)
+  - 5-step Data Science Process (Acquire → Explore → Pre-process → Analyze → Report → Act)
+  - Building a Big Data Strategy (8-step iterative framework)
+Updated `build_wiki.py` SECTIONS to include the new page in "processing" group.
+Updated `de_wiki/index.md` — page count 62→63, new entry added.
+Updated `big_data_specialization_ucsd.md` — added cross-ref to data_science_process.md.

@@ -40,3 +40,4 @@ MongoDB, Apache Spark, Apache Hadoop, Splunk, KNIME, Neo4j, Redis, Gephi, Asteri
 
 [Cross-ref: topics/big_data_foundations.md — 5 Vs and distributed computing]
 [Cross-ref: topics/hadoop_ecosystem.md — Hadoop, HDFS, MapReduce, YARN, Spark]
+[Cross-ref: topics/data_science_process.md — Data science process, Five P's, Big Data strategy]

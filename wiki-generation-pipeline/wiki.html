@@ -3594,7 +3594,7 @@ cytoscape/dist/cytoscape.esm.mjs:
 */
 globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
 </script>
-<script>mermaid.initialize({startOnLoad:false});</script>
+<script>mermaid.initialize({startOnLoad:true});</script>
 <style>
 :root {
   --accent: #3b82f6;
@@ -3666,6 +3666,10 @@ body {
 .sidebar-link.active {
   color: var(--accent); background: var(--bg-subtle);
   border-left-color: var(--accent); font-weight: 600;
+}
+.sidebar-link.lthp-highlight {
+  background: var(--highlight-bg);
+  border-left-color: var(--highlight-border);
 }
 .sidebar-divider {
   height: 1px; background: var(--border);
@@ -3913,7 +3917,7 @@ footer {
 <input type="text" id="sidebarSearch" placeholder="Search topics, roles, tools..." class="sidebar-search-input">
 </div>
 <div class="sidebar-nav">
-<a href="#data-engineering-scope" class="sidebar-link" data-section="overview">Data Engineering Scope</a><a href="#data-engineering-scope" class="sidebar-sub-link" data-section="overview">Data Engineering Scope</a><a href="#modern-data-ecosystem" class="sidebar-sub-link" data-section="overview">Modern Data Ecosystem</a><a href="#practitioner-definitions" class="sidebar-link" data-section="foundations">Defining Data Engineering</a><a href="#practitioner-definitions" class="sidebar-sub-link" data-section="foundations">Practitioner Definitions</a><a href="#evolution-of-data-engineering" class="sidebar-sub-link" data-section="foundations">Evolution of Data Engineering</a><a href="#data-roles-overview" class="sidebar-link" data-section="roles">Data Roles &amp; Responsibilities</a><a href="#data-roles-overview" class="sidebar-sub-link" data-section="roles">Data Roles Overview</a><a href="#de-specializations" class="sidebar-sub-link" data-section="roles">DE Specializations</a><a href="#role-comparisons-deep-dive" class="sidebar-sub-link" data-section="roles">Role Comparisons Deep Dive</a><a href="#day-in-the-life" class="sidebar-sub-link" data-section="roles">Day in the Life</a><a href="#skill-taxonomy" class="sidebar-link" data-section="skills">Skills &amp; Qualities</a><a href="#skill-taxonomy" class="sidebar-sub-link" data-section="skills">Skill Taxonomy</a><a href="#practitioner-viewpoints" class="sidebar-sub-link" data-section="skills">Practitioner Viewpoints</a><a href="#types-of-data" class="sidebar-link" data-section="ecosystem">Data Ecosystem — Types, Sources &amp; Languages</a><a href="#types-of-data" class="sidebar-sub-link" data-section="ecosystem">Types of Data</a><a href="#file-formats" class="sidebar-sub-link" data-section="ecosystem">File Formats</a><a href="#data-sources" class="sidebar-sub-link" data-section="ecosystem">Data Sources</a><a href="#languages-for-data-professionals" class="sidebar-sub-link" data-section="ecosystem">Languages for Data Professionals</a><a href="#metadata-management" class="sidebar-sub-link" data-section="ecosystem">Metadata Management</a><a href="#data-repositories" class="sidebar-link" data-section="storage">Data Storage &amp; Repositories</a><a href="#data-repositories" class="sidebar-sub-link" data-section="storage">Data Repositories</a><a href="#relational-databases" class="sidebar-sub-link" data-section="storage">Relational Databases</a><a href="#nosql-databases" class="sidebar-sub-link" data-section="storage">NoSQL Databases</a><a href="#data-warehouses-lakes-lakehouses" class="sidebar-sub-link" data-section="storage">Data Warehouses, Lakes &amp; Lakehouses</a><a href="#unstructured-data-storage" class="sidebar-sub-link" data-section="storage">Unstructured Data Storage</a><a href="#etl-elt-data-pipelines" class="sidebar-link" data-section="processing">Data Processing &amp; Big Data Platforms</a><a href="#etl-elt-data-pipelines" class="sidebar-sub-link" data-section="processing">ETL, ELT &amp; Data Pipelines</a><a href="#data-integration-platforms" class="sidebar-sub-link" data-section="processing">Data Integration Platforms</a><a href="#big-data-foundations" class="sidebar-sub-link" data-section="processing">Big Data Foundations</a><a href="#hadoop-ecosystem" class="sidebar-sub-link" data-section="processing">Hadoop Ecosystem</a><a href="#data-platform-architecture" class="sidebar-sub-link" data-section="processing">Data Platform Architecture</a><a href="#sql-vendors-dialects" class="sidebar-sub-link" data-section="processing">SQL Vendors &amp; Dialects</a><a href="#dataops-methodology" class="sidebar-link" data-section="governance">Data Lifecycle &amp; Governance</a><a href="#dataops-methodology" class="sidebar-sub-link" data-section="governance">DataOps Methodology</a><a href="#governance-compliance" class="sidebar-sub-link" data-section="governance">Governance &amp; Compliance</a><a href="#governance-compliance-summary" class="sidebar-sub-link" data-section="governance">Governance &amp; Compliance Summary</a><a href="#data-volume-monitoring-q-a" class="sidebar-sub-link" data-section="governance">Data Volume Monitoring Q&amp;A</a><a href="#data-collection-methods" class="sidebar-link" data-section="lifecycle">Data Collection &amp; Wrangling</a><a href="#data-collection-methods" class="sidebar-sub-link" data-section="lifecycle">Data Collection Methods</a><a href="#data-wrangling" class="sidebar-sub-link" data-section="lifecycle">Data Wrangling</a><a href="#querying-performance-tuning" class="sidebar-sub-link" data-section="lifecycle">Querying &amp; Performance Tuning</a><a href="#python-basics" class="sidebar-link" data-section="python">Python for Data Science</a><a href="#python-basics" class="sidebar-sub-link" data-section="python">Python Basics</a><a href="#string-operations" class="sidebar-sub-link" data-section="python">String Operations</a><a href="#jupyter-notebooks" class="sidebar-sub-link" data-section="python">Jupyter Notebooks</a><a href="#lists-and-tuples" class="sidebar-sub-link" data-section="python">Lists and Tuples</a><a href="#dictionaries" class="sidebar-sub-link" data-section="python">Dictionaries</a><a href="#sets" class="sidebar-sub-link" data-section="python">Sets</a><a href="#conditions-branching" class="sidebar-sub-link" data-section="python">Conditions &amp; Branching</a><a href="#loops" class="sidebar-sub-link" data-section="python">Loops</a><a href="#functions" class="sidebar-sub-link" data-section="python">Functions</a><a href="#exception-handling" class="sidebar-sub-link" data-section="python">Exception Handling</a><a href="#objects-classes" class="sidebar-sub-link" data-section="python">Objects &amp; Classes</a><a href="#big-data-specialization-uc-san-diego" class="sidebar-link" data-section="bigdata">Big Data Specialization (UCSD)</a><a href="#big-data-specialization-uc-san-diego" class="sidebar-sub-link" data-section="bigdata">Big Data Specialization — UC San Diego</a><a href="#quiz-study-reference" class="sidebar-link" data-section="quiz">Quiz &amp; Exam Reference</a><a href="#quiz-study-reference" class="sidebar-sub-link" data-section="quiz">Quiz Study Reference</a><a href="#weakness-review" class="sidebar-sub-link" data-section="quiz">Weakness Review</a><a href="#course-syllabus-index" class="sidebar-link" data-section="career">Course &amp; Career</a><a href="#course-syllabus-index" class="sidebar-sub-link" data-section="career">Course Syllabus &amp; Index</a><a href="#16-course-sequence" class="sidebar-sub-link" data-section="career">16-Course Sequence</a><a href="#career-ladder-mvp" class="sidebar-sub-link" data-section="career">Career Ladder &amp; MVP</a><a href="#certification-roadmap" class="sidebar-sub-link" data-section="career">Certification Roadmap</a><a href="#enhancement-modules" class="sidebar-sub-link" data-section="career">Enhancement Modules</a><a href="#full-course-index" class="sidebar-sub-link" data-section="career">Full Course Index</a><a href="#career-opportunities" class="sidebar-sub-link" data-section="career">Career Opportunities</a><a href="#data-manager" class="sidebar-sub-link" data-section="career">Data Manager</a><a href="#data-warehousing-specialist" class="sidebar-sub-link" data-section="career">Data Warehousing Specialist</a><a href="#data-engineering-learning-path" class="sidebar-sub-link" data-section="career">Data Engineering Learning Path</a><a href="#viewpoints-get-into-data-engineering" class="sidebar-sub-link" data-section="career">Viewpoints: Get into Data Engineering</a><a href="#viewpoints-employer-expectations" class="sidebar-sub-link" data-section="career">Viewpoints: Employer Expectations</a><a href="#viewpoints-many-paths-to-de" class="sidebar-sub-link" data-section="career">Viewpoints: Many Paths to DE</a><a href="#viewpoints-advice-to-aspiring-des" class="sidebar-sub-link" data-section="career">Viewpoints: Advice to Aspiring DEs</a><div class="sidebar-divider"></div><a href="#glossary" class="sidebar-link" data-section="glossary">Glossary</a><a href="#future" class="sidebar-link" data-section="future">Coming Next</a>
+<a href="#data-engineering-scope" class="sidebar-link" data-section="overview">Data Engineering Scope</a><a href="#data-engineering-scope" class="sidebar-sub-link" data-section="overview">Data Engineering Scope</a><a href="#modern-data-ecosystem" class="sidebar-sub-link" data-section="overview">Modern Data Ecosystem</a><a href="#practitioner-definitions" class="sidebar-link" data-section="foundations">Defining Data Engineering</a><a href="#practitioner-definitions" class="sidebar-sub-link" data-section="foundations">Practitioner Definitions</a><a href="#evolution-of-data-engineering" class="sidebar-sub-link" data-section="foundations">Evolution of Data Engineering</a><a href="#data-roles-overview" class="sidebar-link" data-section="roles">Data Roles &amp; Responsibilities</a><a href="#data-roles-overview" class="sidebar-sub-link" data-section="roles">Data Roles Overview</a><a href="#de-specializations" class="sidebar-sub-link" data-section="roles">DE Specializations</a><a href="#role-comparisons-deep-dive" class="sidebar-sub-link" data-section="roles">Role Comparisons Deep Dive</a><a href="#day-in-the-life" class="sidebar-sub-link" data-section="roles">Day in the Life</a><a href="#skill-taxonomy" class="sidebar-link" data-section="skills">Skills &amp; Qualities</a><a href="#skill-taxonomy" class="sidebar-sub-link" data-section="skills">Skill Taxonomy</a><a href="#practitioner-viewpoints" class="sidebar-sub-link" data-section="skills">Practitioner Viewpoints</a><a href="#types-of-data" class="sidebar-link" data-section="ecosystem">Data Ecosystem — Types, Sources &amp; Languages</a><a href="#types-of-data" class="sidebar-sub-link" data-section="ecosystem">Types of Data</a><a href="#file-formats" class="sidebar-sub-link" data-section="ecosystem">File Formats</a><a href="#data-sources" class="sidebar-sub-link" data-section="ecosystem">Data Sources</a><a href="#languages-for-data-professionals" class="sidebar-sub-link" data-section="ecosystem">Languages for Data Professionals</a><a href="#metadata-management" class="sidebar-sub-link" data-section="ecosystem">Metadata Management</a><a href="#data-repositories" class="sidebar-link" data-section="storage">Data Storage &amp; Repositories</a><a href="#data-repositories" class="sidebar-sub-link" data-section="storage">Data Repositories</a><a href="#relational-databases" class="sidebar-sub-link" data-section="storage">Relational Databases</a><a href="#nosql-databases" class="sidebar-sub-link" data-section="storage">NoSQL Databases</a><a href="#data-warehouses-lakes-lakehouses" class="sidebar-sub-link" data-section="storage">Data Warehouses, Lakes &amp; Lakehouses</a><a href="#unstructured-data-storage" class="sidebar-sub-link" data-section="storage">Unstructured Data Storage</a><a href="#etl-elt-data-pipelines" class="sidebar-link lthp-highlight" data-section="processing">Data Processing &amp; Big Data Platforms</a><a href="#etl-elt-data-pipelines" class="sidebar-sub-link" data-section="processing">ETL, ELT &amp; Data Pipelines</a><a href="#data-integration-platforms" class="sidebar-sub-link" data-section="processing">Data Integration Platforms</a><a href="#big-data-foundations" class="sidebar-sub-link" data-section="processing">Big Data Foundations</a><a href="#big-data-case-studies" class="sidebar-sub-link" data-section="processing">Big Data Case Studies</a><a href="#data-science-process" class="sidebar-sub-link" data-section="processing">Data Science Process</a><a href="#hadoop-ecosystem" class="sidebar-sub-link" data-section="processing">Hadoop Ecosystem</a><a href="#data-platform-architecture" class="sidebar-sub-link" data-section="processing">Data Platform Architecture</a><a href="#sql-vendors-dialects" class="sidebar-sub-link" data-section="processing">SQL Vendors &amp; Dialects</a><a href="#dataops-methodology" class="sidebar-link" data-section="governance">Data Lifecycle &amp; Governance</a><a href="#dataops-methodology" class="sidebar-sub-link" data-section="governance">DataOps Methodology</a><a href="#governance-compliance" class="sidebar-sub-link" data-section="governance">Governance &amp; Compliance</a><a href="#governance-compliance-summary" class="sidebar-sub-link" data-section="governance">Governance &amp; Compliance Summary</a><a href="#data-volume-monitoring-q-a" class="sidebar-sub-link" data-section="governance">Data Volume Monitoring Q&amp;A</a><a href="#data-collection-methods" class="sidebar-link" data-section="lifecycle">Data Collection &amp; Wrangling</a><a href="#data-collection-methods" class="sidebar-sub-link" data-section="lifecycle">Data Collection Methods</a><a href="#data-wrangling" class="sidebar-sub-link" data-section="lifecycle">Data Wrangling</a><a href="#querying-performance-tuning" class="sidebar-sub-link" data-section="lifecycle">Querying &amp; Performance Tuning</a><a href="#python-basics" class="sidebar-link" data-section="python">Python for Data Science</a><a href="#python-basics" class="sidebar-sub-link" data-section="python">Python Basics</a><a href="#string-operations" class="sidebar-sub-link" data-section="python">String Operations</a><a href="#jupyter-notebooks" class="sidebar-sub-link" data-section="python">Jupyter Notebooks</a><a href="#lists-and-tuples" class="sidebar-sub-link" data-section="python">Lists and Tuples</a><a href="#dictionaries" class="sidebar-sub-link" data-section="python">Dictionaries</a><a href="#sets" class="sidebar-sub-link" data-section="python">Sets</a><a href="#conditions-branching" class="sidebar-sub-link" data-section="python">Conditions &amp; Branching</a><a href="#loops" class="sidebar-sub-link" data-section="python">Loops</a><a href="#functions" class="sidebar-sub-link" data-section="python">Functions</a><a href="#exception-handling" class="sidebar-sub-link" data-section="python">Exception Handling</a><a href="#objects-classes" class="sidebar-sub-link" data-section="python">Objects &amp; Classes</a><a href="#quiz-study-reference" class="sidebar-link" data-section="quiz">Quiz &amp; Exam Reference</a><a href="#quiz-study-reference" class="sidebar-sub-link" data-section="quiz">Quiz Study Reference</a><a href="#weakness-review" class="sidebar-sub-link" data-section="quiz">Weakness Review</a><a href="#career-opportunities" class="sidebar-link" data-section="career">Course &amp; Career</a><a href="#career-opportunities" class="sidebar-sub-link" data-section="career">Career Opportunities</a><a href="#data-manager" class="sidebar-sub-link" data-section="career">Data Manager</a><a href="#data-warehousing-specialist" class="sidebar-sub-link" data-section="career">Data Warehousing Specialist</a><a href="#data-engineering-learning-path" class="sidebar-sub-link" data-section="career">Data Engineering Learning Path</a><a href="#viewpoints-get-into-data-engineering" class="sidebar-sub-link" data-section="career">Viewpoints: Get into Data Engineering</a><a href="#viewpoints-employer-expectations" class="sidebar-sub-link" data-section="career">Viewpoints: Employer Expectations</a><a href="#viewpoints-many-paths-to-de" class="sidebar-sub-link" data-section="career">Viewpoints: Many Paths to DE</a><a href="#viewpoints-advice-to-aspiring-des" class="sidebar-sub-link" data-section="career">Viewpoints: Advice to Aspiring DEs</a><div class="sidebar-divider"></div><a href="#glossary" class="sidebar-link" data-section="glossary">Glossary</a><a href="#future" class="sidebar-link" data-section="future">Coming Next</a>
 </div>
 <div class="sidebar-footer">
 <button class="sidebar-dark-toggle" id="sidebarDarkToggle">Dark Mode</button>
@@ -4682,6 +4686,12 @@ footer {
 <div class="cross-ref"><a href="#practitioner-definitions" class="cross-ref-link">practitioner perspectives on the same three roles</a></div>
 <div class="cross-ref"><a href="#de-specializations" class="cross-ref-link">deeper look at DE-specific specializations</a></div>
 <div class="cross-ref"><a href="#role-comparisons-deep-dive" class="cross-ref-link">cross-role boundaries and confusion points</a></div>
+
+<hr>
+
+<h3>UCSD Big Data Specialization — Data Science as Iterative Research</h3>
+
+<p>Data science is empirical research that derives insight from observations — an iterative, not static, process. The cycle is: formulate hypothesis → collect/observe data → analyze → refine hypothesis → repeat. Amazon's book recommendation system exemplifies this: initial purchase data feeds a model, which is continuously refined as more browsing and purchasing behavior is collected. Data science differs from traditional BI in its exploratory, hypothesis-generating nature — it asks "what might be true?" rather than "what happened?"</p>
 
 
 </div><div class="card" id="de-specializations">
@@ -5513,7 +5523,7 @@ footer {
 <div class="cross-ref"><a href="#data-engineering-scope" class="cross-ref-link">four pillars align with core responsibilities</a></div>
 <div class="cross-ref"><a href="#practitioner-definitions" class="cross-ref-link">practitioner perspectives on what the role requires</a></div>
 <div class="cross-ref"><a href="#practitioner-viewpoints" class="cross-ref-link">practitioner take on the four essential skills</a></div>
-<div class="cross-ref"><a href="#career-ladder-mvp" class="cross-ref-link">how skills map to career progression</a></div>
+<div class="cross-ref"><a href="#topics-career-ladder-md" class="cross-ref-link">how skills map to career progression</a></div>
 <div class="cross-ref"><a href="#glossary" class="cross-ref-link">consolidated glossary of data engineering terms</a></div>
 
 </div><div class="card" id="practitioner-viewpoints">
@@ -5984,6 +5994,18 @@ CREATE TABLE transactions (
 <li>Recognizing which category a dataset belongs to is foundational — it informs storage systems, file formats, and processing tools.</li>
 
 </ol>
+<hr>
+
+<h3>UCSD Big Data Specialization — Supplementary Notes</h3>
+
+<h4>Scale of Unstructured Data</h4>
+
+<p>80 to 90% of all data in the world is unstructured, and this proportion is rapidly growing. Most of it was built for human consumption (webpages, images, PDFs, PowerPoint, XML) rather than machine processing. The challenges are: multiple human-oriented formats, the sheer volume and velocity of generation, and the cost/time of the processing chain (acquire → store → clean → retrieve → process) before any value is extracted.</p>
+
+<h4>Structured Data as a Continuum</h4>
+
+<p>"Structured" is not binary — it exists on a continuum. The range spans human-readable raw formats (CSV, XML) → semantic key-value interchange formats (JSON, RSS, SOAP, ReST) → machine-level binary interfaces (ABI, I/O). Understanding this continuum helps engineers choose the right serialization for the workload: CSV for portability, JSON for web APIs, Avro/Parquet for high-performance big data pipelines.</p>
+
 
 </div><div class="card" id="file-formats">
 
@@ -6779,6 +6801,18 @@ CREATE TABLE weather_readings (
 <li>Adopt a format-agnostic mindset: the right format depends on the workload, volume, and downstream consumers.</li>
 
 </ul>
+<hr>
+
+<h3>UCSD Big Data Specialization — Three Varieties of Data</h3>
+
+<p>Big data is often categorized by its source into three varieties:</p>
+
+<p><strong>1. Machine-Generated Data</strong> — the largest and most complex source. Comes from sensors embedded in devices operating at personal and industrial scales, collecting data 24/7. Examples: aircraft sensors (Boeing 787 produces 0.5 TB per flight), environmental sensors, logs, personal health trackers, the Large Hadron Collider (40 TB/sec during experiments). Smart devices have three properties: connect to networks, execute and collect data autonomously, and exhibit environmental awareness. The interconnection of smart devices defines the <strong>Internet of Things (IoT)</strong>.</p>
+
+<p><strong>2. Human-Generated Data</strong> — massive amounts produced through social activity: social media posts, photos, videos, search queries, messaging, personal documents. Predominantly text-heavy and unstructured. Daily production from major platforms reaches petabyte scale.</p>
+
+<p><strong>3. Organizationally-Generated Data</strong> — the most traditional type: commercial transactions, credit card records, e-commerce data, medical records, clicks. Highly structured, stored in RDBMS, queried via SQL. Historically siloed at department level, creating outdated, unsynchronized, and invisible datasets. Cloud-based solutions are the leading approach to breaking silos.</p>
+
 
 </div><div class="card" id="languages-for-data-professionals">
 <h3>Languages for Data Professionals</h3>
@@ -8049,6 +8083,12 @@ What is your primary need?
 <li>NoSQL databases are not a replacement for RDBMS — they are a complement, and the right choice depends on the data model, access patterns, and scalability requirements of the workload.</li>
 
 </ul>
+<hr>
+
+<h3>UCSD Big Data Specialization — NoSQL in Practice</h3>
+
+<p>Sentiment analysis systems process ~12 TB of Twitter data per day to measure public perception around products and brands. This workload typically uses a hybrid approach: smaller structured data stays in relational databases, while large unstructured datasets are stored in NoSQL databases on cloud infrastructure. Graph databases (Neo4j) are used for finding connections between datasets; key-value stores (Cassandra) handle high-volume access patterns like search engine scenarios.</p>
+
 
 </div><div class="card" id="data-warehouses-lakes-lakehouses">
 <h3>Data Warehouses, Lakes &amp; Lakehouses</h3>
@@ -8851,6 +8891,22 @@ WHERE customer_id IS NOT NULL;</code></pre>
 <li>The data integration space continues to evolve as both the variety of data sources and the role of data in business decision-making continue to grow.</li>
 
 </ul>
+<hr>
+
+<h3>UCSD Big Data Specialization — Data Integration Deep Dive</h3>
+
+<h4>The 5-Step Data Integration Process</h4>
+
+<p>Data integration follows a sequential process: (1) <strong>discover</strong> available data sources, (2) <strong>access</strong> each source, (3) <strong>monitor</strong> for changes and quality, (4) <strong>model</strong> data from diverse sources into a coherent representation, and (5) <strong>transform</strong> into the target format for analysis.</p>
+
+<h4>Why Integration Matters</h4>
+
+<p>Big datasets from different sources arrive in different formats — flat files, relational databases, XML, JSON. Each format is designed to express data in unique ways, making integration both more useful and more challenging. The real value of big data comes from integrating different data types and analyzing them at scale, not from any single source in isolation.</p>
+
+<h4>Format Diversity in Practice</h4>
+
+<p>Data from sensors, organizations, and people each arrives in different structures. The structured data continuum (CSV → XML → JSON → Avro/Parquet) means integration tools must handle both human-readable and binary formats within the same pipeline. Carnival Cruises uses structured and unstructured data from multiple sources with price optimization techniques to turn integrated data into profit.</p>
+
 
 </div><div class="card" id="big-data-foundations">
 <h3>Big Data Foundations</h3>
@@ -8995,6 +9051,272 @@ WHERE customer_id IS NOT NULL;</code></pre>
 <li>The ultimate goal of all Big Data work is <strong>Value</strong> — transforming raw data into insights that benefit businesses, individuals, and society.</li>
 
 </ul>
+<hr>
+
+<h3>UCSD Big Data Specialization — Supplementary Concepts</h3>
+
+<h4>What Launched the Big Data Era</h4>
+
+<p>Two converging opportunities launched the Big Data era: a <strong>growing torrent of data</strong> (McKinsey 2013 identified data science as the #1 catalyst for economic growth) and <strong>cloud computing</strong> — on-demand computing anytime, anywhere, removing the barrier of owned infrastructure. Global data grows ~40% per year while IT spending grows only ~5% per year.</p>
+
+<h4>The Sixth V — Valence</h4>
+
+<p>Valence is the <strong>connectedness of data</strong> — the density of connections between data points, analogous to valence electrons in chemistry. It is measured as graph density: the ratio of actual connections to possible connections. As connectivity increases over time, new challenges arise: algorithmic inefficiency on dense graphs, modeling dynamic change (connections appear and disappear), and event detection (local cohesion bursts signal emergent behavior — e.g., a viral trend on Twitter).</p>
+
+<h4>In-Situ Processing</h4>
+
+<p>Traditional RDBMS moves data to compute resources. <strong>In-situ processing</strong> reverses this: computation is brought to where the data is generated or stored. This reduces data movement latency and is critical for real-time sensor workloads (e.g., aircraft engine monitoring at 40,000 feet). It enables real-time actions — not just monitoring, but immediate response. This requires an organizational culture shift toward real-time action orientation and scalable computing infrastructure.</p>
+
+<h4>Key Frameworks for Velocity — Storm</h4>
+
+<p>Apache <strong>Storm</strong> is an open-source framework for real-time processing of high-velocity data, complementing Hadoop's batch-oriented design. Unlike Hadoop (optimized for volume), Storm handles data generated at fast rates and can integrate with any database or storage technology.</p>
+
+<h4>SCADA Systems</h4>
+
+<p>SCADA (Supervisory Control and Data Acquisition) is an industrial control system for remote monitoring and control of physical processes. It spans multiple geographic sites and sensor types, enabling real-time action definition for waste reduction and efficiency improvement. Applied in manufacturing, power generation, water treatment, pipelines, smart buildings, and HVAC systems.</p>
+
+<h4>Data Variety Deep Dive</h4>
+
+<p>Data arrives along four axes of variety: <strong>structural</strong> (EKG waveform vs. news article — different organization), <strong>media</strong> (audio vs. transcript — different modality), <strong>semantic</strong> (different units, measurement assumptions, or contextual meanings), and <strong>availability</strong> (real-time vs. stored, polled vs. pushed). Email is a hybrid entity exhibiting all four axes simultaneously.</p>
+
+
+</div><div class="card" id="big-data-case-studies">
+<h3>Big Data Case Studies</h3>
+
+
+<blockquote>**Source files:** UCSD Big Data Specialization — Course 1, Modules 2-3</blockquote>
+
+<h3>Retail &amp; Logistics</h3>
+
+<h4>Walmart</h4>
+
+<p>Walmart serves 250 million customers across 10,000 stores, collecting 2.5 petabytes of data per hour from Twitter, local events, weather, in-store purchases, online clicks, and product data. It uses this data to find purchase patterns, determine which products to introduce, predict store-level demand, and customize recommendations.</p>
+
+<h4>UPS</h4>
+
+<p>UPS delivers 16 million shipments per day with ~40 million daily tracking requests and 16 petabytes of operational data. Applying complex optimization algorithms over large datasets enables simultaneous management of thousands of route optimizations. Saving one mile per driver per day is worth $50 million annually.</p>
+
+<h4>Amazon &amp; Netflix</h4>
+
+<p>Amazon and Netflix use customer behavior analytics to analyze preferences, suggest products, and improve satisfaction. This pattern-recognition approach has become standard across e-commerce and content platforms.</p>
+
+<h3>Healthcare &amp; Precision Medicine</h3>
+
+<p>Precision medicine tailors treatment to an individual's genetics, environment, and daily activities. The White House and NIH declared it a top R&D priority. Genome sequencing costs have fallen to under 10% of 2008 levels — a genome requires ~200 GB to store and takes ~1 day to sequence. The Samaritan Medical Center (294-bed hospital) reported 120 TB of electronic health records as of 2013, doubling in two years.</p>
+
+<p>Key data sources: sensor data (FitBit: several GB/day per device — tracking blood pressure, activity, glucose), organizational data (NCBI, Gene Ontology, UMLS), and people-generated data (100,000+ health apps, Twitter, blogs, online support groups). The integration of all three types is an open research question being investigated at Scripps Research.</p>
+
+<h3>Wildfire Analytics</h3>
+
+<p>In May 2014, San Diego County experienced 14 fires burning 26,000 acres with over $60 million in damage and 1 fatality. Wildfire management is a big data problem integrating three source types: sensor/satellite data (temperature, humidity, imagery), institutional data (fire perimeter maps, fuel maps — well-curated but static), and public social media (Twitter with photo sharing — hardest to streamline but valuable for sentiment around fire boundaries). The integration enables predictive analytics for fire spread direction and rate.</p>
+
+<p>The WIFIRE project at the San Diego Supercomputer Center builds the cyberinfrastructure for this: Firemap (real-time fire behavior modeling and forecasting), WIFIRE Edge (middleware for edge sensing), WXmap (weather forecast visualization across 12+ models), and BurnPro3D (prescribed burn planning). Partners include CAL FIRE, US Forest Service, and SDG&E.</p>
+
+<h3>Sentiment Analysis</h3>
+
+<p>Meltwater helped Danone Baby Nutrition monitor public opinion during a marketing campaign and a reputation crisis. During the 2013 European horsemeat scandal, Meltwater's early warning (hours before UK press coverage) allowed Danone to check products and reassure customers before the crisis escalated. Companies analyze ~12 TB of Twitter data per day for sentiment measurement around products and brands.</p>
+
+<h3>Disaster Management</h3>
+
+<p>The International Network of Crisis Mappers uses aerial/satellite imagery, participatory maps, and live Twitter updates analyzed through geospatial platforms, advanced visualization, and computational models. After the 2015 Nepal earthquake, they crowd-sourced tweet and media analysis to rapidly assess damage and identify where humanitarian help was needed.</p>
+
+<h3>Economic Impact — McKinsey Global Institute (2011)</h3>
+
+<p>The seminal McKinsey report quantified big data's potential: $300 billion/year in US healthcare, 60%+ potential increase in retail operating margins, $600 billion+/year in consumer savings from personal location data by 2020. It identified a US talent gap of 140,000-190,000 deep analytical roles plus 1.5 million data-literate managers. The report concluded that big data would become a key basis of competition and growth for individual firms.</p>
+
+<h3>Analytics Advantage — Bain &amp; Company</h3>
+
+<p>Companies using analytics are 2x more likely to be top-quartile financial performers, 5x more likely to make decisions faster than peers, 3x more likely to execute decisions as intended, and 2x more likely to use data frequently when making decisions.</p>
+
+<h3>Core Big Data Concepts Illustrated</h3>
+
+<p>These cases demonstrate recurring patterns: the value comes from integrating diverse data sources (not any single source alone), combining internal data with external open data enables deeper insight, real-time processing capability is often the differentiator, and data integration requires solving format diversity across flat files, RDBMS, XML, JSON, and real-time streams.</p>
+
+
+</div><div class="card lthp-highlight" id="data-science-process">
+<h3>Data Science Process</h3>
+<span class="tag green">NEW</span>
+
+<blockquote>**LTHP Status:** NEW — Module 4 ecosystem expansion.<br>**Source files:** UCSD Big Data Specialization — Course 1, Module 4 (14 hand-written summaries)</blockquote>
+
+<h3>Overview</h3>
+
+<p>Data science is a multi-disciplinary craft that extracts actionable insight from data. The UCSD Big Data Specialization presents three complementary frameworks for understanding how data science works: the <strong>problem-formulation process</strong> (asking the right questions), the <strong>Five P's of Data Science</strong> (the structural dimensions), and the <strong>5-step data science process</strong> (the operational workflow). These are bookended by a <strong>Big Data strategy</strong> framework for organizational adoption.</p>
+
+<hr>
+
+<h3>1. Asking the Right Questions (Problem Formulation)</h3>
+
+<blockquote>*&quot;Without a clearly defined problem, you will not have a clear goal in mind, nor will you know when you have solved it.&quot;*</blockquote>
+
+<p>Before any data work begins, the problem must be defined. This four-step sequence ensures the question is grounded in business value and feasibility.</p>
+
+<h4>Step 1 — Define the Problem or Opportunity</h4>
+
+<p>Articulate a concrete, answerable question based on business or scientific objectives. Examples:</p>
+
+<table>
+<thead><tr><th>Domain</th><th>Question</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td>Sales & Customer Service</td><td>How can sales figures and call center logs be combined to evaluate a new product?</td><td>Data fusion / multi-source integration</td></tr>
+<tr><td>Industrial IoT</td><td>How can data from multiple sensors detect instrument failure?</td><td>Predictive maintenance</td></tr>
+<tr><td>Customer Analytics</td><td>How can we understand our customers to achieve effective target marketing?</td><td>Customer segmentation / propensity modeling</td></tr>
+<tr><td>Domain</td><td>Question</td><td>Type</td></tr>
+<tr><td>Sales & Customer Service</td><td>How can sales figures and call center logs be combined to evaluate a new product?</td><td>Data fusion / multi-source integration</td></tr>
+<tr><td>Industrial IoT</td><td>How can data from multiple sensors detect instrument failure?</td><td>Predictive maintenance</td></tr>
+<tr><td>Customer Analytics</td><td>How can we understand our customers to achieve effective target marketing?</td><td>Customer segmentation / propensity modeling</td></tr>
+</tbody>
+</table>
+
+<p><strong>Key rule:</strong> Start with the objectives, not with data collection. The question determines what data is useful.</p>
+
+<h4>Step 2 — Assess the Situation</h4>
+
+<p>Before committing resources, evaluate feasibility across six dimensions:</p>
+
+<table>
+<thead><tr><th>Dimension</th><th>Questions</th></tr></thead>
+<tbody>
+<tr><td>Requirements</td><td>What assumptions and constraints apply?</td></tr>
+<tr><td>Resources</td><td>What personnel, compute, and data infrastructure exist?</td></tr>
+<tr><td>Costs</td><td>What are the main project costs?</td></tr>
+<tr><td>Benefits</td><td>What is the potential value if successful?</td></tr>
+<tr><td>Risks</td><td>What data availability, regulatory, or technical risks exist?</td></tr>
+<tr><td>Contingencies</td><td>What fallback plans exist for each risk?</td></tr>
+<tr><td>Dimension</td><td>Questions</td></tr>
+<tr><td>Requirements</td><td>What assumptions and constraints apply?</td></tr>
+<tr><td>Resources</td><td>What personnel, compute, and data infrastructure exist?</td></tr>
+<tr><td>Costs</td><td>What are the main project costs?</td></tr>
+<tr><td>Benefits</td><td>What is the potential value if successful?</td></tr>
+<tr><td>Risks</td><td>What data availability, regulatory, or technical risks exist?</td></tr>
+<tr><td>Contingencies</td><td>What fallback plans exist for each risk?</td></tr>
+</tbody>
+</table>
+
+<p>Common risks include: data not existing or being inaccessible, regulatory constraints (GDPR, HIPAA, CCPA), and compute cost for large-scale training.</p>
+
+<h4>Step 3 — Define Goals and Success Criteria</h4>
+
+<p>Success criteria are two-layered: <strong>technical metrics</strong> (e.g., AUC-ROC ≥ 0.85, precision ≥ 0.70) and <strong>business metrics</strong> (e.g., reduce churn by 15% within 6 months of deployment). Both are needed — the first confirms the model works, the second confirms it delivers value.</p>
+
+<h4>Step 4 — Formulate the Plan</h4>
+
+<p>A complete data science plan includes five sub-plans: data sourcing, feature engineering, modeling approach (algorithm selection), evaluation (validation strategy), and deployment (batch scoring, API, dashboard).</p>
+
+<hr>
+
+<h3>2. The Five P's of Data Science</h3>
+
+<p>Developed at the San Diego Supercomputer Center (SDSC), the Five P's framework describes the structural dimensions of any data science project, leading to a sixth P: the <strong>data product</strong>.</p>
+
+<h4>P1: People</h4>
+
+<p>Data science is a team discipline. A functional team combines experts in: data and analytics, business domain knowledge, computing and systems engineering, domain science, and big data management. The "unicorn" problem — expecting one person to cover all these — is why organizations build teams instead of hiring individual data scientists.</p>
+
+<h4>P2: Purpose</h4>
+
+<p>The challenge or question defined by the organization's big data strategy. Purpose anchors the entire project. The team starts by asking: <em>"What is the problem at large? How do we see ourselves solving it?"</em></p>
+
+<h4>P3: Process</h4>
+
+<p>Two views of the process:</p>
+
+<p><strong>High-level:</strong> Big Data Engineering (infrastructure, pipelines, systems) + Big Data Analytics (modeling, statistical analysis, computation).</p>
+
+<p><strong>Detailed — five sequential steps:</strong> Acquire → Prepare → Analyze → Report → Act. These steps iterate — findings from one step may require returning to a previous one.</p>
+
+<p>An alternative framing: <strong>Build → Explore → Scale</strong>, emphasizing that big data projects require robust system construction and growth planning from the start.</p>
+
+<h4>P4: Platforms</h4>
+
+<p>The computing infrastructure enabling scalability at each step — the Hadoop ecosystem (HDFS, MapReduce, YARN) or cloud-native alternatives (Amazon EMR, Google Dataproc, Databricks). Scalability must be communicated explicitly from the start.</p>
+
+<h4>P5: Programmability</h4>
+
+<p>Reusable, reproducible programming interfaces: libraries (pandas, scikit-learn), middleware (gRPC, message queues), analytical tools (Jupyter, Spark MLlib), visualization environments (Tableau, D3.js), and end-user reporting (Looker, Metabase).</p>
+
+<h4>P6: The Data Product</h4>
+
+<p>The Five P's lead to the sixth P — the final deliverable grounded in the original purpose. The course emphasizes working <em>backward from the product</em>: define what you are building first, then design the process that produces it.</p>
+
+<hr>
+
+<h3>3. The Data Science Process (5 Steps)</h3>
+
+<p>This is the operational workflow that data science teams execute, iterating as needed.</p>
+
+<h4>Step 1 — Acquire</h4>
+<p>Find, access, authenticate, and transport data from sources to distributed storage. Activities: identify and authenticate to all data sources, transport data to distributed file systems (HDFS, S3), subset data to regions or times of interest (geo-spatial queries).</p>
+
+<h4>Step 2a — Explore (Data Preparation, Part 1)</h4>
+<p>Understand data before modeling: examine nature (what it represents), meaning (what fields signify), quality (missing values, outliers, errors), and format (CSV, JSON, relational). This is Exploratory Data Analysis (EDA) — summary statistics, distribution plots, correlation matrices, missing-value analysis.</p>
+
+<h4>Step 2b — Pre-process (Data Preparation, Part 2)</h4>
+<p>Transform raw data into analysis-ready form: clean (handle missing values, fix format inconsistencies), subset/filter relevant records, model raw data into a defined schema, integrate multiple sources into a unified dataset. This is consistently the most time-consuming step — approximately 60% of data scientist time.</p>
+
+<h4>Step 3 — Analyze</h4>
+<p>Select analytical techniques and build a model. The main categories:</p>
+
+<table>
+<thead><tr><th>Technique</th><th>Description</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td>**Classification**</td><td>Predict a category</td><td>Weather (sunny/rainy), tumor (benign/malignant), digit recognition (0-9)</td></tr>
+<tr><td>**Regression**</td><td>Predict a numeric value</td><td>Stock price, weekly sales, test score</td></tr>
+<tr><td>**Clustering**</td><td>Organize similar items into groups</td><td>Customer segmentation, topography zones, weather patterns</td></tr>
+<tr><td>**Association Analysis**</td><td>Find items that frequently co-occur</td><td>Market basket analysis (e.g., "customers who bought X also bought Y")</td></tr>
+<tr><td>**Graph Analysis**</td><td>Analyze connected data</td><td>PageRank, community detection, shortest path</td></tr>
+<tr><td>Technique</td><td>Description</td><td>Examples</td></tr>
+<tr><td>**Classification**</td><td>Predict a category</td><td>Weather (sunny/rainy), tumor (benign/malignant), digit recognition (0-9)</td></tr>
+<tr><td>**Regression**</td><td>Predict a numeric value</td><td>Stock price, weekly sales, test score</td></tr>
+<tr><td>**Clustering**</td><td>Organize similar items into groups</td><td>Customer segmentation, topography zones, weather patterns</td></tr>
+<tr><td>**Association Analysis**</td><td>Find items that frequently co-occur</td><td>Market basket analysis (e.g., "customers who bought X also bought Y")</td></tr>
+<tr><td>**Graph Analysis**</td><td>Analyze connected data</td><td>PageRank, community detection, shortest path</td></tr>
+</tbody>
+</table>
+
+<h4>Step 4 — Report</h4>
+<p>Communicate results to stakeholders. Three guiding questions: (1) What is the punchline? (2) What added value do these results provide? (3) How do the results compare to the success criteria? Visualization tools include scatter plots, line graphs, heat maps, and tables. Both favorable and unfavorable results must be presented — inconclusive findings may lead to additional analysis.</p>
+
+<h4>Step 5 — Act</h4>
+<p>Turn insights into action — the step where value is realized. Actions can be: <strong>decision automation</strong> (model output triggers a system action directly), <strong>decision support</strong> (output surfaced to a human decision-maker), or <strong>policy change</strong> (insights inform business rules). After action, monitor and measure impact, then re-evaluate. This creates a cycle: Act → Evaluate → Re-enter process at Step 1 or 2.</p>
+
+<hr>
+
+<h3>4. Building a Big Data Strategy</h3>
+
+<p>An 8-step iterative framework for organizations adopting Big Data analytics:</p>
+
+<table>
+<thead><tr><th>Step</th><th>Key Action</th></tr></thead>
+<tbody>
+</tbody>
+</table>
+
+<p>The strategy must be <strong>iterated</strong> as technology and business goals evolve.</p>
+
+<hr>
+
+<h3>Summary</h3>
+
+<table>
+<thead><tr><th>Framework</th><th>Core Idea</th></tr></thead>
+<tbody>
+<tr><td>**Asking the Right Questions**</td><td>Define problem → Assess situation → Set success criteria → Formulate plan</td></tr>
+<tr><td>**Five P's**</td><td>People + Purpose + Process + Platforms + Programmability → Product</td></tr>
+<tr><td>**5-Step Process**</td><td>Acquire → Explore → Pre-process → Analyze → Report → Act</td></tr>
+<tr><td>**Big Data Strategy**</td><td>8 iterative steps for organizational adoption</td></tr>
+<tr><td>Framework</td><td>Core Idea</td></tr>
+<tr><td>**Asking the Right Questions**</td><td>Define problem → Assess situation → Set success criteria → Formulate plan</td></tr>
+<tr><td>**Five P's**</td><td>People + Purpose + Process + Platforms + Programmability → Product</td></tr>
+<tr><td>**5-Step Process**</td><td>Acquire → Explore → Pre-process → Analyze → Report → Act</td></tr>
+<tr><td>**Big Data Strategy**</td><td>8 iterative steps for organizational adoption</td></tr>
+</tbody>
+</table>
+
+<div class="cross-ref"><a href="#big-data-foundations" class="cross-ref-link">5 V's, distributed computing foundations</a></div>
+<div class="cross-ref"><a href="#big-data-case-studies" class="cross-ref-link">applications of data science in practice</a></div>
+<div class="cross-ref"><a href="#topics-big-data-specialization-ucsd-md" class="cross-ref-link">course 1 module index</a></div>
+
 
 </div><div class="card" id="hadoop-ecosystem">
 <h3>Hadoop Ecosystem</h3>
@@ -10134,6 +10456,18 @@ Vendor-specific (check the docs)
 <li><strong>Data erasure</strong> ≠ deletion — erasure overwrites data permanently; deleted data can still be retrieved.</li>
 
 </ul>
+<hr>
+
+<h3>UCSD Big Data Specialization — Veracity &amp; Data Provenance</h3>
+
+<h4>Data Provenance</h4>
+
+<p>Data provenance is the documentation of the origin, creation, and transformation history of data. It answers: where did this data come from, who created it, what transformations were applied, and who has accessed it? Strong provenance is essential for veracity assessment and regulatory compliance.</p>
+
+<h4>Big Data Hubris — The Google Flu Trends Failure</h4>
+
+<p>In 2013, Google Flu Trends overestimated flu prevalence by nearly a factor of two. The system analyzed search query patterns but failed to account for media-driven search behavior (people searching "flu symptoms" due to news coverage, not actual illness). This case demonstrates <strong>big data hubris</strong>: the assumption that large datasets can substitute for scientific methodology, data provenance tracking, and ground-truth validation. It remains a cautionary example that veracity — data quality, accuracy, and trustworthiness — cannot be ensured by volume alone.</p>
+
 <h3>Cross-References</h3>
 
 <ul>
@@ -11182,9 +11516,9 @@ b = a[:]            # shallow copy via slicing</code></pre>
 <div class="cross-ref"><a href="#string-operations" class="cross-ref-link">string indexing and slicing (same principles)</a></div>
 
 
-</div><div class="card lthp-highlight" id="dictionaries">
+</div><div class="card" id="dictionaries">
 <h3>Dictionaries</h3>
-<span class="tag green">NEW</span>
+
 
 <p>Dictionaries store data as <strong>key-value pairs</strong>. They are a built-in collection type in Python for fast lookup by key.</p>
 
@@ -11241,9 +11575,9 @@ album_releases = {
 <div class="cross-ref"><a href="#sets" class="cross-ref-link">sets as another unordered collection</a></div>
 
 
-</div><div class="card lthp-highlight" id="sets">
+</div><div class="card" id="sets">
 <h3>Sets</h3>
-<span class="tag green">NEW</span>
+
 
 <p>Sets are <strong>unordered collections of unique elements</strong>. Useful for removing duplicates and performing mathematical set operations.</p>
 
@@ -11298,9 +11632,9 @@ AlbumSet3.issubset(AlbumSet1)                # True</code></pre>
 <div class="cross-ref"><a href="#dictionaries" class="cross-ref-link">key-value collections</a></div>
 
 
-</div><div class="card lthp-highlight" id="conditions-branching">
+</div><div class="card" id="conditions-branching">
 <h3>Conditions &amp; Branching</h3>
-<span class="tag green">NEW</span>
+
 
 <p>Branching allows programs to execute different code depending on conditions using <strong>comparison operators</strong>, <strong><code>if</code>/<code>elif</code>/<code>else</code></strong>, and <strong>logical operators</strong>.</p>
 
@@ -11395,9 +11729,9 @@ if album_year &gt; 1980 and album_year &lt; 1990:
 <div class="cross-ref"><a href="#loops" class="cross-ref-link">loops as a related control flow construct</a></div>
 
 
-</div><div class="card lthp-highlight" id="loops">
+</div><div class="card" id="loops">
 <h3>Loops</h3>
-<span class="tag green">NEW</span>
+
 
 <p>Loops execute a block of code repeatedly. Two types: <strong><code>for</code> loops</strong> (iterate over sequences) and <strong><code>while</code> loops</strong> (repeat while a condition holds).</p>
 
@@ -11460,9 +11794,9 @@ while squares[i] == 'orange':
 <div class="cross-ref"><a href="#functions" class="cross-ref-link">using loops inside functions</a></div>
 
 
-</div><div class="card lthp-highlight" id="functions">
+</div><div class="card" id="functions">
 <h3>Functions</h3>
-<span class="tag green">NEW</span>
+
 
 <p>Functions are <strong>reusable code blocks</strong> that take input, perform tasks, and produce output.</p>
 
@@ -11556,9 +11890,9 @@ def pink_floyd():
 <div class="cross-ref"><a href="#exception-handling" class="cross-ref-link">error handling in functions</a></div>
 
 
-</div><div class="card lthp-highlight" id="exception-handling">
+</div><div class="card" id="exception-handling">
 <h3>Exception Handling</h3>
-<span class="tag green">NEW</span>
+
 
 <p>Exception handling allows a program to respond to errors <strong>gracefully</strong> — outputting a meaningful message and continuing — rather than crashing.</p>
 
@@ -11636,9 +11970,9 @@ finally:
 <div class="cross-ref"><a href="#functions" class="cross-ref-link">functions as context for exception handling</a></div>
 
 
-</div><div class="card lthp-highlight" id="objects-classes">
+</div><div class="card" id="objects-classes">
 <h3>Objects &amp; Classes</h3>
-<span class="tag green">NEW</span>
+
 
 <p>Everything in Python is an <strong>object</strong> — every object has a <strong>type</strong>, an <strong>internal representation</strong>, and <strong>methods</strong> to interact with it.</p>
 
@@ -11702,62 +12036,6 @@ class Circle(object):
 </ul>
 <div class="cross-ref"><a href="#functions" class="cross-ref-link">functions are similar to methods</a></div>
 <div class="cross-ref"><a href="#python-basics" class="cross-ref-link">Python data types as objects</a></div>
-
-
-</div>
-</section>
-<section class="category" id="bigdata">
-<div class="category-header">
-<h2>Big Data Specialization (UCSD)</h2>
-<span class="category-count">bigdata</span>
-</div>
-<div class="card lthp-highlight" id="big-data-specialization-uc-san-diego">
-<h3>Big Data Specialization — UC San Diego</h3>
-<span class="tag green">NEW</span>
-
-<p>A Coursera specialization covering big data concepts, tools, and applications across 6 courses (~104 hours).</p>
-
-<h3>Specialization Overview</h3>
-
-<table>
-<thead><tr><th>Detail</th><th>Info</th></tr></thead>
-<tbody>
-<tr><td>**Instructors**</td><td>Amarnath Gupta (Lead, Courses 1-3, 5-6), Mai Nguyen (Course 4), Ilkay Altintas (Course 1)</td></tr>
-<tr><td>**Level**</td><td>Beginner</td></tr>
-<tr><td>**Duration**</td><td>3 months at 10h/week</td></tr>
-<tr><td>**Rating**</td><td>4.5 (13,980 reviews)</td></tr>
-<tr><td>**Platform**</td><td>Coursera</td></tr>
-<tr><td>Detail</td><td>Info</td></tr>
-<tr><td>**Instructors**</td><td>Amarnath Gupta (Lead, Courses 1-3, 5-6), Mai Nguyen (Course 4), Ilkay Altintas (Course 1)</td></tr>
-<tr><td>**Level**</td><td>Beginner</td></tr>
-<tr><td>**Duration**</td><td>3 months at 10h/week</td></tr>
-<tr><td>**Rating**</td><td>4.5 (13,980 reviews)</td></tr>
-<tr><td>**Platform**</td><td>Coursera</td></tr>
-</tbody>
-</table>
-
-<h3>Courses</h3>
-
-<table>
-<thead><tr><th>#</th><th>Course</th><th>Hours</th><th>Focus</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h3>Course 1: Introduction to Big Data — Full Index</h3>
-
-<table>
-<thead><tr><th>Module</th><th>Topic</th><th>Key Items</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h3>Key Tools Covered</h3>
-
-<p>MongoDB, Apache Spark, Apache Hadoop, Splunk, KNIME, Neo4j, Redis, Gephi, AsterixDB, Vertica, Impala, SparkSQL</p>
-
-<div class="cross-ref"><a href="#big-data-foundations" class="cross-ref-link">5 Vs and distributed computing</a></div>
-<div class="cross-ref"><a href="#hadoop-ecosystem" class="cross-ref-link">Hadoop, HDFS, MapReduce, YARN, Spark</a></div>
 
 
 </div>
@@ -12030,6 +12308,81 @@ class Circle(object):
 <div class="cross-ref"><a href="#data-roles-overview" class="cross-ref-link">broader role landscape</a></div>
 <div class="cross-ref"><a href="#weakness-review" class="cross-ref-link">related exam logic for scenario questions</a></div>
 
+<hr>
+
+<h3>UCSD Big Data Specialization — Quiz Questions</h3>
+
+<h4>Big Data Examples (Multiple Choice)</h4>
+
+<p><em>Which of the following is an example of big data?</em></p>
+<ul>
+<li><strong>Weather data collected by sensors</strong> — correct. Weather sensors produce continuous, high-volume streams. Buying a single item at a store or checking a weather report on a mobile phone are routine transactions, not big data by themselves.</li>
+
+</ul>
+<h4>Precision Marketing</h4>
+
+<p><em>What is precision marketing?</em></p>
+<ul>
+<li>Precision marketing uses customer behavior data for personalized advertising. Amazon purchase recommendations and Walmart's targeted promotions are examples. Facebook's friend suggestions are social network features, not precision marketing.</li>
+
+</ul>
+<h4>Data Integration Examples</h4>
+
+<p><em>Which is an example of using data integration?</em></p>
+<ul>
+<li>A wildfire prediction system integrating environmental sensor data, satellite imagery, GIS data, and real-time data. Using only social media data or only weather data is not integration — integration requires combining multiple diverse sources.</li>
+
+</ul>
+<h4>Three Data Source Types</h4>
+
+<p><em>Organizational data is generated by...</em> — institutions (banks, hospitals, governments).</p>
+<p><em>Machine-generated data is produced by...</em> — sensors, devices, and automated systems.</p>
+<p><em>People-generated data comes from...</em> — individuals through social media, searches, and personal content.</p>
+
+<h4>Data Silos</h4>
+
+<p><em>Why are data silos a problem?</em> They create outdated, unsynchronized, and invisible datasets that hinder cross-organizational pattern recognition.</p>
+
+<h4>Benefits of Integration</h4>
+
+<p><em>What is a benefit of integrating diverse data types?</em> Richer feature sets — combining data in different formats increases the number of attributes available for analysis.</p>
+
+<h4>In-Situ Processing</h4>
+
+<p><em>What does in-situ processing mean in big data?</em> Bringing computation to the data source, rather than moving data to compute resources. This enables real-time actions on streaming sensor data.</p>
+
+<h4>Smart Devices</h4>
+
+<p><em>What are the three properties of smart devices?</em> (1) Connect to other devices or networks, (2) execute services and collect data autonomously, (3) environmental awareness.</p>
+
+<h4>Unstructured Data Challenges</h4>
+
+<p><em>What makes unstructured data difficult to process?</em> Multiple human-oriented formats (webpages, images, PDFs), high volume and velocity, and the costly processing chain (acquire, store, clean, retrieve, process) before value extraction.</p>
+
+<h4>Structured Data Characteristics</h4>
+
+<p><em>What defines structured data?</em> Data conforming to a predefined data model — fixed fields in a table with defined column types. Examples: relational database tables, spreadsheets. Queried via SQL.</p>
+
+<h4>Big Data Era Origins</h4>
+
+<p><em>What two opportunities launched the Big Data era?</em> (1) A growing torrent of data (McKinsey identified data science as #1 economic growth catalyst), (2) cloud computing as on-demand, anywhere computing capability.</p>
+
+<h4>The Six V's</h4>
+
+<p><em>Which V represents data quality and trustworthiness?</em> <strong>Veracity</strong>. <em>Which V represents the density of connections between data points?</em> <strong>Valence</strong>.</p>
+
+<h4>Cloud Computing Role</h4>
+
+<p><em>Why is cloud computing important for big data?</em> It removes the need for dedicated owned infrastructure, enabling even small operators to access serious computing power for data analysis.</p>
+
+<h4>Data Variety</h4>
+
+<p><em>What are the three varieties of big data by source?</em> Machine-generated, human-generated, organizationally-generated.</p>
+
+<h4>Real-Time vs. Batch Processing</h4>
+
+<p><em>Which framework handles real-time (high-velocity) data?</em> Apache Storm or Apache Spark. Hadoop handles large batches (volume) but not real-time velocity.</p>
+
 
 </div><div class="card" id="weakness-review">
 <h3>Weakness Review</h3>
@@ -12153,773 +12506,7 @@ class Circle(object):
 <h2>Course &amp; Career</h2>
 <span class="category-count">career</span>
 </div>
-<div class="card" id="course-syllabus-index">
-<h3>Course Syllabus &amp; Index</h3>
-
-
-<p>The IBM Data Engineering Professional Certificate consists of 10 modules covering the full data engineering lifecycle. This page documents all 10 modules with their full syllabi, plus the Module 1 detailed content map.</p>
-
-<h3>Course Overview</h3>
-
-<p>Data is growing at an unprecedented rate. How much value we derive from data depends on the accuracy of data and the efficiency with which we access it — that, in a nutshell, is the job of a Data Engineer. The Dice Tech Job Report of 2020 lists data engineering as the fastest-growing tech occupation with year-over-year growth of 50%.</p>
-
-<p><strong>Instructors:</strong> Rav Ahuja (IBM Skills Network), Amber Crooks (Lead Database Engineer, IBM alum), Ramesh Sannareddy (CEO, Mongo Factory), Xiao Yang (Data Engineer, Coursera), Ragu Cherukuru (Lead DBA, large retailer).</p>
-
-<h3>Module 1: Modern Data Ecosystem and Role of Data Engineering</h3>
-
-<p><strong>Learning objectives:</strong></p>
-<ul>
-<li>Recall the different entities that form a modern data ecosystem</li>
-<li>Describe and differentiate the roles of Data Engineers, Data Scientists, Data Analysts, Business Analysts, and BI Analysts</li>
-<li>Explain what Data Engineering is</li>
-<li>List the tasks in a typical data engineering lifecycle</li>
-<li>Identify essential skills and qualities for data engineering</li>
-<li>Summarize how Data Engineering has evolved</li>
-<li>Discuss responsibilities and skillsets of a Data Engineer</li>
-<li>Recall how data professionals define data engineering and differentiate it from data analysis and data science</li>
-<li>Describe a day in the life of a Data Engineer</li>
-
-</ul>
-
-<h3>Module 2: The Data Ecosystem and Languages for Data Professionals</h3>
-
-
-<h3>Module 3: Responsibilities and Skillsets of a Data Engineer *(collected)*</h3>
-
-
-<h3>Module 4: Data Repositories, Data Pipelines, and Data Integration Platforms</h3>
-
-
-<h3>Module 5: Big Data Platforms</h3>
-
-
-<h3>Module 6: Data Platforms, Data Stores, and Security</h3>
-
-
-<h3>Module 7: Data Collection and Data Wrangling</h3>
-
-
-<h3>Module 8: Querying Data, Performance Tuning, and Troubleshooting</h3>
-
-
-<h3>Module 9: Governance and Compliance</h3>
-
-
-<h3>Module 10: Career Opportunities and Learning Paths</h3>
-
-
-<h3>Final Assignment</h3>
-
-<ul>
-<li>Final Quiz (50min)</li>
-<li>Final Project Submission Guidelines (2min)</li>
-<li>AI-Graded Final Submission and Evaluation (20min)</li>
-
-</ul>
-
-
-<h3>Module 1 Content Map</h3>
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<p><strong>Quiz grades:</strong> 75%, 100%, 75%, 80%.</p>
-
-<hr>
-
-<h3>Module 2 Content Map</h3>
-
-<p><strong>Course Module 2: The Data Engineering Ecosystem</strong> — covers submodules 2.1 Data Ecosystem and Languages, 2.2 Data Repositories and Pipelines, 2.3 Big Data Platforms, and 2.4 Data Platforms and Security.</p>
-
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<hr>
-
-<h3>Module 3 Content Map</h3>
-
-<p><strong>Course Module 3: Data Engineering Lifecycle</strong> — covers submodules 3.1 Data Collection and Wrangling, 3.2 Querying and Performance, and 3.3 Governance and Compliance.</p>
-
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<hr>
-
-<h3>Module 4 Content Map</h3>
-
-
-
-<table>
-<thead><tr><th>Item</th><th>Topic</th><th>Source Document</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-
-<ul>
-<li>Final Quiz (50 min)</li>
-<li>Final Project Submission Guidelines and Deliverables</li>
-<li>AI-Graded Final Submission and Evaluation</li>
-
-</ul>
-
-
-<details class="low-relevance-note"><summary>Low relevance</summary>[LOW-RELEVANCE — intro-module1.md: Module 1 learning objectives document. Content fully covered in this page.]</details>
-<details class="low-relevance-note"><summary>Low relevance</summary>[LOW-RELEVANCE — intro-module1-lecture.md: Instructor bios and course framing. Content subsumed into this page.]</details>
-<details class="low-relevance-note"><summary>Low relevance</summary>[LOW-RELEVANCE — module1-index.md: Structural content map with quiz grades. Content subsumed into this page.]</details>
-
-<div class="cross-ref"><a href="#16-course-sequence" class="cross-ref-link">full 16-course IBM certificate sequence</a></div>
-<div class="cross-ref"><a href="#career-ladder-mvp" class="cross-ref-link">career progression from the learning plan</a></div>
-<div class="cross-ref"><a href="#certification-roadmap" class="cross-ref-link">certification options by platform</a></div>
-
-
-</div><div class="card" id="16-course-sequence">
-<h3>16-Course Sequence</h3>
-
-
-<p>The IBM Data Engineering Professional Certificate forms the primary spine of the learning path. Courses are listed in official order.</p>
-
-<h3>Foundation Courses (1–7)</h3>
-
-<h4>Course 1: Introduction to Data Engineering (~14h)</h4>
-<p>DE lifecycle, data repositories, data pipelines, Big Data engines, data security, governance, and compliance. Entry-level orientation to the field.</p>
-
-<h4>Course 2: Python for Data Science, AI &amp; Development (~24h)</h4>
-<p>Python syntax, data types, data structures, pandas, NumPy, REST APIs, web scraping with BeautifulSoup.</p>
-
-<h4>Course 3: Python Project for Data Engineering (~10h)</h4>
-<p>Hands-on ETL project: webscraping + API extraction + data transformation using Python and Jupyter. Self-contained — no supplements needed.</p>
-
-<h4>Course 4: Introduction to Relational Databases (RDBMS) (~16h)</h4>
-<p>Data models, ER diagrams, relational schemas, MySQL, PostgreSQL, IBM DB2.</p>
-
-<h4>Course 5: Databases and SQL for Data Science with Python (~18h)</h4>
-<p>SQL DDL/DML, joins, views, stored procedures, transactions, Jupyter integration.</p>
-
-<h4>Course 6: Hands-on Introduction to Linux Commands and Shell Scripting (~17h)</h4>
-<p>Linux architecture, Bash shell, file management, scripting, cron jobs, networking.</p>
-
-<h4>Course 7: Relational Database Administration (DBA) (~21h)</h4>
-<p>Backup/restore, user roles and permissions, performance monitoring, troubleshooting, automation.</p>
-
-<h3>Core DE Courses (8–11)</h3>
-
-<h4>Course 8: ETL and Data Pipelines with Shell, Airflow and Kafka (~18h)</h4>
-<p>ETL vs ELT patterns, batch vs concurrent execution, Bash/Python ETL workflows, Apache Airflow DAGs, Apache Kafka streaming pipelines, data pipeline components.</p>
-
-<h4>Course 9: Data Warehouse Fundamentals (~16h)</h4>
-<p>Data warehouse design and population, CUBE/ROLLUP/materialized views, star and snowflake schemas, IBM Cognos Analytics dashboards.</p>
-
-<h4>Course 10: BI Dashboards with IBM Cognos Analytics and Google Looker (~12h)</h4>
-<p>IBM Cognos Analytics, Google Looker Studio, interactive dashboards, data visualization best practices.</p>
-
-<h4>Course 11: Introduction to NoSQL Databases (~18h)</h4>
-<p>Four NoSQL categories, MongoDB CRUD, Cassandra keyspace/table operations, IBM Cloudant.</p>
-
-<h3>Advanced Courses (12–16)</h3>
-
-<h4>Course 12: Introduction to Big Data with Spark and Hadoop (~20h)</h4>
-<p>Hadoop architecture, HDFS, Hive, HBase, Spark fundamentals, RDDs, DataFrames, SparkSQL, Docker/Kubernetes deployment.</p>
-
-<h4>Course 13: Machine Learning with Apache Spark (~16h)</h4>
-<p>ML role in data engineering, Spark ML pipelines, regression, classification, clustering with SparkML, generative AI concepts, model persistence.</p>
-
-<h4>Course 14: Data Engineering Capstone Project (~18h)</h4>
-<p>End-to-end project integrating RDBMS, NoSQL (MongoDB), Apache Spark, data warehousing, ETL pipelines, and BI dashboards.</p>
-
-<h4>Course 15: Generative AI: Elevate your Data Engineering Career (~13h)</h4>
-<p>GenAI for data generation, augmentation, anonymization, ETL processes, warehouse schema design, and infrastructure setup. Practical labs with real-world case studies.</p>
-
-<h4>Course 16: Data Engineering Career Guide and Interview Preparation (~11h)</h4>
-<p>Role of a data engineer, career paths, job search strategies, resume/portfolio building, interview types, mock interviews, professional presentation.</p>
-
-<div class="cross-ref"><a href="#course-syllabus-index" class="cross-ref-link">detailed Module 1–2 syllabus with learning objectives</a></div>
-<div class="cross-ref"><a href="#career-ladder-mvp" class="cross-ref-link">how these courses map to career progression</a></div>
-<div class="cross-ref"><a href="#certification-roadmap" class="cross-ref-link">which certifications align with each course</a></div>
-<div class="cross-ref"><a href="#enhancement-modules" class="cross-ref-link">post-track modules that fill gaps in the IBM sequence</a></div>
-
-
-</div><div class="card" id="career-ladder-mvp">
-<h3>Career Ladder &amp; MVP</h3>
-
-
-<p>Based on Sumit Gupta's "Data Engineering" infographic (2025), mapped to the IBM Data Engineering Professional Certificate plan.</p>
-
-<table>
-<thead><tr><th>Level</th><th>Core Skills</th><th>IBM Course Coverage</th></tr></thead>
-<tbody>
-<tr><td>**Beginner**</td><td>SQL, Python, Linux, Databases</td><td>Courses 1–7</td></tr>
-<tr><td>**Junior**</td><td>ETL/ELT, Data Warehousing, APIs, Git, Scheduling</td><td>Courses 8–9</td></tr>
-<tr><td>**Mid-Level**</td><td>Airflow, dbt, Spark/Kafka, Cloud Storage, Data Modeling</td><td>Courses 8, 12 + Enhancement C</td></tr>
-<tr><td>**Senior**</td><td>Distributed Systems, Cloud Architecture, Streaming, Governance, Optimization</td><td>Courses 11–12 + Enhancements A–B</td></tr>
-<tr><td>**Modern AI-Ready**</td><td>Vector DBs, RAG Pipelines, Feature Stores, LLM Data Workflows, Data Quality</td><td>Course 15</td></tr>
-<tr><td>Level</td><td>Core Skills</td><td>IBM Course Coverage</td></tr>
-<tr><td>**Beginner**</td><td>SQL, Python, Linux, Databases</td><td>Courses 1–7</td></tr>
-<tr><td>**Junior**</td><td>ETL/ELT, Data Warehousing, APIs, Git, Scheduling</td><td>Courses 8–9</td></tr>
-<tr><td>**Mid-Level**</td><td>Airflow, dbt, Spark/Kafka, Cloud Storage, Data Modeling</td><td>Courses 8, 12 + Enhancement C</td></tr>
-<tr><td>**Senior**</td><td>Distributed Systems, Cloud Architecture, Streaming, Governance, Optimization</td><td>Courses 11–12 + Enhancements A–B</td></tr>
-<tr><td>**Modern AI-Ready**</td><td>Vector DBs, RAG Pipelines, Feature Stores, LLM Data Workflows, Data Quality</td><td>Course 15</td></tr>
-</tbody>
-</table>
-
-<p>Each level builds on the previous one. The foundational skills (SQL, Python, Linux) are prerequisites for advancement. Mid-level and above requires both depth in at least one specialization and breadth across the full stack.</p>
-
-<hr>
-
-<h3>Minimum Viable Path (MVP) — ~192h Fast-Track</h3>
-
-<p>A curated subset of the IBM Data Engineering Professional Certificate designed for career-switchers or bootcamp graduates targeting a junior DE role without committing to the full ~750h plan. Follow IBM courses in order, skip supplements except the one marked per course.</p>
-
-<h4>MVP Course Sequence</h4>
-
-<table>
-<thead><tr><th>#</th><th>Course</th><th>Hours</th><th>Core Supplement</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h4>What the MVP covers and omits</h4>
-
-<table>
-<thead><tr><th>Covered</th><th>Skipped (return later)</th></tr></thead>
-<tbody>
-<tr><td>Python scripting for data tasks</td><td>DBA & security depth (Course 7, Enhancement B)</td></tr>
-<tr><td>SQL — querying, joins, views, stored procedures</td><td>NoSQL databases (Course 11)</td></tr>
-<tr><td>Linux, Bash, cron scheduling</td><td>ML with Spark (Course 13)</td></tr>
-<tr><td>ETL pipelines with Airflow + Kafka basics</td><td>GenAI / RAG pipelines (Course 15)</td></tr>
-<tr><td>Data warehousing concepts + dbt intro</td><td>Hive/Impala/Pig (Enhancement A)</td></tr>
-<tr><td>Hadoop + Spark fundamentals</td><td>Data governance (Ranger/Atlas, Enhancement B)</td></tr>
-<tr><td>End-to-end capstone project</td><td>Advanced dbt, data contracts (Enhancement C)</td></tr>
-<tr><td>Covered</td><td>Skipped (return later)</td></tr>
-<tr><td>Python scripting for data tasks</td><td>DBA & security depth (Course 7, Enhancement B)</td></tr>
-<tr><td>SQL — querying, joins, views, stored procedures</td><td>NoSQL databases (Course 11)</td></tr>
-<tr><td>Linux, Bash, cron scheduling</td><td>ML with Spark (Course 13)</td></tr>
-<tr><td>ETL pipelines with Airflow + Kafka basics</td><td>GenAI / RAG pipelines (Course 15)</td></tr>
-<tr><td>Data warehousing concepts + dbt intro</td><td>Hive/Impala/Pig (Enhancement A)</td></tr>
-<tr><td>Hadoop + Spark fundamentals</td><td>Data governance (Ranger/Atlas, Enhancement B)</td></tr>
-<tr><td>End-to-end capstone project</td><td>Advanced dbt, data contracts (Enhancement C)</td></tr>
-</tbody>
-</table>
-
-<h4>After the MVP</h4>
-
-<ol>
-<li>Apply for junior DE roles immediately — these skills match typical requirements.</li>
-<li>Return to skipped courses (7, 10, 11, 13) based on target job description.</li>
-<li>Add Course 15 (GenAI) if targeting LLM-driven data pipeline roles.</li>
-<li>Work through Enhancements A–C once on the job and context is clear.</li>
-
-</ol>
-
-<div class="cross-ref"><a href="#skill-taxonomy" class="cross-ref-link">skill categories that underpin each career level</a></div>
-<div class="cross-ref"><a href="#16-course-sequence" class="cross-ref-link">which courses map to which career levels</a></div>
-<div class="cross-ref"><a href="#certification-roadmap" class="cross-ref-link">certifications relevant at each career stage</a></div>
-
-
-</div><div class="card" id="certification-roadmap">
-<h3>Certification Roadmap</h3>
-
-
-<p>Based on José Siles' "2026 Data Professional Certification Matrix." Pursue certifications after completing the relevant IBM courses — certifications without hands-on experience rarely land jobs. Complete at minimum 2 project checkpoints in the platform before attempting its certification exam.</p>
-
-<h3>Azure Track</h3>
-
-<table>
-<thead><tr><th>Cert</th><th>Role</th><th>Prerequisites</th></tr></thead>
-<tbody>
-<tr><td>DP-900: Azure Data Fundamentals</td><td>All roles (entry)</td><td>Course 12, Course 9</td></tr>
-<tr><td>PL-300: Power BI Data Analyst Associate</td><td>Data Analyst</td><td>Course 10</td></tr>
-<tr><td>DP-700: Fabric Data Engineer Associate</td><td>Data Engineer</td><td>Course 8, Course 9</td></tr>
-<tr><td>DP-100: Azure Data Scientist Associate</td><td>Data Scientist</td><td>Course 13, Course 15</td></tr>
-<tr><td>AI-102: Azure AI Engineer Associate</td><td>AI Engineer</td><td>Course 15</td></tr>
-<tr><td>Cert</td><td>Role</td><td>Prerequisites</td></tr>
-<tr><td>DP-900: Azure Data Fundamentals</td><td>All roles (entry)</td><td>Course 12, Course 9</td></tr>
-<tr><td>PL-300: Power BI Data Analyst Associate</td><td>Data Analyst</td><td>Course 10</td></tr>
-<tr><td>DP-700: Fabric Data Engineer Associate</td><td>Data Engineer</td><td>Course 8, Course 9</td></tr>
-<tr><td>DP-100: Azure Data Scientist Associate</td><td>Data Scientist</td><td>Course 13, Course 15</td></tr>
-<tr><td>AI-102: Azure AI Engineer Associate</td><td>AI Engineer</td><td>Course 15</td></tr>
-</tbody>
-</table>
-
-<h3>AWS Track</h3>
-
-<table>
-<thead><tr><th>Cert</th><th>Role</th><th>Prerequisites</th></tr></thead>
-<tbody>
-<tr><td>DEA-C01: AWS Certified Data Engineer – Associate</td><td>Data Engineer</td><td>Courses 8, 9, 11, 12</td></tr>
-<tr><td>MLA-C01: AWS ML Engineer – Associate</td><td>ML Engineer</td><td>Course 13, Course 15</td></tr>
-<tr><td>MLS-C01: AWS ML Specialty</td><td>Data Scientist</td><td>Course 13, Course 15</td></tr>
-<tr><td>Cert</td><td>Role</td><td>Prerequisites</td></tr>
-<tr><td>DEA-C01: AWS Certified Data Engineer – Associate</td><td>Data Engineer</td><td>Courses 8, 9, 11, 12</td></tr>
-<tr><td>MLA-C01: AWS ML Engineer – Associate</td><td>ML Engineer</td><td>Course 13, Course 15</td></tr>
-<tr><td>MLS-C01: AWS ML Specialty</td><td>Data Scientist</td><td>Course 13, Course 15</td></tr>
-</tbody>
-</table>
-
-<h3>Google Cloud Track</h3>
-
-<table>
-<thead><tr><th>Cert</th><th>Role</th><th>Prerequisites</th></tr></thead>
-<tbody>
-<tr><td>Google Cloud Data Analytics Certificate</td><td>Data Analyst</td><td>Enhancement A, Course 10</td></tr>
-<tr><td>Professional Data Engineer</td><td>Data Engineer</td><td>Courses 8, 9, 11, 12</td></tr>
-<tr><td>Professional Machine Learning Engineer</td><td>ML Engineer</td><td>Course 13, Course 15</td></tr>
-<tr><td>Cert</td><td>Role</td><td>Prerequisites</td></tr>
-<tr><td>Google Cloud Data Analytics Certificate</td><td>Data Analyst</td><td>Enhancement A, Course 10</td></tr>
-<tr><td>Professional Data Engineer</td><td>Data Engineer</td><td>Courses 8, 9, 11, 12</td></tr>
-<tr><td>Professional Machine Learning Engineer</td><td>ML Engineer</td><td>Course 13, Course 15</td></tr>
-</tbody>
-</table>
-
-<h3>Snowflake Track</h3>
-
-<table>
-<thead><tr><th>Cert</th><th>Role</th><th>Prerequisites</th></tr></thead>
-<tbody>
-<tr><td>SnowPro Core</td><td>All DE/DS/DA roles</td><td>Course 9</td></tr>
-<tr><td>SnowPro Advanced: Data Engineer</td><td>Data Engineer</td><td>Course 9 + Enhancement C</td></tr>
-<tr><td>SnowPro Advanced: Data Analyst</td><td>Data Analyst</td><td>Course 9 + Course 10</td></tr>
-<tr><td>SnowPro Advanced: Data Scientist</td><td>Data Scientist</td><td>Course 13 + Course 9</td></tr>
-<tr><td>Cert</td><td>Role</td><td>Prerequisites</td></tr>
-<tr><td>SnowPro Core</td><td>All DE/DS/DA roles</td><td>Course 9</td></tr>
-<tr><td>SnowPro Advanced: Data Engineer</td><td>Data Engineer</td><td>Course 9 + Enhancement C</td></tr>
-<tr><td>SnowPro Advanced: Data Analyst</td><td>Data Analyst</td><td>Course 9 + Course 10</td></tr>
-<tr><td>SnowPro Advanced: Data Scientist</td><td>Data Scientist</td><td>Course 13 + Course 9</td></tr>
-</tbody>
-</table>
-
-<p>Prep: Snowflake University (free trial + free badge courses).</p>
-
-<h3>Databricks Track</h3>
-
-<table>
-<thead><tr><th>Cert</th><th>Role</th><th>Prerequisites</th></tr></thead>
-<tbody>
-<tr><td>Data Analyst Associate</td><td>Data Analyst</td><td>Enhancement A + Courses 10, 12, 13 + Course 9</td></tr>
-<tr><td>Data Engineer Associate</td><td>Data Engineer</td><td>Courses 8, 11, 12 + Course 9</td></tr>
-<tr><td>Data Engineer Professional</td><td>Senior DE</td><td>All above + Course 8</td></tr>
-<tr><td>ML Associate</td><td>ML Engineer</td><td>Course 13 + Course 15</td></tr>
-<tr><td>ML Professional</td><td>Senior ML</td><td>Course 13 + Course 15 (deep)</td></tr>
-<tr><td>Cert</td><td>Role</td><td>Prerequisites</td></tr>
-<tr><td>Data Analyst Associate</td><td>Data Analyst</td><td>Enhancement A + Courses 10, 12, 13 + Course 9</td></tr>
-<tr><td>Data Engineer Associate</td><td>Data Engineer</td><td>Courses 8, 11, 12 + Course 9</td></tr>
-<tr><td>Data Engineer Professional</td><td>Senior DE</td><td>All above + Course 8</td></tr>
-<tr><td>ML Associate</td><td>ML Engineer</td><td>Course 13 + Course 15</td></tr>
-<tr><td>ML Professional</td><td>Senior ML</td><td>Course 13 + Course 15 (deep)</td></tr>
-</tbody>
-</table>
-
-<p>Prep: Databricks Academy free resources + Databricks Community Edition.</p>
-
-<h3>Key Guidance</h3>
-
-<ul>
-<li>Certifications without hands-on project experience rarely improve job prospects — each exam should be preceded by building in the platform</li>
-<li>Most cloud certs renew every 1–3 years; budget time for recertification</li>
-<li>Stacking vendor-neutral (SnowPro, Databricks) with one cloud platform is a common strategy</li>
-
-</ul>
-<div class="cross-ref"><a href="#career-ladder-mvp" class="cross-ref-link">how certifications align with career progression</a></div>
-<div class="cross-ref"><a href="#16-course-sequence" class="cross-ref-link">which courses prepare for which certifications</a></div>
-<div class="cross-ref"><a href="#enhancement-modules" class="cross-ref-link">post-track enhancements that fill cert prerequisites</a></div>
-
-
-</div><div class="card" id="enhancement-modules">
-<h3>Enhancement Modules</h3>
-
-
-<p>These modules cover topics the IBM Data Engineering track does not address. Complete after finishing all 16 IBM courses.</p>
-
-<h3>Enhancement A — Big Data Analytics at Scale (~23h)</h3>
-
-<p><strong>Gap filled:</strong> The IBM track covers data warehousing (Course 9) and Spark SQL (Course 12) but does not teach Hive/Impala/Pig or Lambda vs Kappa architecture — tools and patterns still common in Hadoop-based enterprise environments.</p>
-
-<p><strong>Topics:</strong> Apache Hive (DDL/DML, partitioning, bucketing), Apache Impala, Apache Pig, Lambda vs Kappa streaming architectures.</p>
-
-<p><strong>Learning objective:</strong> Write and optimize HiveQL queries against partitioned tables, explain Hive vs Impala tradeoffs, and diagram a Lambda vs a Kappa architecture for the same use case.</p>
-
-<table>
-<thead><tr><th>Resource</th><th>Hours</th></tr></thead>
-<tbody>
-<tr><td>Apache Hive Language Manual (DDL/DML, partitioning, bucketing)</td><td>8</td></tr>
-<tr><td>Apache Impala official documentation</td><td>5</td></tr>
-<tr><td>Apache Pig official documentation</td><td>3</td></tr>
-<tr><td>Kreps "Questioning the Lambda Architecture" + Confluent Kappa blog posts</td><td>2</td></tr>
-<tr><td>Project checkpoint: load NYC Taxi data into Hive-style partitioned tables, write 5 analytical queries, document architecture</td><td>5</td></tr>
-<tr><td>Resource</td><td>Hours</td></tr>
-<tr><td>Apache Hive Language Manual (DDL/DML, partitioning, bucketing)</td><td>8</td></tr>
-<tr><td>Apache Impala official documentation</td><td>5</td></tr>
-<tr><td>Apache Pig official documentation</td><td>3</td></tr>
-<tr><td>Kreps "Questioning the Lambda Architecture" + Confluent Kappa blog posts</td><td>2</td></tr>
-<tr><td>Project checkpoint: load NYC Taxi data into Hive-style partitioned tables, write 5 analytical queries, document architecture</td><td>5</td></tr>
-</tbody>
-</table>
-
-<h3>Enhancement B — Security &amp; Governance Deep Dive (~8h)</h3>
-
-<p><strong>Gap filled:</strong> Course 7 (DBA) covers database-level security. This enhancement extends to cluster-wide governance with Apache Ranger and Apache Atlas for policy management, metadata, and data lineage.</p>
-
-<p><strong>Topics:</strong> Apache Ranger (policy model, plugins, Hive/HDFS integration), Apache Atlas (metadata, governance, data lineage).</p>
-
-<p><strong>Learning objective:</strong> Configure a Ranger policy restricting user/group access to specific Hive tables or HDFS paths; use Atlas to trace data lineage across a pipeline.</p>
-
-<table>
-<thead><tr><th>Resource</th><th>Hours</th></tr></thead>
-<tbody>
-<tr><td>Apache Ranger official documentation</td><td>5</td></tr>
-<tr><td>Apache Atlas official documentation</td><td>3</td></tr>
-<tr><td>Resource</td><td>Hours</td></tr>
-<tr><td>Apache Ranger official documentation</td><td>5</td></tr>
-<tr><td>Apache Atlas official documentation</td><td>3</td></tr>
-</tbody>
-</table>
-
-<h3>Enhancement C — Modern Pipeline Tooling: dbt &amp; Data Quality (~17h)</h3>
-
-<p><strong>Gap filled:</strong> Course 8 covers ETL with Airflow and Kafka. This enhancement adds dbt (the industry standard for SQL-based transformation) and data quality tooling — skills required by most mid-level+ DE job postings.</p>
-
-<p><strong>Topics:</strong> dbt (models, tests, documentation, incremental loads), dbt advanced warehouse-specific optimizations, pipeline data quality with Great Expectations.</p>
-
-<p><strong>Learning objective:</strong> Build a dbt project with models, tests, and documentation; run it against a warehouse; validate data quality with Great Expectations integrated into an Airflow DAG.</p>
-
-<table>
-<thead><tr><th>Resource</th><th>Hours</th></tr></thead>
-<tbody>
-<tr><td>dbt official documentation + dbt Learn "Fundamentals" course</td><td>8</td></tr>
-<tr><td>DataTalks.Club DE Zoomcamp Module 4: Analytics Engineering with dbt</td><td>5</td></tr>
-<tr><td>Great Expectations "Getting Started" guide</td><td>1</td></tr>
-<tr><td>dbt "Advanced" course (warehouse-specific optimizations)</td><td>3</td></tr>
-<tr><td>Resource</td><td>Hours</td></tr>
-<tr><td>dbt official documentation + dbt Learn "Fundamentals" course</td><td>8</td></tr>
-<tr><td>DataTalks.Club DE Zoomcamp Module 4: Analytics Engineering with dbt</td><td>5</td></tr>
-<tr><td>Great Expectations "Getting Started" guide</td><td>1</td></tr>
-<tr><td>dbt "Advanced" course (warehouse-specific optimizations)</td><td>3</td></tr>
-</tbody>
-</table>
-
-<h3>Enhancement D — Revision (~1h)</h3>
-
-<p>Self-assessment checkpoint. Watch Mahmoud Mohsen's midterm-style revision video after completing the IBM track.</p>
-
-<table>
-<thead><tr><th>Resource</th><th>Hours</th></tr></thead>
-<tbody>
-<tr><td>Mahmoud Mohsen #20 Revision (Midterm Solutions) — watch without pausing, answer questions mentally</td><td>1</td></tr>
-<tr><td>Resource</td><td>Hours</td></tr>
-<tr><td>Mahmoud Mohsen #20 Revision (Midterm Solutions) — watch without pausing, answer questions mentally</td><td>1</td></tr>
-</tbody>
-</table>
-
-<div class="cross-ref"><a href="#16-course-sequence" class="cross-ref-link">the IBM courses that these enhancements extend</a></div>
-<div class="cross-ref"><a href="#certification-roadmap" class="cross-ref-link">Enhancement C (dbt) is prerequisite for SnowPro Advanced</a></div>
-<div class="cross-ref"><a href="#skill-taxonomy" class="cross-ref-link">Enhancement A fills big data analytics gap in skill taxonomy</a></div>
-
-
-</div><div class="card" id="full-course-index">
-<h3>Full Course Index</h3>
-
-<blockquote>**Course 1:** Introduction to Data Engineering<br>**Document Type:** Full Course Index &amp; Navigation Reference</blockquote>
-
-
-<h3>Overview</h3>
-
-<p>This document is the master navigation reference for <strong>Course 1: Introduction to Data Engineering</strong>. It catalogues all four modules, their constituent sections, and every learning item (videos, readings, quizzes, labs, and optional content) within each section.</p>
-
-<p>Use the <strong>Notes Document Registry</strong> table at the bottom to track which lesson notes documents have been generated.</p>
-
-<p>For a narrative syllabus with learning objectives and instructor information, see <a href="course_syllabus_and_index.md">Course Syllabus and Index</a>.</p>
-
-<hr>
-
-<h3>Module 1: What is Data Engineering?</h3>
-
-<p><strong>Scope:</strong> Foundational concepts — what data engineering is, how it evolved, and the roles and skills involved.</p>
-
-<h4>Section 1.1 — Modern Data Ecosystem and Role of Data Engineering</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h4>Section 1.2 — Responsibilities and Skillsets of a Data Engineer</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<hr>
-
-<h3>Module 2: The Data Engineering Ecosystem</h3>
-
-<p><strong>Scope:</strong> The surrounding landscape of tools, platforms, data types, repositories, big data systems, and security considerations.</p>
-
-<h4>Section 2.1 — The Data Ecosystem and Languages for Data Professionals</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h4>Section 2.2 — Data Repositories, Data Pipelines, and Data Integration Platforms</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h4>Section 2.3 — Big Data Platforms</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h4>Section 2.4 — Data Platforms, Data Stores, and Security</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<hr>
-
-<h3>Module 3: Data Engineering Lifecycle</h3>
-
-<p><strong>Scope:</strong> Practical hands-on work — collecting, wrangling, querying, tuning, and governing data through its full lifecycle.</p>
-
-<h4>Section 3.1 — Data Collection and Data Wrangling</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h4>Section 3.2 — Querying Data, Performance Tuning, and Troubleshooting</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h4>Section 3.3 — Governance and Compliance</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<hr>
-
-<h3>Module 4: Career Opportunities and Data Engineering in Action</h3>
-
-<p><strong>Scope:</strong> Professional context — career paths, employer expectations, learning trajectories, and the final graded assessment.</p>
-
-<h4>Section 4.1 — Career Opportunities and Learning Paths</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<h4>Section 4.2 — Final Assignment</h4>
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-
-<table>
-<thead><tr><th>#</th><th>Item</th><th>Type</th><th>Duration</th></tr></thead>
-<tbody>
-</tbody>
-</table>
-
-<hr>
-
-<h3>Course Structure Summary</h3>
-
-<table>
-<thead><tr><th>Module</th><th>Title</th><th>Sections</th><th>Graded Assessments</th></tr></thead>
-<tbody>
-<tr><td>**1**</td><td>What is Data Engineering?</td><td>2</td><td>2</td></tr>
-<tr><td>**2**</td><td>The Data Engineering Ecosystem</td><td>4</td><td>4</td></tr>
-<tr><td>**3**</td><td>Data Engineering Lifecycle</td><td>3</td><td>3</td></tr>
-<tr><td>**4**</td><td>Career Opportunities and Data Engineering in Action</td><td>3</td><td>1 (Final)</td></tr>
-<tr><td>**Total**</td><td>**12**</td><td>**10**</td></tr>
-<tr><td>Module</td><td>Title</td><td>Sections</td><td>Graded Assessments</td></tr>
-<tr><td>**1**</td><td>What is Data Engineering?</td><td>2</td><td>2</td></tr>
-<tr><td>**2**</td><td>The Data Engineering Ecosystem</td><td>4</td><td>4</td></tr>
-<tr><td>**3**</td><td>Data Engineering Lifecycle</td><td>3</td><td>3</td></tr>
-<tr><td>**4**</td><td>Career Opportunities and Data Engineering in Action</td><td>3</td><td>1 (Final)</td></tr>
-<tr><td>**Total**</td><td>**12**</td><td>**10**</td></tr>
-</tbody>
-</table>
-
-<hr>
-
-<h3>Notes Document Registry</h3>
-
-<p>Use this table to track which lesson notes documents have been generated for Course 1.</p>
-
-<table>
-<thead><tr><th>Section</th><th>Topic</th><th>Notes File</th><th>Status</th></tr></thead>
-<tbody>
-<tr><td>1.1</td><td>Modern Data Ecosystem</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.1</td><td>Data Roles and Specializations</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.1</td><td>What is Data Engineering?</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.1</td><td>Evolution of Data Engineering</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.2</td><td>Responsibilities and Skillsets</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.2</td><td>A Day in the Life</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Data Ecosystem Overview</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Types of Data and File Formats</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Sources of Data</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Languages for Data Professionals</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Metadata Management</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>Data Repositories Overview</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>Relational Databases (RDBMS)</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>NoSQL Databases</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>Data Warehouses, Lakes, Lakehouses</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>ETL, ELT, and Data Pipelines</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>Data Integration Platforms</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.3</td><td>Big Data Foundations</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.3</td><td>Big Data Processing Tools (Hadoop, Spark)</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.4</td><td>Data Platform Architecture</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.4</td><td>Data Store Selection Factors</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.4</td><td>Security in Data Platforms</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.1</td><td>Data Collection and Wrangling</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.1</td><td>Tools for Data Wrangling</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.2</td><td>Querying and Analyzing Data</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.2</td><td>Performance Tuning and Troubleshooting</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.3</td><td>Governance and Compliance</td><td>`governance_compliance.md`</td><td>✅ Complete</td></tr>
-<tr><td>3.3</td><td>Governance and Compliance Summary</td><td>`governance_compliance_summary.md`</td><td>✅ Complete</td></tr>
-<tr><td>3.3</td><td>DataOps Methodology (Optional)</td><td>`dataops_methodology.md`</td><td>✅ Complete</td></tr>
-<tr><td>4.1</td><td>Career Opportunities</td><td>`c1_m4_career_opportunities.md`</td><td>✅ Complete</td></tr>
-<tr><td>4.1</td><td>Data Warehousing Specialist</td><td>`c1_m4_data_warehousing_specialist.md`</td><td>✅ Complete</td></tr>
-<tr><td>4.1</td><td>Data Manager / Data-Related Roles</td><td>`c1_m4_data_manager.md`</td><td>✅ Complete</td></tr>
-<tr><td>4.1</td><td>Viewpoints: Get into Data Engineering</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.1</td><td>Data Engineering Learning Path</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.1</td><td>Viewpoints: What Employers Look For</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.1</td><td>Viewpoints: Many Paths to DE</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.1</td><td>Viewpoints: Advice to Aspiring DEs</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.2</td><td>Final Quiz & Project</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.3</td><td>Course Wrap-Up</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>Section</td><td>Topic</td><td>Notes File</td><td>Status</td></tr>
-<tr><td>1.1</td><td>Modern Data Ecosystem</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.1</td><td>Data Roles and Specializations</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.1</td><td>What is Data Engineering?</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.1</td><td>Evolution of Data Engineering</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.2</td><td>Responsibilities and Skillsets</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>1.2</td><td>A Day in the Life</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Data Ecosystem Overview</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Types of Data and File Formats</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Sources of Data</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Languages for Data Professionals</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.1</td><td>Metadata Management</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>Data Repositories Overview</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>Relational Databases (RDBMS)</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>NoSQL Databases</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>Data Warehouses, Lakes, Lakehouses</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>ETL, ELT, and Data Pipelines</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.2</td><td>Data Integration Platforms</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.3</td><td>Big Data Foundations</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.3</td><td>Big Data Processing Tools (Hadoop, Spark)</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.4</td><td>Data Platform Architecture</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.4</td><td>Data Store Selection Factors</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>2.4</td><td>Security in Data Platforms</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.1</td><td>Data Collection and Wrangling</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.1</td><td>Tools for Data Wrangling</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.2</td><td>Querying and Analyzing Data</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.2</td><td>Performance Tuning and Troubleshooting</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>3.3</td><td>Governance and Compliance</td><td>`governance_compliance.md`</td><td>✅ Complete</td></tr>
-<tr><td>3.3</td><td>Governance and Compliance Summary</td><td>`governance_compliance_summary.md`</td><td>✅ Complete</td></tr>
-<tr><td>3.3</td><td>DataOps Methodology (Optional)</td><td>`dataops_methodology.md`</td><td>✅ Complete</td></tr>
-<tr><td>4.1</td><td>Career Opportunities</td><td>`c1_m4_career_opportunities.md`</td><td>✅ Complete</td></tr>
-<tr><td>4.1</td><td>Data Warehousing Specialist</td><td>`c1_m4_data_warehousing_specialist.md`</td><td>✅ Complete</td></tr>
-<tr><td>4.1</td><td>Data Manager / Data-Related Roles</td><td>`c1_m4_data_manager.md`</td><td>✅ Complete</td></tr>
-<tr><td>4.1</td><td>Viewpoints: Get into Data Engineering</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.1</td><td>Data Engineering Learning Path</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.1</td><td>Viewpoints: What Employers Look For</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.1</td><td>Viewpoints: Many Paths to DE</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.1</td><td>Viewpoints: Advice to Aspiring DEs</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.2</td><td>Final Quiz & Project</td><td>—</td><td>⬜ Pending</td></tr>
-<tr><td>4.3</td><td>Course Wrap-Up</td><td>—</td><td>⬜ Pending</td></tr>
-</tbody>
-</table>
-
-<hr>
-
-<h3>Cross-References</h3>
-
-<ul>
-<li><a href="course_syllabus_and_index.md">Course Syllabus and Index</a> — narrative syllabus with learning objectives and instructor info</li>
-<li><a href="c1_m4_career_opportunities.md">Career Opportunities in Data Engineering</a> — Module 4.1 career content</li>
-<li><a href="c1_m4_data_warehousing_specialist.md">Data Warehousing Specialist</a> — Module 4.1 reading</li>
-<li><a href="c1_m4_data_manager.md">Data Manager: Enterprise Data Roles</a> — Module 4.1 reading</li>
-<li><a href="course_sequence_16.md">Course Sequence 16</a> — full IBM certificate course descriptions</li>
-
-</ul>
-
-</div><div class="card" id="career-opportunities">
+<div class="card" id="career-opportunities">
 <h3>Career Opportunities</h3>
 
 <blockquote>**Course 1:** Introduction to Data Engineering<br>**Module 4:** Career Opportunities and Data Engineering in Action<br>**Section 4.1:** Career Opportunities and Learning Paths</blockquote>
@@ -14941,13 +14528,14 @@ class Circle(object):
       if (first) first.style.display = 'block';
     }
 
-    /* Render mermaid diagrams in visible section */
-    var visibleSection = target && target.classList.contains('category') ? target : (target ? target.closest('.category') : sections[0]);
-    if (visibleSection && typeof mermaid !== 'undefined') {
-      var mermaidNodes = visibleSection.querySelectorAll('.mermaid:not([data-processed])');
-      if (mermaidNodes.length > 0) {
-        mermaidNodes.forEach(function(n) { n.setAttribute('data-processed', 'true'); });
-        mermaid.run({ nodes: Array.from(mermaidNodes) });
+    /* Render any unprocessed mermaid diagrams */
+    if (typeof mermaid !== 'undefined') {
+      var unprocessed = document.querySelectorAll('.mermaid:not([data-processed])');
+      if (unprocessed.length > 0) {
+        unprocessed.forEach(function(n) { n.setAttribute('data-processed', 'true'); });
+        mermaid.run({ nodes: Array.from(unprocessed) }).catch(function(e) {
+          console.error('Mermaid render error:', e);
+        });
       }
     }
 

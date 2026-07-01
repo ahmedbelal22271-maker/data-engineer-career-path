@@ -1,6 +1,6 @@
 # Data Engineering Wiki
 
-*Wiki populated by the Large File Protocol. 62 topic pages across 13 categories.*
+*Wiki populated by the Large File Protocol. 63 topic pages across 13 categories.*
 
 ## Topics
 
@@ -67,4 +67,5 @@
 | c2_exception_handling.md | Python | try/except/else/finally, common exceptions |
 | c2_objects_classes.md | Python | Classes, objects, constructors, methods |
 | big_data_specialization_ucsd.md | Big Data | UCSD Big Data specialization overview, Course 1 index |
+| data_science_process.md | Big Data | Problem formulation, Five P's, 5-step process, Big Data strategy |
 | glossary.md | Glossary | 81+ data engineering terms

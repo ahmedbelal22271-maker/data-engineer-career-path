@@ -57,6 +57,8 @@ SECTIONS = [
         ("ETL, ELT & Data Pipelines", "etl_elt_pipelines.md", "processing"),
         ("Data Integration Platforms", "data_integration_platforms.md", "processing"),
         ("Big Data Foundations", "big_data_foundations.md", "processing"),
+        ("Big Data Case Studies", "big_data_case_studies.md", "processing"),
+        ("Data Science Process", "data_science_process.md", "processing"),
         ("Hadoop Ecosystem", "hadoop_ecosystem.md", "processing"),
         ("Data Platform Architecture", "data_platform_architecture.md", "processing"),
         ("SQL Vendors & Dialects", "sql_vendors_dialects.md", "processing"),
@@ -85,20 +87,11 @@ SECTIONS = [
         ("Exception Handling", "c2_exception_handling.md", "python"),
         ("Objects & Classes", "c2_objects_classes.md", "python"),
     ]),
-    ("bigdata", "Big Data Specialization (UCSD)", [
-        ("Big Data Specialization — UC San Diego", "big_data_specialization_ucsd.md", "bigdata"),
-    ]),
     ("quiz", "Quiz & Exam Reference", [
         ("Quiz Study Reference", "quiz_study_reference.md", "quiz"),
         ("Weakness Review", "checkpoint_weakness_review.md", "quiz"),
     ]),
     ("career", "Course & Career", [
-        ("Course Syllabus & Index", "course_syllabus_and_index.md", "career"),
-        ("16-Course Sequence", "course_sequence_16.md", "career"),
-        ("Career Ladder & MVP", "career_ladder.md", "career"),
-        ("Certification Roadmap", "certification_roadmap.md", "career"),
-        ("Enhancement Modules", "enhancement_modules.md", "career"),
-        ("Full Course Index", "c1_full_course_index.md", "career"),
         ("Career Opportunities", "c1_m4_career_opportunities.md", "career"),
         ("Data Manager", "c1_m4_data_manager.md", "career"),
         ("Data Warehousing Specialist", "c1_m4_data_warehousing_specialist.md", "career"),
@@ -545,11 +538,13 @@ def build_future():
 
 
 # ── Sidebar ──
-def build_sidebar():
+def build_sidebar(status_map):
     items = []
     for section_id, section_title, cards in SECTIONS:
         first_anchor = url_to_anchor(cards[0][0])
-        items.append(f'<a href="#{first_anchor}" class="sidebar-link" data-section="{section_id}">{escape_html(section_title)}</a>')
+        section_has_updates = any(status_map.get(md_file, "original") in ("new", "modified") for _, md_file, _ in cards)
+        link_cls = 'sidebar-link lthp-highlight' if section_has_updates else 'sidebar-link'
+        items.append(f'<a href="#{first_anchor}" class="{link_cls}" data-section="{section_id}">{escape_html(section_title)}</a>')
         for title, _, _ in cards:
             anchor = url_to_anchor(title)
             items.append(f'<a href="#{anchor}" class="sidebar-sub-link" data-section="{section_id}">{escape_html(title)}</a>')
@@ -570,7 +565,7 @@ def main():
     sections_html = build_sections(status_map)
     glossary_html = build_glossary(status_map)
     future_html = build_future()
-    sidebar_html = build_sidebar()
+    sidebar_html = build_sidebar(status_map)
 
     content = sections_html + '\n\n' + glossary_html + '\n\n' + future_html
 
