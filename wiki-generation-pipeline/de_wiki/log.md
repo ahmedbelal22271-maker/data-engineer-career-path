@@ -277,3 +277,11 @@ Updated `big_data_specialization_ucsd.md` — added cross-ref to data_science_pr
 - Individual sub-links now get lthp-highlight when new/modified
 - Index count updated: 63 → 70 topic pages
 - `wiki_template.html` fully rewritten with new CSS/JS for collapsible sidebar and search dropdown
+
+## [Build] 2026-07-01 � Fixed table stripping, shortened sidebar, keyboard nav, sub-heading search
+- Fixed clean_content(): 3+ column requirement preserves Key Takeaways tables
+- Shortened 2 section titles (Ecosystem, Big Data & Processing)
+- Toggle triangles: 0.85rem, text-secondary for visibility
+- Search dropdown: ArrowUp/ArrowDown keyboard navigation added
+- SEARCH_INDEX: includes all ##/### sub-headings from topic files
+- Rebuilt: 63 cards, 4.3 MB, 0 new/0 modified

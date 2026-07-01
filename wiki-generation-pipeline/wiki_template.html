@@ -128,9 +128,9 @@ body {
   border-left-color: var(--highlight-border);
 }
 .sidebar-toggle {
-  font-size: 0.6rem; width: 12px; text-align: center;
+  font-size: 0.85rem; width: 14px; text-align: center;
   flex-shrink: 0; transition: transform 0.2s;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 .sidebar-section-title { flex: 1; }
 .sidebar-subs { overflow: hidden; }
@@ -662,14 +662,41 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
       var ms = document.getElementById('mobileSearch');
       if (ms) ms.value = this.value;
     });
+    var searchActiveIndex = -1;
     sidebarSearch.addEventListener('keydown', function(e) {
+      var ddItems = searchDropdown.querySelectorAll('.search-dd-item, .search-dd-footer');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (searchDropdown.style.display === 'none') return;
+        ddItems.forEach(function(item) { item.classList.remove('active'); });
+        searchActiveIndex = (searchActiveIndex + 1) % ddItems.length;
+        ddItems[searchActiveIndex].classList.add('active');
+        ddItems[searchActiveIndex].scrollIntoView({ block: 'nearest' });
+        return;
+      }
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (searchDropdown.style.display === 'none') return;
+        ddItems.forEach(function(item) { item.classList.remove('active'); });
+        searchActiveIndex = (searchActiveIndex - 1 + ddItems.length) % ddItems.length;
+        ddItems[searchActiveIndex].classList.add('active');
+        ddItems[searchActiveIndex].scrollIntoView({ block: 'nearest' });
+        return;
+      }
       if (e.key === 'Enter') {
+        if (searchDropdown.style.display !== 'none' && searchActiveIndex >= 0 && ddItems[searchActiveIndex]) {
+          ddItems[searchActiveIndex].click();
+          searchActiveIndex = -1;
+          return;
+        }
         var q = this.value.trim().toLowerCase();
         if (q) doFullTextSearch(q, this, searchDropdown);
+        return;
       }
       if (e.key === 'Escape') {
         this.value = '';
         searchDropdown.style.display = 'none';
+        searchActiveIndex = -1;
         /* Restore normal view */
         var allCards = document.querySelectorAll('.card, .future-card');
         var sections = document.querySelectorAll('.category');

@@ -39,7 +39,7 @@ SECTIONS = [
         ("Skill Taxonomy", "skills_and_responsibilities.md", "skills"),
         ("Practitioner Viewpoints", "practitioner_skills_viewpoints.md", "skills"),
     ]),
-    ("ecosystem", "Data Ecosystem — Types, Sources & Languages", [
+    ("ecosystem", "Data Ecosystem", [
         ("Types of Data", "data_types.md", "ecosystem"),
         ("File Formats", "file_formats.md", "ecosystem"),
         ("Data Sources", "data_sources.md", "ecosystem"),
@@ -53,7 +53,7 @@ SECTIONS = [
         ("Data Warehouses, Lakes & Lakehouses", "data_warehouses_lakes.md", "storage"),
         ("Unstructured Data Storage", "unstructured_data_storage.md", "storage"),
     ]),
-    ("processing", "Data Processing & Big Data Platforms", [
+    ("processing", "Big Data & Processing", [
         ("ETL, ELT & Data Pipelines", "etl_elt_pipelines.md", "processing"),
         ("Data Integration Platforms", "data_integration_platforms.md", "processing"),
         ("Big Data Foundations", "big_data_foundations.md", "processing"),
@@ -180,6 +180,7 @@ def clean_content(text):
     table_lines = []
     numbered_rows = 0
     total_rows = 0
+    max_cols = 0
 
     for line in lines:
         # Skip numbered section headings like "### 4.3 Course Wrap-Up"
@@ -194,20 +195,21 @@ def clean_content(text):
                 continue
 
         # Detect and skip content-map tables
-        # Only skip if multiple rows have a numbered first cell (syllabus/index pattern)
+        # Only skip if multiple rows have a numbered first cell AND table has 3+ columns
         if line.strip().startswith('|'):
             table_lines.append(line)
             total_rows += 1
             if not line.strip().endswith('|'):
                 continue
             cells = [c.strip() for c in line.split('|') if c.strip()]
+            max_cols = max(max_cols, len(cells))
             if len(cells) >= 2 and re.match(r'^\d+$', cells[0]):
                 numbered_rows += 1
             continue
         else:
             # End of table: decide whether to keep or skip
             if table_lines:
-                if total_rows >= 3 and numbered_rows >= total_rows * 0.5:
+                if total_rows >= 3 and numbered_rows >= total_rows * 0.5 and max_cols >= 3:
                     # Content-map table — skip it entirely
                     pass
                 else:
@@ -215,12 +217,13 @@ def clean_content(text):
                 table_lines = []
                 total_rows = 0
                 numbered_rows = 0
+                max_cols = 0
                 skip_table = False
             out.append(line)
 
     # Flush remaining table buffer
     if table_lines:
-        if total_rows >= 3 and numbered_rows >= total_rows * 0.5:
+        if total_rows >= 3 and numbered_rows >= total_rows * 0.5 and max_cols >= 3:
             pass  # skip
         else:
             out.extend(table_lines)
@@ -228,7 +231,7 @@ def clean_content(text):
     return '\n'.join(out)
 
 # ── Markdown → HTML ──
-def md_to_html(text):
+def md_to_html(text, card_anchor=None):
     lines = text.split('\n')
     html = []
     i = 0
@@ -363,7 +366,9 @@ def md_to_html(text):
                 i += 1
                 continue
             html_level = min(level + 1, 6)
-            html.append(f'<h{html_level}>{escape_html(title)}</h{html_level}>\n')
+            heading_anchor = url_to_anchor(title)
+            h_id = f' id="{card_anchor}-{heading_anchor}"' if card_anchor and level >= 2 else ''
+            html.append(f'<h{html_level}{h_id}>{escape_html(title)}</h{html_level}>\n')
             i += 1
             continue
 
@@ -449,7 +454,7 @@ def build_card_html(title, md_file, category):
     content = re.sub(r'^# .+\n?', '', content, count=1)
     content = re.sub(r'\n\*Source:.*?\*', '', content)
     content = clean_content(content)
-    return md_to_html(content)
+    return md_to_html(content, url_to_anchor(title))
 
 
 # ── Build sections ──
@@ -554,9 +559,20 @@ def build_future():
 def build_search_index():
     entries = []
     for section_id, section_title, cards in SECTIONS:
-        for title, _, _ in cards:
+        for title, md_file, _ in cards:
             anchor = url_to_anchor(title)
             entries.append({"title": title, "anchor": anchor, "section": section_title})
+            # Index sub-headings from the topic file
+            filepath = os.path.join(TOPICS_DIR, md_file)
+            if os.path.exists(filepath):
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                for line in content.split('\n'):
+                    m = re.match(r'^#{2,3}\s+(.+)$', line)
+                    if m:
+                        ht = m.group(1).strip()
+                        ha = url_to_anchor(ht)
+                        entries.append({"title": ht, "anchor": f"{anchor}-{ha}", "section": section_title})
     entries.append({"title": "Glossary", "anchor": "glossary", "section": "Reference"})
     return json.dumps(entries)
 
