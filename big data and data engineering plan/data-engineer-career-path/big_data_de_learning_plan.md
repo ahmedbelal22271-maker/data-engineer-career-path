@@ -26,6 +26,11 @@
 
 ---
 
+## Prerequisites:
+https://haramblur.com/
+
+---
+
 ## How to read the tables
 
 > 💡 **Practitioner tip (IBM Data Engineering Viewpoints):** Before any tool or technology, ask yourself whether you genuinely love working with data. Practitioners are unanimous: indifference to the subject matter is not sustainable in a field this detailed and fast-moving. Passion for data is what carries you through the complexity.
