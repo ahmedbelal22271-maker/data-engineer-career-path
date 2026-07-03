@@ -485,7 +485,7 @@ def build_sections(status_map):
             cards_html.append(f'<div class="{cls}" id="{anchor}">\n{body}\n</div>')
 
         sections_html.append(
-            f'<section class="category" id="{section_id}">\n<div class="category-header">\n<h2>{escape_html(section_title)}</h2>\n'
+            f'<section class="category" id="{section_id}" style="display:none">\n<div class="category-header">\n<h2>{escape_html(section_title)}</h2>\n'
             f'<span class="category-count">{escape_html(category)}</span>\n</div>\n{"".join(cards_html)}\n</section>'
         )
     return '\n'.join(sections_html)
@@ -522,7 +522,7 @@ def build_glossary(status_map):
         cls = "card"
         tag = ""
 
-    return f'''<section class="category" id="glossary">
+    return f'''<section class="category" id="glossary" style="display:none">
 <div class="category-header">
 <h2>Consolidated Glossary</h2>
 <span class="category-count">Reference</span>
@@ -543,7 +543,7 @@ def build_glossary(status_map):
 
 # ── Future ──
 def build_future():
-    return """<section class="category" id="future">
+    return """<section class="category" id="future" style="display:none">
 <div class="category-header">
 <h2>Coming Next — Modules 3–10</h2>
 <span class="category-count">Preview</span>
