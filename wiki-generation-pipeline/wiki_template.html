@@ -341,8 +341,6 @@ body {
 
 /* ── Sections / pages ── */
 .category { margin-bottom: 48px; }
-.category:not(.active-page) { display: none; }
-.category.active-page.search-mode { display: block; }
 .category-header {
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 20px; padding-bottom: 8px;
@@ -499,6 +497,14 @@ footer {
 </style>
 </head>
 <body>
+<script>document.write('<style>' +
+  'body .category,body .doc-header,body #searchPage{display:none!important}' +
+  'body #landingPage{display:block!important}' +
+  'body #landingPage.hidden{display:none!important}' +
+  'body #searchPage.visible{display:block!important}' +
+  'body .category.active-page{display:block!important}' +
+  'body .doc-header.visible{display:block!important}' +
+'</style>');</script>
 
 <nav class="sidebar" id="sidebar">
 <div class="sidebar-header">
@@ -646,33 +652,32 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
     hash = (hash || '').replace(/^#/, '');
 
     var sections = document.querySelectorAll('.category');
-    sections.forEach(function(s) { s.style.display = 'none'; s.classList.remove('search-mode'); });
+    sections.forEach(function(s) { s.classList.remove('active-page', 'search-mode'); });
 
     if (!hash) {
       showLanding();
-      /* Update sidebar */
       document.querySelectorAll('.sidebar-sub-link').forEach(function(l) { l.classList.remove('active'); });
       return;
     }
 
     var target = document.getElementById(hash);
     if (target && target.classList.contains('category')) {
-      target.style.display = 'block';
+      target.classList.add('active-page');
     } else if (target) {
       var parent = target.closest('.category');
-      if (parent) { parent.style.display = 'block'; }
-      else { target.style.display = 'block'; }
+      if (parent) { parent.classList.add('active-page'); }
+      else { target.classList.add('active-page'); }
     } else {
       target = document.querySelector('[data-section="' + hash + '"]');
       if (target) {
         var sec = document.getElementById(target.getAttribute('data-section'));
-        if (sec) sec.style.display = 'block';
+        if (sec) sec.classList.add('active-page');
       }
     }
 
     /* Fallback: show first section if nothing matched */
-    if (!target || Array.from(sections).every(function(s) { return s.style.display === 'none'; })) {
-      if (sections.length > 0) sections[0].style.display = 'block';
+    if (!target || Array.from(sections).every(function(s) { return !s.classList.contains('active-page'); })) {
+      if (sections.length > 0) sections[0].classList.add('active-page');
     }
 
     /* Render mermaid */
@@ -712,7 +717,7 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
 
   function showLanding() {
     landingPage.classList.remove('hidden');
-    wikiHeader.style.display = 'none';
+    wikiHeader.classList.remove('visible');
     /* Build quick links from SEARCH_INDEX (first link of each section) */
     var ql = document.getElementById('quickLinks');
     var seen = {};
@@ -734,7 +739,7 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
 
   function hideLanding() {
     landingPage.classList.add('hidden');
-    wikiHeader.style.display = '';
+    wikiHeader.classList.add('visible');
   }
 
   function showLandingPage() {
@@ -755,8 +760,7 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
   function showSearchPage(q) {
     hideLanding();
     hideSearchPage();
-    /* Hide all sections */
-    document.querySelectorAll('.category').forEach(function(s) { s.style.display = 'none'; s.classList.remove('search-mode'); });
+    document.querySelectorAll('.category').forEach(function(s) { s.classList.remove('active-page', 'search-mode'); });
     document.querySelectorAll('.sidebar-sub-link').forEach(function(l) { l.classList.remove('active'); });
 
     var allCards = document.querySelectorAll('.card');
@@ -1006,16 +1010,13 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
       }
       if (e.key === 'Escape') {
         this.value = '';
+        topSearch.value = '';
         searchDropdown.style.display = 'none';
         searchActiveIndex = -1;
         if (currentPage) applyPage(currentPage);
         else showLanding();
         var ms = document.getElementById('mobileSearch');
         if (ms) ms.value = '';
-        var allCards = document.querySelectorAll('.card, .future-card');
-        var sections = document.querySelectorAll('.category');
-        sections.forEach(function(s) { s.style.display = ''; s.classList.remove('search-mode'); });
-        allCards.forEach(function(c) { c.style.display = 'block'; });
       }
     });
     sidebarSearch.addEventListener('blur', function() {

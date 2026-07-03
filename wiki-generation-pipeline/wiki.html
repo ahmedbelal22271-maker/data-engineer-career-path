@@ -3928,8 +3928,6 @@ body {
 
 /* ── Sections / pages ── */
 .category { margin-bottom: 48px; }
-.category:not(.active-page) { display: none; }
-.category.active-page.search-mode { display: block; }
 .category-header {
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 20px; padding-bottom: 8px;
@@ -4086,6 +4084,14 @@ footer {
 </style>
 </head>
 <body>
+<script>document.write('<style>' +
+  'body .category,body .doc-header,body #searchPage{display:none!important}' +
+  'body #landingPage{display:block!important}' +
+  'body #landingPage.hidden{display:none!important}' +
+  'body #searchPage.visible{display:block!important}' +
+  'body .category.active-page{display:block!important}' +
+  'body .doc-header.visible{display:block!important}' +
+'</style>');</script>
 
 <nav class="sidebar" id="sidebar">
 <div class="sidebar-header">
@@ -4159,7 +4165,7 @@ footer {
 <div id="searchResults"></div>
 </div>
 
-<section class="category" id="overview" style="display:none">
+<section class="category" id="overview">
 <div class="category-header">
 <h2>Data Engineering Scope</h2>
 <span class="category-count">overview</span>
@@ -4395,7 +4401,7 @@ footer {
 
 </div>
 </section>
-<section class="category" id="foundations" style="display:none">
+<section class="category" id="foundations">
 <div class="category-header">
 <h2>Defining Data Engineering</h2>
 <span class="category-count">foundations</span>
@@ -4703,7 +4709,7 @@ footer {
 
 </div>
 </section>
-<section class="category" id="roles" style="display:none">
+<section class="category" id="roles">
 <div class="category-header">
 <h2>Data Roles &amp; Responsibilities</h2>
 <span class="category-count">roles</span>
@@ -5187,7 +5193,7 @@ footer {
 
 </div>
 </section>
-<section class="category" id="skills" style="display:none">
+<section class="category" id="skills">
 <div class="category-header">
 <h2>Skills &amp; Qualities</h2>
 <span class="category-count">skills</span>
@@ -5701,7 +5707,7 @@ footer {
 
 </div>
 </section>
-<section class="category" id="ecosystem" style="display:none">
+<section class="category" id="ecosystem">
 <div class="category-header">
 <h2>Data Ecosystem</h2>
 <span class="category-count">ecosystem</span>
@@ -7032,7 +7038,7 @@ $highValueSales | Export-Csv -Path &quot;C:\data\high_value_sales.csv&quot; -NoT
 
 </div>
 </section>
-<section class="category" id="storage" style="display:none">
+<section class="category" id="storage">
 <div class="category-header">
 <h2>Data Storage &amp; Repositories</h2>
 <span class="category-count">storage</span>
@@ -8036,7 +8042,7 @@ for ent in doc.ents:
 
 </div>
 </section>
-<section class="category" id="processing" style="display:none">
+<section class="category" id="processing">
 <div class="category-header">
 <h2>Big Data &amp; Processing</h2>
 <span class="category-count">processing</span>
@@ -9367,7 +9373,7 @@ Vendor-specific (check the docs)
 
 </div>
 </section>
-<section class="category" id="governance" style="display:none">
+<section class="category" id="governance">
 <div class="category-header">
 <h2>Data Lifecycle &amp; Governance</h2>
 <span class="category-count">governance</span>
@@ -9983,7 +9989,7 @@ Vendor-specific (check the docs)
 
 </div>
 </section>
-<section class="category" id="lifecycle" style="display:none">
+<section class="category" id="lifecycle">
 <div class="category-header">
 <h2>Data Collection &amp; Wrangling</h2>
 <span class="category-count">lifecycle</span>
@@ -10250,7 +10256,7 @@ Vendor-specific (check the docs)
 
 </div>
 </section>
-<section class="category" id="python" style="display:none">
+<section class="category" id="python">
 <div class="category-header">
 <h2>Python for Data Science</h2>
 <span class="category-count">python</span>
@@ -11197,7 +11203,7 @@ class Circle(object):
 
 </div>
 </section>
-<section class="category" id="quiz" style="display:none">
+<section class="category" id="quiz">
 <div class="category-header">
 <h2>Quiz &amp; Exam Reference</h2>
 <span class="category-count">quiz</span>
@@ -11614,7 +11620,7 @@ class Circle(object):
 
 </div>
 </section>
-<section class="category" id="career" style="display:none">
+<section class="category" id="career">
 <div class="category-header">
 <h2>Course &amp; Career</h2>
 <span class="category-count">career</span>
@@ -13782,7 +13788,7 @@ class Circle(object):
 </div>
 </section>
 
-<section class="category" id="glossary" style="display:none">
+<section class="category" id="glossary">
 <div class="category-header">
 <h2>Consolidated Glossary</h2>
 <span class="category-count">Reference</span>
@@ -13879,7 +13885,7 @@ class Circle(object):
 </div>
 </section>
 
-<section class="category" id="future" style="display:none">
+<section class="category" id="future">
 <div class="category-header">
 <h2>Coming Next — Modules 3–10</h2>
 <span class="category-count">Preview</span>
@@ -13962,33 +13968,32 @@ var SEARCH_INDEX = [{"title": "Data Engineering Scope", "anchor": "data-engineer
     hash = (hash || '').replace(/^#/, '');
 
     var sections = document.querySelectorAll('.category');
-    sections.forEach(function(s) { s.style.display = 'none'; s.classList.remove('search-mode'); });
+    sections.forEach(function(s) { s.classList.remove('active-page', 'search-mode'); });
 
     if (!hash) {
       showLanding();
-      /* Update sidebar */
       document.querySelectorAll('.sidebar-sub-link').forEach(function(l) { l.classList.remove('active'); });
       return;
     }
 
     var target = document.getElementById(hash);
     if (target && target.classList.contains('category')) {
-      target.style.display = 'block';
+      target.classList.add('active-page');
     } else if (target) {
       var parent = target.closest('.category');
-      if (parent) { parent.style.display = 'block'; }
-      else { target.style.display = 'block'; }
+      if (parent) { parent.classList.add('active-page'); }
+      else { target.classList.add('active-page'); }
     } else {
       target = document.querySelector('[data-section="' + hash + '"]');
       if (target) {
         var sec = document.getElementById(target.getAttribute('data-section'));
-        if (sec) sec.style.display = 'block';
+        if (sec) sec.classList.add('active-page');
       }
     }
 
     /* Fallback: show first section if nothing matched */
-    if (!target || Array.from(sections).every(function(s) { return s.style.display === 'none'; })) {
-      if (sections.length > 0) sections[0].style.display = 'block';
+    if (!target || Array.from(sections).every(function(s) { return !s.classList.contains('active-page'); })) {
+      if (sections.length > 0) sections[0].classList.add('active-page');
     }
 
     /* Render mermaid */
@@ -14028,7 +14033,7 @@ var SEARCH_INDEX = [{"title": "Data Engineering Scope", "anchor": "data-engineer
 
   function showLanding() {
     landingPage.classList.remove('hidden');
-    wikiHeader.style.display = 'none';
+    wikiHeader.classList.remove('visible');
     /* Build quick links from SEARCH_INDEX (first link of each section) */
     var ql = document.getElementById('quickLinks');
     var seen = {};
@@ -14050,7 +14055,7 @@ var SEARCH_INDEX = [{"title": "Data Engineering Scope", "anchor": "data-engineer
 
   function hideLanding() {
     landingPage.classList.add('hidden');
-    wikiHeader.style.display = '';
+    wikiHeader.classList.add('visible');
   }
 
   function showLandingPage() {
@@ -14071,8 +14076,7 @@ var SEARCH_INDEX = [{"title": "Data Engineering Scope", "anchor": "data-engineer
   function showSearchPage(q) {
     hideLanding();
     hideSearchPage();
-    /* Hide all sections */
-    document.querySelectorAll('.category').forEach(function(s) { s.style.display = 'none'; s.classList.remove('search-mode'); });
+    document.querySelectorAll('.category').forEach(function(s) { s.classList.remove('active-page', 'search-mode'); });
     document.querySelectorAll('.sidebar-sub-link').forEach(function(l) { l.classList.remove('active'); });
 
     var allCards = document.querySelectorAll('.card');
@@ -14322,16 +14326,13 @@ var SEARCH_INDEX = [{"title": "Data Engineering Scope", "anchor": "data-engineer
       }
       if (e.key === 'Escape') {
         this.value = '';
+        topSearch.value = '';
         searchDropdown.style.display = 'none';
         searchActiveIndex = -1;
         if (currentPage) applyPage(currentPage);
         else showLanding();
         var ms = document.getElementById('mobileSearch');
         if (ms) ms.value = '';
-        var allCards = document.querySelectorAll('.card, .future-card');
-        var sections = document.querySelectorAll('.category');
-        sections.forEach(function(s) { s.style.display = ''; s.classList.remove('search-mode'); });
-        allCards.forEach(function(c) { c.style.display = 'block'; });
       }
     });
     sidebarSearch.addEventListener('blur', function() {
