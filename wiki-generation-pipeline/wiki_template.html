@@ -647,9 +647,16 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
 
   /* ── Page routing ── */
   function applyPage(hash) {
+    highlightSearchTerm('');
     hideLanding();
     hideSearchPage();
     hash = (hash || '').replace(/^#/, '');
+
+    if (hash.indexOf('__search__:') === 0) {
+      var sq = hash.substring('__search__:'.length);
+      displaySearchResults(decodeURIComponent(sq));
+      return;
+    }
 
     var sections = document.querySelectorAll('.category');
     sections.forEach(function(s) { s.classList.remove('active-page', 'search-mode'); });
@@ -716,6 +723,7 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
   var wikiHeader = document.getElementById('wikiHeader');
 
   function showLanding() {
+    highlightSearchTerm('');
     landingPage.classList.remove('hidden');
     wikiHeader.classList.remove('visible');
     /* Build quick links from SEARCH_INDEX (first link of each section) */
@@ -751,17 +759,21 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
   var searchStats = document.getElementById('searchStats');
   var searchResults = document.getElementById('searchResults');
   var topSearch = document.getElementById('topSearch');
+  var activeSearchQuery = '';
 
   function hideSearchPage() {
     searchPage.classList.remove('visible');
     searchPage.style.display = 'none';
   }
 
-  function showSearchPage(q) {
+  function displaySearchResults(q) {
     hideLanding();
     hideSearchPage();
     document.querySelectorAll('.category').forEach(function(s) { s.classList.remove('active-page', 'search-mode'); });
     document.querySelectorAll('.sidebar-sub-link').forEach(function(l) { l.classList.remove('active'); });
+
+    topSearch.value = q;
+    activeSearchQuery = q;
 
     var allCards = document.querySelectorAll('.card');
     var results = [];
@@ -777,7 +789,6 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
         var h2 = cat.querySelector('h2');
         if (h2) section = h2.textContent;
       }
-      /* Build snippet: ~200 chars around first match */
       var full = card.textContent;
       var idx = full.toLowerCase().indexOf(q);
       var start = Math.max(0, idx - 80);
@@ -803,16 +814,29 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
     }
     searchResults.innerHTML = html;
 
-    /* Click handlers for results */
     searchResults.querySelectorAll('.searchp-title').forEach(function(el) {
       el.addEventListener('click', function() {
         topSearch.value = '';
         navigateTo(this.getAttribute('data-anchor'));
+        if (activeSearchQuery) highlightSearchTerm(activeSearchQuery);
       });
     });
 
     searchPage.style.display = 'block';
     searchPage.classList.add('visible');
+  }
+
+  function showSearchPage(q) {
+    if (currentPage !== null) {
+      backStack.push(currentPage);
+    } else {
+      backStack.push('');
+    }
+    forwardStack = [];
+    currentPage = '__search__:' + q;
+    updateNavButtons();
+    displaySearchResults(q);
+    setHash(currentPage);
   }
 
   /* ── Top search bar ── */
@@ -929,6 +953,35 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
     return div.innerHTML;
   }
 
+  function highlightSearchTerm(term) {
+    document.querySelectorAll('.search-highlight').forEach(function(el) {
+      el.replaceWith(el.textContent);
+    });
+    if (!term) return;
+    var visible = document.querySelector('.category.active-page');
+    if (!visible) return;
+    var re = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    var walker = document.createTreeWalker(visible, NodeFilter.SHOW_TEXT, null, false);
+    var textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    textNodes.forEach(function(node) {
+      var matches = node.textContent.match(re);
+      if (!matches) return;
+      var parts = node.textContent.split(re);
+      var frag = document.createDocumentFragment();
+      for (var i = 0; i < parts.length; i++) {
+        frag.appendChild(document.createTextNode(parts[i]));
+        if (i < parts.length - 1) {
+          var mark = document.createElement('span');
+          mark.className = 'search-highlight';
+          mark.textContent = matches[i];
+          frag.appendChild(mark);
+        }
+      }
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
   /* ── Sidebar search dropdown (unchanged) ── */
   function showSearchDropdown(input, dropdown) {
     var q = input.value.trim().toLowerCase();
@@ -1004,8 +1057,8 @@ var SEARCH_INDEX = {{SEARCH_INDEX}};
           searchActiveIndex = -1;
           return;
         }
-        var q = input.value.trim().toLowerCase();
-        if (q) { topSearch.value = q; showSearchPage(q); }
+        var q = this.value.trim().toLowerCase();
+        if (q) { showSearchPage(q); }
         return;
       }
       if (e.key === 'Escape') {
