@@ -13,9 +13,11 @@ Master learning plan and updater tools.
 - **`updates/scraped_resources/`** — Raw scraped output from URL verification.
 
 ### `certificates/`
-Completed certificates.
+Completed certificates organized by provider.
 - **`IBM Data Engineering Professional Certificate/`** — PDFs for completed IBM courses.
-- **`NTI ITIDA Big Data Analysis.pdf`** — NTI Big Data Analysis certificate.
+- **`UCSD Big Data Specialization/`** — UCSD Big Data Specialization certificates.
+- **`Datacamp/`** — DataCamp track certificates (Data Engineer in Python, SQL Associate Data Engineer).
+- **`NTI-ITIDA/`** — NTI Big Data Analysis certificate.
 
 ### `claude skills/`
 Standalone skill files (not part of the wiki pipeline agent skill set).
@@ -81,14 +83,15 @@ Markdown topic files (~40+) covering:
 #### `updates/` — Course Content Being Processed
 | Subdirectory | Content |
 |---|---|
-| `course_1_intro_data_engineering/` | 17 files — C1 M3 deep-dives, quizzes, summaries, viewpoints |
-| `course_2_python_data_science/` | 76+ files across 5 modules (Python basics, data structures, programming, NumPy/pandas, APIs/web scraping) + 32 Jupyter notebooks |
-| `course_3_python_project/` | 11 files — Course index, M1 ETL, IDE setup, labs, deep-dives (XML, glob, pandas) |
-| `ibm_data_engineering_foundations/` | 54 files — IBM DE Foundations (C1) lecture notes, quizzes, viewpoints + `big_data_de_learning_plan_v7.md` |
-| `aws_resources/` | 19 files — AWS explainer pages (01–18 + ecosystem map) covering Spark, Kafka, Kinesis, streaming, security, RabbitMQ |
-| `big_data_specialization_ucsd/` | UCSD Big Data Specialization index + Course 1 intro |
-| `general/` | 9 files — data roles, file formats, data types, SQL dialects |
-| `scraped_resources/` | Raw scraped Coursera course content (courses 11–23) |
+| `course_1_intro_data_engineering/` | 23 files — C1 M1–M4 deep-dives, quizzes, summaries, viewpoints, weakness notes, final project guide (merged from former `ibm_data_engineering_foundations/`) |
+| `course_2_python_data_science/` | 76+ files across 5 modules (Python basics, data structures, programming, NumPy/pandas, APIs/web scraping) + 32 Jupyter notebooks + course index |
+| `course_3_python_project/` | 18 files — Course index, M1 ETL, IDE setup, labs, deep-dives + `code/` (project scripts, data, logs) + `screenshots/` (task screenshots) |
+| `course_4_relational_databases/` | 5 files + `assets/` — course index, M1 course intro, information & data models (enriched with ERD types, data independence), ERDs & relationship types |
+| `aws_resources/` | 20 files — AWS explainer pages (01–19 + ecosystem map) covering Spark, Kafka, Kinesis, streaming, security, RabbitMQ |
+| `big_data_specialization_ucsd/` | UCSD Big Data Specialization index + Course 1 intro (6 modules, 150+ files) |
+| `general/` | 10 files — data roles, file formats, data types, SQL dialects |
+| `linkedin_posts/` | LinkedIn post drafts with images |
+| `scraped_resources/` | Raw scraped Coursera course content (courses 11–23, 83 resources indexed) |
 | `assets/` | `data_platform_architecture.png` |
 
 ### `index.html`
