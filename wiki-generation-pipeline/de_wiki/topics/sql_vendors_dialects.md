@@ -130,6 +130,27 @@ SELECT first_name + ' ' + last_name AS full_name FROM employees;
 SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM employees;
 ```
 
+### Getting the Current Date/Time
+
+```sql
+-- MySQL
+SELECT NOW();
+SELECT CURDATE();
+
+-- PostgreSQL
+SELECT NOW();
+SELECT CURRENT_DATE;
+
+-- SQL Server
+SELECT GETDATE();
+
+-- Oracle
+SELECT SYSDATE FROM DUAL;
+
+-- ANSI SQL (works in most modern systems)
+SELECT CURRENT_TIMESTAMP;
+```
+
 ### Vendor-Specific SQL Dialects
 
 | Dialect | Vendor / Platform | Key Characteristics |
@@ -175,6 +196,31 @@ If a company decides to migrate from Oracle to PostgreSQL, a data engineer must 
 ### Cloud Warehouses Are "Close Enough" to Standard
 
 Modern cloud data warehouses (Snowflake, BigQuery, Redshift) all aim for close compliance with ANSI SQL, making queries more portable across platforms than in the Oracle/SQL Server era. However, they still have their own extensions — especially around handling semi-structured data.
+
+---
+
+## Visual Summary
+
+```mermaid
+flowchart TD
+    A[ANSI SQL Standard] -->|Defines core syntax| B[All SQL Databases]
+
+    B --> C[PostgreSQL\nDialect: PL/pgSQL]
+    B --> D[MySQL\nDialect: MySQL SQL]
+    B --> E[SQL Server\nDialect: T-SQL]
+    B --> F[Oracle\nDialect: PL/SQL]
+    B --> G[Snowflake\nDialect: Snowflake SQL]
+    B --> H[BigQuery\nDialect: BigQuery SQL]
+    B --> I[Spark\nDialect: SparkSQL]
+
+    C -->|Extends| C1["SERIAL, array ops, JSON operators"]
+    D -->|Extends| D1["AUTO_INCREMENT, LIMIT, CONCAT()"]
+    E -->|Extends| E1["IDENTITY, TOP, GETDATE(), TRY/CATCH"]
+    F -->|Extends| F1["SEQUENCE, ROWNUM, SYSDATE, PL/SQL"]
+    G -->|Extends| G1["VARIANT type, semi-structured JSON"]
+    H -->|Extends| H1["ARRAY, STRUCT, nested/repeated fields"]
+    I -->|Extends| I1["Distributed hints, HiveQL compatibility"]
+```
 
 ---
 

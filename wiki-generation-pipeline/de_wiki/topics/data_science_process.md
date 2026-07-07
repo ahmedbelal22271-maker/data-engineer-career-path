@@ -60,6 +60,8 @@ Developed at the San Diego Supercomputer Center (SDSC), the Five P's framework d
 
 Data science is a team discipline. A functional team combines experts in: data and analytics, business domain knowledge, computing and systems engineering, domain science, and big data management. The "unicorn" problem — expecting one person to cover all these — is why organizations build teams instead of hiring individual data scientists.
 
+**Data scientist skills (UCSD framing):** Data science sits at the intersection of three domains: computer science (data engineering, infrastructure, programming), mathematics/statistics (machine learning, statistical modeling, relational algebra), and business expertise (domain knowledge, problem framing, business passion). Key traits include: passion for data, problem understanding, analytical orientation, engineering interest (building solutions, not just analyzing), curiosity about cross-domain work, and communication skills for presenting results. [Cross-ref: topics/data_roles_overview.md — data scientist role]
+
 ### P2: Purpose
 
 The challenge or question defined by the organization's big data strategy. Purpose anchors the entire project. The team starts by asking: *"What is the problem at large? How do we see ourselves solving it?"*
@@ -114,6 +116,8 @@ Select analytical techniques and build a model. The main categories:
 
 ### Step 4 — Report
 Communicate results to stakeholders. Three guiding questions: (1) What is the punchline? (2) What added value do these results provide? (3) How do the results compare to the success criteria? Visualization tools include scatter plots, line graphs, heat maps, and tables. Both favorable and unfavorable results must be presented — inconclusive findings may lead to additional analysis.
+
+> **Analogy (UCSD):** The weather forecast is a model of data science in action. You check the forecast (insight generated from data), decide what to wear (action based on evidence), and the cycle repeats as new data arrives. Business leaders and decision makers do the same — they act based on evidence provided by their data science teams. This is the chain: **Data → Model → Insight → Action.**
 
 ### Step 5 — Act
 Turn insights into action — the step where value is realized. Actions can be: **decision automation** (model output triggers a system action directly), **decision support** (output surfaced to a human decision-maker), or **policy change** (insights inform business rules). After action, monitor and measure impact, then re-evaluate. This creates a cycle: Act → Evaluate → Re-enter process at Step 1 or 2.

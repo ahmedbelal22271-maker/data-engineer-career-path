@@ -53,6 +53,41 @@ GROUP BY region
 ORDER BY total_sales DESC;
 ```
 
+Beyond queries, SQL also handles data manipulation and schema definition:
+
+```sql
+-- Insert a new record
+INSERT INTO employees (employee_id, first_name, department, salary)
+VALUES (1004, 'Diana', 'Engineering', 91000);
+
+-- Update an existing record
+UPDATE employees
+SET salary = 97000
+WHERE employee_id = 1001;
+
+-- Delete a record
+DELETE FROM employees
+WHERE employee_id = 1002;
+
+-- Create a new table
+CREATE TABLE departments (
+    department_id   INT PRIMARY KEY,
+    department_name VARCHAR(100) NOT NULL
+);
+
+-- Create a view
+CREATE VIEW engineering_team AS
+SELECT employee_id, first_name, last_name, salary
+FROM employees
+WHERE department = 'Engineering';
+
+-- Write a stored procedure
+CREATE PROCEDURE get_employee_by_department(IN dept_name VARCHAR(100))
+BEGIN
+    SELECT * FROM employees WHERE department = dept_name;
+END;
+```
+
 > **Note:** While core SQL is standardized (ANSI SQL), most vendors implement extensions — T-SQL (SQL Server), PL/pgSQL (PostgreSQL), PL/SQL (Oracle). Window functions, JSON operators, and procedural extensions differ across platforms.
 
 ---

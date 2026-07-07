@@ -28,9 +28,11 @@ A **delimited text file** stores tabular data as plain text, where each line is 
 
 | Delimiter | Name | Format |
 |---|---|---|
-| `,` | Comma | CSV |
-| `\t` | Tab | TSV |
+| `,` | Comma | CSV — Comma-Separated Values |
+| `\t` | Tab | TSV — Tab-Separated Values |
+| `:` | Colon | — |
 | `\|` | Pipe | — |
+| ` ` | Space | — |
 
 ### Structure
 
@@ -47,6 +49,24 @@ employee_id,first_name,last_name,hire_date,salary
 - **CSV** — general tabular data, maximum spreadsheet compatibility
 - **TSV** — text fields containing commas (addresses, names with suffixes)
 - Tab stops are rarely used in natural language text, making TSV a safer delimiter when fields contain punctuation
+
+**Structural rules:**
+- Each row (line) represents one record.
+- The **first row** is conventionally the column header — it defines the field names.
+- Each column can hold a different data type (date, string, integer, float, boolean).
+- Field values may be of any length.
+- Values containing the delimiter character must be **quoted** (e.g., `"Smith, Jr."` in a CSV).
+
+### When to Use CSV vs. TSV
+
+| Scenario | Recommended Format |
+|---|---|
+| General tabular data with no commas in values | CSV |
+| Text fields that contain commas (e.g., addresses, names with suffixes) | TSV |
+| Data with tab characters in values | CSV |
+| Maximum compatibility with spreadsheet tools (Excel, Google Sheets) | CSV |
+
+> **Why TSV over CSV?** Tab stops (`\t`) are rarely used in natural language text, making them a safer delimiter when field values contain punctuation-heavy content. A field like `"New York, NY"` breaks a naive CSV parser but is unambiguous in a TSV.
 
 ### Strengths
 
@@ -79,6 +99,29 @@ Not ideal for large-scale pipelines (memory-intensive to parse), verbose and non
 ### Common Use in Data Engineering
 
 XLSX is frequent as a **source format** (business teams produce it). It is rarely used as an intermediate or output format in automated pipelines — those use CSV, Parquet, or JSON.
+
+### Internal Structure of XLSX
+
+An `.xlsx` file is a **ZIP archive**. Unzipping it reveals:
+
+```
+[Content_Types].xml
+xl/
+  workbook.xml            ← sheet names, references
+  worksheets/
+    sheet1.xml            ← actual cell data
+  sharedStrings.xml       ← string values (deduplicated)
+  styles.xml              ← formatting definitions
+  charts/                 ← chart definitions (if any)
+```
+
+### Challenges for Data Engineering Pipelines
+
+- **Not streamable:** The entire file must be loaded into memory to parse (unlike CSV, which can be read line by line).
+- **Formulas, not values:** A cell containing `=A1+B1` stores the formula, not the result, until the file is opened and calculated by Excel.
+- **Multiple sheets create ambiguity:** A pipeline must explicitly specify which sheet to read.
+- **Merged cells:** Cells merged across rows/columns break naive row-by-row parsing.
+- **Formatting masquerading as data:** A cell may appear to show `2024-01-15` but actually store a serial number (`45306`) formatted as a date.
 
 ---
 
@@ -122,6 +165,34 @@ Self-descriptive, platform and language independent, supports hierarchy and nest
 
 Verbose (open/close tag syntax produces larger files than JSON or CSV), slower to parse, complex for simple data.
 
+### Parsing Strategies for XML
+
+Two primary approaches exist for parsing XML in data engineering:
+
+**DOM (Document Object Model) Parsing** — loads the entire document into memory as a tree:
+
+```python
+import xml.etree.ElementTree as ET
+
+tree = ET.parse("employees.xml")
+root = tree.getroot()
+
+for employee in root.findall("employee"):
+    emp_id = employee.find("employee_id").text
+    name = employee.find("first_name").text
+    print(emp_id, name)
+```
+
+**SAX (Simple API for XML) Parsing** — event-driven, streams through the document without loading it all at once. Suitable for very large XML files.
+
+### When XML Appears in Data Engineering
+
+- **SOAP web services:** Legacy enterprise APIs (banking, insurance, government) often return XML payloads.
+- **Configuration files:** Many systems (Hadoop, Maven, Spring) use XML for configuration.
+- **Data exchange standards:** HL7 (healthcare), FpML (finance), XBRL (financial reporting) are XML-based standards.
+- **RSS/Atom feeds:** News and content syndication formats.
+- **Office file formats:** Internally, `.docx` and `.xlsx` files are XML documents inside a ZIP archive.
+
 ---
 
 ## 4. Portable Document Format (PDF)
@@ -143,7 +214,25 @@ PDF is **not** a tabular or hierarchical data format. It encodes text as positio
 
 ### Extracting Data from PDFs
 
-PDF is the most common "accidental unstructured data" format in enterprise pipelines. Scanned PDFs are images requiring OCR (Tesseract, AWS Textract) before text processing.
+PDF is the most common "accidental unstructured data" format in enterprise pipelines.
+
+```python
+# Extracting text from a PDF using pdfplumber
+import pdfplumber
+
+with pdfplumber.open("contract_q4_2024.pdf") as pdf:
+    for page in pdf.pages:
+        text = page.extract_text()
+        print(text)
+
+# Extracting a table from a PDF page
+with pdfplumber.open("report.pdf") as pdf:
+    table = pdf.pages[0].extract_table()
+    for row in table:
+        print(row)
+```
+
+> **Common Pitfall:** PDFs generated by scanning a physical document are images, not text. A text extraction library will return nothing useful. These require **OCR (Optical Character Recognition)** tooling (e.g., Tesseract, AWS Textract) to convert pixel data to text before any further processing.
 
 ### Strengths
 
@@ -187,6 +276,17 @@ JSON naturally accommodates **nested objects** and **arrays** within a single re
 ### JSON in APIs and Web Services
 
 JSON is the default response format for the vast majority of modern REST APIs. When a data engineer queries an API, the response almost always arrives as JSON.
+
+```python
+# Calling a REST API and parsing the JSON response
+import requests
+
+response = requests.get("https://api.example.com/employees")
+data = response.json()  # Parses the JSON string into a Python dict/list
+
+for employee in data:
+    print(employee["first_name"], employee["salary"])
+```
 
 ### Strengths
 
@@ -257,17 +357,28 @@ Avro's data encoding is compact binary — not XML, not JSON. XML schema definit
 
 ---
 
-## Choosing the Right Format
+## Choosing the Right Format: Decision Guide
 
-The right format is determined by the system interface, data structure, volume, and downstream consumer requirements:
+```mermaid
+flowchart TD
+    A[What is the primary use?] --> B{Transmit data\nover an API?}
+    B -->|Yes| C[JSON]
+    B -->|No| D{Is the data\ntabular and flat?}
+    D -->|Yes| E{Need Excel features\nor multi-sheet?}
+    E -->|Yes| F[XLSX]
+    E -->|No| G[CSV or TSV]
+    D -->|No| H{Is data hierarchical\nor nested?}
+    H -->|Yes| I{Modern system\nor legacy?}
+    I -->|Modern| J[JSON]
+    I -->|Legacy / enterprise| K[XML]
+    H -->|No| L{Is it a formatted\ndocument or report?}
+    L -->|Yes| M[PDF]
+    L -->|No| N[Re-evaluate data structure]
+```
 
-- **CSV/TSV** — flat tabular data exchange; universal, simple, untyped
-- **XLSX** — business-facing spreadsheets; use at ingestion, convert to pipeline-friendly format
-- **XML** — enterprise data exchange; self-descriptive but verbose
-- **PDF** — presentation format; treat as unstructured data requiring extraction
-- **JSON** — web APIs and semi-structured data; dominant modern data exchange format
+> **Best Practice:** In production data pipelines, flat files (especially CSV/TSV) should be treated as an **ingestion source**, not a storage layer. Once data enters a pipeline, move it to a typed, schema-enforced format (Parquet, Avro, a relational table) as early as possible to eliminate ambiguity and improve downstream performance.
 
-No single format is universally best.
+No single format is universally best — the right choice is determined by the system interface, the data's structure, the volume, and the downstream consumer's requirements.
 
 ---
 

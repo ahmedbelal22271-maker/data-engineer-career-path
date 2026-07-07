@@ -26,6 +26,24 @@ Raw data is organized, cleaned, and optimized for access. Must conform to compli
 ### Stage 3: Data Access and Consumption
 Business stakeholders, applications, analysts, and data scientists pull data. Data analysts may need raw data, business stakeholders need reports/dashboards, applications need custom APIs. Key challenges: interfaces and APIs tailored to specific user needs.
 
+## Application Domains in the Ecosystem
+
+> **Source:** UCSD Course 1, Module 2 — Applications of Big Data
+
+The modern data ecosystem enables transformative applications across multiple domains:
+
+| Domain | Example | Data Types Integrated |
+|--------|---------|----------------------|
+| **Personalized Marketing** | Amazon product recommendations, Netflix viewing suggestions, Target tailored promotions | Purchase history, search logs, viewing history, location data |
+| **Sentiment Analysis / Opinion Mining** | Meltwater/Danone monitoring brand reputation via social media; election sentiment from Twitter feeds | Social media posts, product reviews, news articles |
+| **Healthcare / Precision Medicine** | Individualized treatment plans integrating genomics, sensor data, and lifestyle | FitBit data, genomic sequences (2-40 exabytes by 2025), medical records, patient blogs |
+| **Smart Cities** | San Diego's interconnected sensors for wildfire response, traffic, and energy efficiency | Traffic sensors, satellite data, camera networks, weather sensors |
+| **Wildfire Analytics (WIFIRE)** | SDSC's integrated system for real-time wildfire modeling and forecasting | Satellite imagery, remote sensor data, weather data, social media, fire perimeter maps |
+| **Predictive Maintenance** | Aircraft engine monitoring with in-situ processing (Boeing 787) | Real-time sensor streams, maintenance logs, flight data |
+
+[Cross-ref: topics/big_data_foundations.md — Applications of Big Data]
+[Cross-ref: topics/data_integration_platforms.md — data integration process for WIFIRE]
+
 ## Emerging Technologies Shaping the Ecosystem
 
 - **Cloud Computing** — limitless storage, high-performance computing, open source technologies, ML tools

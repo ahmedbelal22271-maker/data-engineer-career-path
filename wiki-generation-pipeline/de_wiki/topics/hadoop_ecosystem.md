@@ -132,6 +132,59 @@ Spark provides interfaces for all major data programming languages: Java, Scala,
 
 ---
 
+## UCSD Big Data Specialization — Hadoop Ecosystem Content
+
+> **Source:** UCSD Course 1, Module 6 — Systems: Getting Started with Hadoop
+
+### The 4 W's and an H of Hadoop
+
+The UCSD specialization frames Hadoop around five questions:
+- **What's** in the ecosystem? — HDFS, YARN, MapReduce, Hive, Pig, HBase, ZooKeeper, and more
+- **Why** is it beneficial? — scalability on commodity hardware, fault tolerance, variety of data types
+- **Where** is it used? — web analytics, log processing, recommendation systems, scientific computing
+- **Who** uses it? — Yahoo (created it in 2005), Facebook, LinkedIn, eBay, Netflix, and thousands of enterprises
+- **How** do these tools work? — distributed storage + distributed processing + coordination services
+
+### ZooKeeper vs YARN (UCSD Q&A)
+
+A common source of confusion in the Hadoop ecosystem:
+
+| Aspect | YARN | ZooKeeper |
+|--------|------|-----------|
+| **Role** | Resource management and job scheduling | Distributed coordination service |
+| **What it does** | Allocates CPU/memory containers to run jobs | Provides leader election, distributed locks, configuration |
+| **Who uses it** | MapReduce, Spark, Giraph submit resource requests | HBase, Kafka (pre-KRaft), Hadoop HA Namenode |
+| **Key abstraction** | Container (slice of node resources) | znode (hierarchical key-value node) |
+| **Failure handling** | Restarts failed tasks in new containers | Leader election replaces failed coordinator |
+
+**Short version:** YARN decides who gets compute resources to run a job; ZooKeeper helps distributed services coordinate state and agree on leadership.
+
+### MapReduce — The Pasta Sauce Analogy
+
+UCSD uses a cooking analogy to explain MapReduce: you are cooking pasta for colleagues with four friends (compute nodes). Raw vegetables = input data. Each friend chops a random mix of vegetables, measures weight per type, and generates `<key, value>` pairs (MAP phase — e.g., `<tomatoes, 5 lbs>`, `<onions, 10 lbs>`). You assign kitchen areas per vegetable type; friends group bowls of the same type together (SHUFFLE phase). Finally, friends combine same-type bowls into one big bowl with total weight (REDUCE phase — e.g., `<onions, 33.4 lbs>`). You, as coordinator, are the Master node. This scales as more friends join — demonstrating horizontal scalability. [Cross-ref: topics/hadoop_ecosystem.md — MapReduce; topics/cloud_computing_and_distributed_systems.md — MapReduce]
+
+### When to Reconsider Hadoop
+
+Hadoop is a good fit for: large-scale data volume growth, quick access to archival data, multiple applications over the same data store, and high volume/variety workloads. Hadoop is generally **not the best fit** for:
+
+1. **Small datasets** — if data fits on a single machine, Hadoop overhead (cluster setup, HDFS latency) outweighs benefits
+2. **Advanced algorithms requiring specific hardware** — e.g., GPU-accelerated deep learning (TensorFlow/PyTorch)
+3. **Task-level parallelism** — Hadoop is optimized for data parallelism (same function across many data partitions), not running many different functions simultaneously
+4. **Replacing existing databases** — Hadoop complements databases but is not optimized for fast random access or OLTP (HDFS blocks are 128 MB — reading one record may require reading an entire block)
+5. **Highly coupled algorithms** — algorithms with tight synchronization between steps conflict with MapReduce's independent task execution
+
+### Pre-Built Hadoop Images
+
+To accelerate getting started, companies provide **pre-built Hadoop images** (VM images with OS + Hadoop stack pre-installed):
+
+- **Cloudera** — used in the UCSD course; provides pre-assembled stacks
+- **Hortonworks** — provided stacks for Mac and Windows (merged with Cloudera in 2019)
+- **Cloud deployment:** Images can run on IaaS (AWS, Azure, GCP), combining pre-built convenience with cloud elasticity
+
+This avoids the hours-to-days effort of manually installing and configuring HDFS, YARN, Hive, Pig, ZooKeeper, and dependencies. [Cross-ref: topics/cloud_computing_and_distributed_systems.md — IaaS and commodity clusters]
+
+---
+
 ## Summary and Key Takeaways
 
 - **Apache Hadoop** is the foundational open-source framework for distributed big data storage and processing across clusters of commodity hardware.

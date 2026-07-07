@@ -69,11 +69,31 @@ NoSQL databases are designed to store data without requiring a fixed schema. The
 
 **Document Stores** (MongoDB, CouchDB) store data as self-describing documents, typically JSON or BSON. Best for JSON/XML data, content management, user profiles, product catalogs, logs. Documents are queryable but there is no join semantics across documents by default.
 
+```json
+// Example MongoDB document — note the variable structure per record
+{
+  "_id": "doc_001",
+  "type": "support_ticket",
+  "customer": "Acme Corp",
+  "description": "Login page returns 502 after password reset.",
+  "tags": ["auth", "bug", "high-priority"],
+  "attachments": ["screenshot_1.png"]
+}
+```
+
 **Key-Value Stores** (Redis, DynamoDB) store data as simple key-to-value pairs. Extremely fast reads and writes but no query capability on the value's contents. Best for caching, session storage, real-time leaderboards.
 
 **Wide-Column Stores** (Apache Cassandra, HBase) organize data into rows and dynamic columns where each row can have a different set of columns. Horizontally scalable to petabyte scale, optimized for append-heavy workloads. Best for time-series data, IoT sensor streams, event logs.
 
 **Graph Databases** (Neo4j, Amazon Neptune) store data as nodes (entities) and edges (relationships), enabling traversal of complex relationships that would require expensive JOINs in a relational system. Best for social networks, fraud detection, knowledge graphs, recommendation engines.
+
+```mermaid
+graph LR
+    A[User: Alice] -->|follows| B[User: Bob]
+    B -->|follows| C[User: Carol]
+    A -->|purchased| D[Product: Laptop]
+    B -->|reviewed| D
+```
 
 ### NoSQL vs. Relational — Side-by-Side
 
@@ -119,10 +139,36 @@ Audio data typically requires transcription followed by NLP. Tasks include speec
 
 > **In unstructured data pipelines, storage and analysis are decoupled layers. You choose each independently, and you connect them deliberately.**
 
-This stands in contrast to structured data, where the storage system *is* the analysis interface. In unstructured pipelines:
+This stands in contrast to structured data, where the storage system *is* the analysis interface (e.g., a Postgres database queried with SQL). In unstructured pipelines:
 
 1. **Storage layer** answers: "Where does this data live in a way that is durable, scalable, and retrievable?"
 2. **Analysis layer** answers: "What specialized processing does this content type require to extract meaning?"
+
+```mermaid
+flowchart LR
+    subgraph Ingestion
+        A[Raw Unstructured Data\ne.g. PDFs, Images, Audio, JSON]
+    end
+
+    subgraph Storage Layer
+        B1[File System /\nObject Store\ne.g. S3, GCS]
+        B2[NoSQL Database\ne.g. MongoDB, Cassandra, Neo4j]
+    end
+
+    subgraph Analysis Layer
+        C1[Manual Review\nTagging / Extraction]
+        C2[NLP Tools\nSentiment, NER, Search]
+        C3[Computer Vision\nOCR, Object Detection]
+        C4[Speech Tools\nTranscription, Diarization]
+    end
+
+    A --> B1
+    A --> B2
+    B1 -->|Small scale /\none-off| C1
+    B2 -->|Large scale /\nautomated| C2
+    B2 --> C3
+    B2 --> C4
+```
 
 The choice of path is driven by **volume and repeatability**, not by the content type alone. A company with 100 scanned contracts can handle them manually. The same company with 10 million contracts must automate.
 

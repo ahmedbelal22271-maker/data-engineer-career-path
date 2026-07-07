@@ -1,6 +1,6 @@
 # Data Engineering Wiki
 
-*Wiki populated by the Large File Protocol. 64 topic pages across 13 categories.*
+*Wiki populated by the Large File Protocol. 81 topic pages across 14 categories.*
 
 ## Topics
 
@@ -58,6 +58,9 @@
 | c2_python_basics.md | Python | Types, typecasting, expressions, variables |
 | c2_string_operations.md | Python | String indexing, slicing, methods, formatting |
 | c2_jupyter_intro.md | Python | Jupyter notebooks, cells, keyboard shortcuts |
+| aws_big_data_ecosystem.md | Cloud & Infrastructure | AWS big data services: Kinesis, EMR, Glue, Athena, Redshift, S3, QuickSight, security, compliance, edge computing, partners |
+| streaming_data_platforms.md | Data Processing | Apache Kafka (partitioned log model), Spark Streaming (micro-batch), Amazon Kinesis; comparisons, streaming data concepts |
+| rabbitmq_message_queues.md | Data Processing | RabbitMQ architecture, exchanges, competing consumers, Kafka vs RabbitMQ, Amazon MQ |
 | c2_lists_and_tuples.md | Python | Lists, tuples, mutability, methods |
 | c2_dictionaries.md | Python | Key-value pairs, dict operations |
 | c2_sets.md | Python | Unordered unique elements, set operations |
@@ -66,6 +69,20 @@
 | c2_functions.md | Python | Defining/calling functions, scope, *args |
 | c2_exception_handling.md | Python | try/except/else/finally, common exceptions |
 | c2_objects_classes.md | Python | Classes, objects, constructors, methods |
+| c2_file_io.md | Python | File I/O with open(), modes, reading/writing, cursor management, context managers |
+| c2_numpy.md | Python | NumPy arrays, vectorization, linear algebra, broadcasting, ufuncs, aggregation |
+| c2_pandas.md | Python | Pandas DataFrames/Series, reading/writing data, filtering, groupby, merge |
+| c3_etl_pipelines_python.md | Python | ETL in Python: glob, XML parsing, pandas ETL, complete pipeline code, error handling, production best practices |
+| c3_python_ide_dev.md | Python | IDE environment, JupyterLab vs IDEs, kernel/virtual env management, pip install, notebook-to-script workflow |
 | big_data_specialization_ucsd.md | Big Data | UCSD Big Data specialization overview, Course 1 index |
 | data_science_process.md | Big Data | Problem formulation, Five P's, 5-step process, Big Data strategy |
+| c2_apis_data_collection.md | Python | APIs, REST, HTTP methods, requests library, JSON handling, CoinGecko, pagination, error handling |
+| c2_web_scraping.md | Python | HTML structure, BeautifulSoup, pandas read_html, ethics, table extraction, dynamic content handling |
+| c2_file_formats_python.md | Python | CSV, JSON, XML, Excel file I/O with pandas and stdlib, format conversion patterns |
+| c4_data_modeling_and_erds.md | Data Storage | ERDs, crow's foot notation, data models, relationship types, mapping entities to tables |
+| c4_sql_data_types_and_schema_design.md | Data Storage | SQL data types, DDL operations, data movement utilities, loading data |
+| c4_keys_indexes_and_constraints.md | Data Storage | Database hierarchy, PKs/FKs, indexes, constraints, normalization |
+| c4_mysql_and_postgresql.md | Data Storage | MySQL & PostgreSQL hands-on, views, practical comparison |
+| big_data_characteristics_deep_dive.md | Big Data | Detailed examination of the V's of Big Data (Volume, Velocity, Variety, Veracity, Value, Valence) |
+| cloud_computing_and_distributed_systems.md | Cloud & Infrastructure | Cloud service models, distributed file systems, HDFS architecture, YARN, MapReduce |
 | glossary.md | Glossary | 81+ data engineering terms

@@ -119,3 +119,80 @@ Spark is a general-purpose data processing engine designed to extract and proces
 - The rise of IoT and social media fundamentally changed how, how fast, and how much data is generated.
 - Storage cost is no longer a meaningful constraint — organizations now default to storing more data, not less.
 - The ultimate goal of all Big Data work is **Value** — transforming raw data into insights that benefit businesses, individuals, and society.
+
+---
+
+## UCSD Big Data Specialization — Supplementary Concepts
+
+### What Launched the Big Data Era
+
+Two converging opportunities launched the Big Data era: a **growing torrent of data** (McKinsey 2013 identified data science as the #1 catalyst for economic growth) and **cloud computing** — on-demand computing anytime, anywhere, removing the barrier of owned infrastructure. Global data grows ~40% per year while IT spending grows only ~5% per year.
+
+### The Sixth V — Valence
+
+Valence is the **connectedness of data** — the density of connections between data points, analogous to valence electrons in chemistry. It is measured as graph density: the ratio of actual connections to possible connections. As connectivity increases over time, new challenges arise: algorithmic inefficiency on dense graphs, modeling dynamic change (connections appear and disappear), and event detection (local cohesion bursts signal emergent behavior — e.g., a viral trend on Twitter).
+
+### In-Situ Processing
+
+Traditional RDBMS moves data to compute resources. **In-situ processing** reverses this: computation is brought to where the data is generated or stored. This reduces data movement latency and is critical for real-time sensor workloads (e.g., aircraft engine monitoring at 40,000 feet). It enables real-time actions — not just monitoring, but immediate response. This requires an organizational culture shift toward real-time action orientation and scalable computing infrastructure.
+
+### Key Frameworks for Velocity — Storm
+
+Apache **Storm** is an open-source framework for real-time processing of high-velocity data, complementing Hadoop's batch-oriented design. Unlike Hadoop (optimized for volume), Storm handles data generated at fast rates and can integrate with any database or storage technology.
+
+### SCADA Systems
+
+SCADA (Supervisory Control and Data Acquisition) is an industrial control system for remote monitoring and control of physical processes. It spans multiple geographic sites and sensor types, enabling real-time action definition for waste reduction and efficiency improvement. Applied in manufacturing, power generation, water treatment, pipelines, smart buildings, and HVAC systems.
+
+### Data Variety Deep Dive
+
+Data arrives along four axes of variety: **structural** (EKG waveform vs. news article — different organization), **media** (audio vs. transcript — different modality), **semantic** (different units, measurement assumptions, or contextual meanings), and **availability** (real-time vs. stored, polled vs. pushed). Email is a hybrid entity exhibiting all four axes simultaneously.
+
+### Applications of Big Data — UCSD Practitioner Perspectives
+
+> **Source:** UCSD Course 1, Module 2 — Applications of Big Data
+
+**Personalized Marketing & Recommendation Engines:** Amazon, Walmart, and Target use individual consumer data (purchase, search, viewing, location history) to tailor product displays and communications. Amazon personalizes based on previously viewed items; Netflix recommends shows based on viewing history.
+
+**Sentiment Analysis (Opinion Mining):** Companies apply NLP to product reviews and social media feeds to classify sentiment as positive, negative, or neutral. The Meltwater/Danone case study demonstrates this for brand reputation: Meltwater helped Danone monitor social media during a marketing campaign and provided early warning of a reputational crisis (the 2013 European horsemeat scandal), enabling Danone to reassure customers before the news broke in UK press. Twitter feed analysis is regularly used by news channels during elections to gauge public opinion.
+
+**Mobile Advertising & Location-Based Ads:** Platforms use GPS sensors in mobile devices to deliver real-time, location-based advertisements and discounts. Example: a Home Depot scenario where a recent home buyer receives mobile coupons about paint and hardware when near a store location, leveraging integrated consumer data, purchase history, and geolocation.
+
+**Smart Cities:** An interconnected mesh of sensors implanted across cities generates real-time data enabling better service quality, reduced pollution, optimized traffic flow, and energy savings. San Diego is presented as a prototype digital city, generating data from traffic sensors, satellites, and camera networks for wildfire response, traffic management, and energy efficiency. [Cross-ref: topics/data_sources.md — machine-generated, human-generated, organizational data]
+
+**Biomedical Big Data & Genomics:** Genomics is one of the fastest-growing big data types. Storage demand for sequence data is projected to reach 2–40 exabytes by 2025, equivalent to or exceeding YouTube's annual storage demand. Precision medicine integrates sensor data (fitness devices like FitBit producing several GB/day), organizational data (NCBI, Gene Ontology, UMLS knowledge-bases), and people-generated data (mobile health apps, Twitter, blogs, online support groups) to enable individualized treatment. [Cross-ref: topics/big_data_specialization_ucsd.md — Course 1 Module 2]
+
+### Machine-Generated Data — Scale and Characteristics
+
+> **Source:** UCSD Course 1, Module 2 — Machine-Generated Data
+
+Machine-generated data is the **largest and most complex** source of big data. A Boeing 787 produces **0.5 TB per flight** — almost every part continuously updates both flight and ground teams. The Large Hadron Collider generates **40 TB per second** during experiments.
+
+**Three properties of smart devices:**
+1. **Connect** — can connect to other devices or networks
+2. **Execute & Collect** — autonomously execute services and collect data
+3. **Environmental Awareness** — have some knowledge of their environment
+
+The interconnection of smart devices defines the **Internet of Things (IoT)** — spanning home, car, office, city, rural areas, sky, and ocean. Activity trackers (tracking distance, calorie consumption, heartbeat, sleep quality) enable new approaches to patient intervention via personalized medicine.
+
+### Organization-Generated Data — Structured but Siloed
+
+> **Source:** UCSD Course 1, Module 2 — Organization-Generated Data
+
+Organizational data includes commercial transactions, credit card records, government records, e-commerce data, banking/stock records, medical records, sensor data, and clicks. It is highly structured, stored in RDBMS, and queried via SQL.
+
+**The "Structured Data" Continuum** (from UCSD lecture): Structured data exists on a spectrum from human-readable raw formats (CSV, XML) through semantic key-value interchange formats (JSON, RSS, SOAP, ReST) to machine-level binary interfaces (ABI, I/O). This reinforces that "structured" is not binary.
+
+**The silo problem:** Data is traditionally captured at department level without shared infrastructure or cross-organizational access policy, producing outdated, unsynchronized, and invisible datasets. Cloud-based solutions are the leading approach to breaking silos.
+
+### WIFIRE Project — Wildfire Analytics Cyberinfrastructure
+
+> **Source:** UCSD Course 1, Module 2 — WIFIRE Project
+
+The WIFIRE (Workflows Integrating Collaborative Hazard Sciences) project at the San Diego Supercomputer Center (SDSC) builds an integrated system for wildfire analysis by combining satellite and remote sensor data with computational techniques. Key components:
+- **Firemap** — operational web tool for fire behavior modeling and forecasting
+- **WIFIRE Edge** — middleware integrating disparate edge sensing products
+- **WXmap** — integrated weather data tool for fire risk prediction
+- **BurnPro3D** — 3D modeling for planning prescribed burns
+
+The motivating event was the May 2014 San Diego County fires: 14 fires burned 26,000 acres with over $60M in damage and 1 fatality. Wildfire management requires integrating sensor/satellite data, institutional data (fire perimeter maps, fuel maps), and public social media data (Twitter) simultaneously in real time — a big data integration challenge. [Cross-ref: topics/data_integration_platforms.md — data integration process and WIFIRE]

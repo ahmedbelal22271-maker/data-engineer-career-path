@@ -299,3 +299,185 @@ Updated `big_data_specialization_ucsd.md` — added cross-ref to data_science_pr
 - Fix: Added style="display:none" to all 14 section elements in build_wiki.py
 - Fix: Removed syncHash() calls from quick link, showLandingPage, and search result click handlers
 - Rebuilt: 63 cards, 4.24 MB, 0 new/0 modified
+
+## [CONFIG] Processing Session Preamble — 2026-07-03
+Source file path(s): `updates/course_2_python_data_science/module_4_working_with_data/` (20 files), `updates/course_2_python_data_science/module_5_apis_and_data_collection/` (16 files), `updates/course_3_python_project/` (11 files), `updates/aws_resources/` (19 files), `updates/big_data_specialization_ucsd/` (hand-written + Datalab PDF conversions), `updates/scraped_resources/` (scraped web course content)
+Source file type: structured documents — course lesson notes with markdown formatting
+Approximate known size: ~500,000 bytes across ~15,000 lines (all new content)
+Expected content characteristics: Python file I/O, numpy, pandas, APIs, web scraping, ETL pipelines, AWS big data ecosystem, supplemental UCSD content parallel-safe across courses
+Downstream use case: Data Engineering Wiki — single self-contained HTML
+Wiki output directory: `de_wiki/`
+File type module(s) to invoke: 12C — Structured Document Sources
+Parallelization pre-assessment: LIKELY FEASIBLE — content is independent across courses (Python M4-M5, C3 project, AWS resources, UCSD supplements)
+
+## [Phase 0] Landscape Inventory — 2026-07-03
+- updates/: 15 subdirs, 363 .md, 43 .pdf, 1433 images
+- de_wiki/topics/: 64 topic files (plus glossary)
+- de_wiki/log.md: 301 lines of processing history
+- Unextracted PDFs: 0 (all 43 existing PDFs already converted to .md via Datalab)
+- Image audit: 1433 images across updates/ subdirectories, 928 jpg, 313 png, 171 img, 10 webp
+- Modified topic files (uncommitted): 8 files enhanced with UCSD supplementary content
+- Status: INVENTORY COMPLETE
+
+## [PHASE 2] Deep Extraction — C2 M4 Python File I/O, NumPy, Pandas
+New topic files created: c2_file_io.md, c2_numpy.md, c2_pandas.md
+Source files consumed: 20 (.md files in module_4_working_with_data/)
+
+## [Phase 1] Indexing — 2026-07-03
+Index files read: de_wiki/index.md, updates/course_2_python_data_science/* (M4-M5), updates/course_3_python_project/, updates/aws_resources/, updates/big_data_specialization_ucsd/course_1_intro_to_big_data/course_1_index.md
+Processing delta:
+  - 8 modified topic files (UCSD content enriched): big_data_foundations, data_integration_platforms, data_roles_overview, data_sources, data_types, governance_compliance, nosql_databases, quiz_study_reference
+  - C2 M4 (File I/O, NumPy, Pandas): 20 files → 3 new topics needed (file_io, numpy, pandas)
+  - C2 M5 (APIs, Web Scraping, File Formats): 16 files → 2-3 new topics needed
+  - C3 Python Project (ETL, glob, XML, IDE): 11 files → 2-3 new topics needed
+  - AWS Resources (Kafka, Spark, Kinesis, streaming, cloud security): 19 files → new topics
+  - UCSD Datalab PDF conversions: already extracted into topic files
+Existing topic pages: 64
+Uncategorized files: None — all tracked in index
+Missing referenced files: None
+Status: INDEXES READ
+
+## [PHASE 2] Deep Extraction — AWS Big Data Ecosystem
+New topic files created:
+  - aws_big_data_ecosystem.md (AWS big data services, security, compliance, edge computing, partners — 572 lines)
+  - streaming_data_platforms.md (Apache Kafka, Spark Streaming, Kinesis; comparisons, streaming concepts — 722 lines)
+  - rabbitmq_message_queues.md (RabbitMQ architecture, exchanges, competing consumers, Kafka comparison — 827 lines)
+Source files consumed: 19 (.md files in updates/aws_resources/)
+Cross-references: big_data_foundations.md, hadoop_ecosystem.md, data_platform_architecture.md, data_warehouses_lakes.md, etl_elt_pipelines.md
+index.md updated with 3 new entries (67 total topic pages)
+
+## [PHASE 2] Deep Extraction — C2 M5 APIs, Web Scraping, File Formats
+New topic files created: c2_apis_data_collection.md, c2_web_scraping.md, c2_file_formats_python.md
+Source files consumed: 16 (.md files in module_5_apis_and_data_collection/)
+
+## [PHASE 2] Deep Extraction — C3 Python Project for Data Engineering
+New topic files created: c3_etl_pipelines_python.md, c3_python_ide_dev.md
+Source files consumed: 11 (.md files in course_3_python_project/)
+
+## [PHASE 3] Cross-Reference Synthesis — COMPLETE
+Cross-references added: new Python pages link to existing Python pages; AWS/streaming pages link to big_data_foundations, hadoop_ecosystem, data_platform_architecture
+Contradictions resolved: None new
+Distribution check passed: no single page exceeds 40%
+Gap audit: C2 M4-M5 (file I/O, numpy, pandas, APIs, web scraping) now filled; C3 Python project extracted; AWS streaming/message queue content added
+Lint check: all cross-references verified, no orphan pages
+
+## [PHASE 4] Build — COMPLETE
+HTML rebuilt: wiki.html, output/option_a/index.html, repo-root index.html
+Cards: 74 (NEW: 11, MODIFIED: 0, ORIGINAL: 63)
+File size: 4,846,477 bytes (4.73 MB)
+New topic pages added: c2_file_io, c2_numpy, c2_pandas, c2_apis_data_collection, c2_web_scraping, c2_file_formats_python, c3_etl_pipelines_python, c3_python_ide_dev, aws_big_data_ecosystem, streaming_data_platforms, rabbitmq_message_queues
+Existing topic pages enhanced with UCSD content: 8 (big_data_foundations, data_integration_platforms, data_roles_overview, data_sources, data_types, governance_compliance, nosql_databases, quiz_study_reference)
+build_wiki.py SECTIONS updated: Python section expanded from 11 to 19 cards; Processing section expanded from 9 to 13 cards
+Status: HTML RENDERED — 74 cards, 4.73 MB
+
+## [PHASE 5] Pre-Ship Checklist
+- [x] index.md on disk and current (75 topic pages listed)
+- [x] log.md has entries for all phases
+- [x] spine.md has entry for every chunk (from prior sessions)
+- [x] contradictions.md exists; no PENDING entries
+- [x] All topics/ files on disk and populated (75 topic files)
+- [x] output_map.md covers all output sections
+- [x] master_summary.md complete
+- [x] No open [REQUIRES VERIFICATION] or [STATUS: PENDING]
+- [x] Source files unmodified
+- [x] No fabricated content
+- [x] HTML rendered and verified (74 cards, 4.73 MB)
+
+## [Phase 3] Extraction — 2026-07-07
+New topic files created from IBM relational_databases (C4):
+  - c4_data_modeling_and_erds.md (ERDs, crow's foot, data models, relationship types, mapping entities to tables)
+  - c4_sql_data_types_and_schema_design.md (SQL data types, DDL, constraints, keys, views, concurrency, MySQL/PostgreSQL guide)
+New topic files created from UCSD Big Data Specialization:
+  - big_data_characteristics_deep_dive.md (detailed V's deep dive)
+  - cloud_computing_and_distributed_systems.md (cloud service models, distributed file systems, HDFS architecture, YARN, MapReduce)
+index.md updated: 75 → 79 topic pages
+
+## [Phase 0] Landscape Inventory — 2026-07-07
+- updates/: 5 major subtrees (providers/, general/, linkedin_posts/, scraped_resources/, assets/)
+- providers/ibm/: 213 .md files (relational_databases: 54, python_for_data_science: many, python_project: many, data_engineering: many, course_1_intro: 9)
+- providers/ucsd/: 127 .md files (course_1_intro_to_big_data: 122)
+- providers/aws/: 25 .md files (resources: 20 lesson files)
+- general/: 3 .md files
+- de_wiki/topics/: 75 topic files (last modified: Jul 3)
+- updates/ total .md: 457
+- Images in updates/: 1,241
+- Unextracted PDFs: 0 (all converted)
+- Key unextracted content: IBM relational_databases (54 files), UCSD course 1 supplemental (122 files), IBM course_1_intro module_2 (9 files), general (3 files)
+- Status: INVENTORY COMPLETE
+
+## [Phase 0] Landscape Inventory — 2026-07-07 (Session Start)
+- updates/: providers/, general/, linkedin_posts/, scraped_resources/, assets/, updates/
+- providers/ibm/: 5 courses (data_engineering, python_for_data_science, python_project, relational_databases, course_1_intro)
+- providers/ucsd/: big_data_specialization (course_1 + coursera-sdsc labs)
+- providers/aws/: resources (21 files)
+- de_wiki/topics/: 79 topic files (last modified range: Jun 26 – Jul 7)
+- updates/ total .md: 457 | total images: 1,413 (899 jpg, 319 png, 171 img, 13 gif, 10 webp, 1 jpeg) | total PDFs: 46 (all UCSD, already converted per log)
+- Already extracted last session (Jul 7): c4_data_modeling_and_erds.md, c4_sql_data_types_and_schema_design.md, big_data_characteristics_deep_dive.md, cloud_computing_and_distributed_systems.md
+- Key unextracted content remaining: IBM relational_databases modules 2-3 (~40 files), UCSD course_1_intro_to_big_data modules 1-6 supplemental (~100+ files), IBM course_1_intro module_2 (9 files), general/lessons (2 files)
+- Index files discovered: 70+ index.md files across providers/, de_wiki/, outputs/, and reference indexes
+- Status: INVENTORY COMPLETE — PROCEEDING TO PHASE 1 INDEXING
+
+## [Phase 1] Indexing — 2026-07-07
+Index files read:
+  - Wiki state: de_wiki/index.md (79 topics), de_wiki/log.md, de_wiki/spine.md, de_wiki/output_map.md
+  - Provider root: updates/providers/index.md
+  - Per-provider: ibm/index.md, ucsd/index.md, aws/index.md
+  - Per-course: ibm/relational_databases/index.md, ibm/course_1_introduction_to_data_engineering/index.md, ucsd/big_data_specialization/index.md, ucsd/big_data_specialization/course_1_intro_to_big_data/index.md
+  - Full course indexes: c4_full_course_index.md (C4 detailed timing), c1_full_course_index.md (UCSD C1), c2_full_course_index.md (reference), full_specialization_index.md (UCSD all 6 courses)
+  - Per-module: 12+ module index.md files across ibm/relational_databases (M1-M3), ibm/course_1_intro (M2), ucsd/course_1 (M1-M6)
+  - General: updates/general/indexes/_index.md, updates/scraped_resources/_output/_index.md
+  - Stage prompts: output/option_a/stage_prompts/stage_index.md
+  - Reference indexes: useful side prompts/c2_full_course_index.md, useful side prompts/big_data_specializaiton_index_san_diego.md
+Processing delta:
+  - NEW content (no wiki page exists): C4 M2 (creating tables, DDL/DML, ALTER/DROP, data movement, loading data, database hierarchy, PKs/FKs, indexes, constraints, normalization), C4 M3 (MySQL hands-on, PostgreSQL, views)
+  - ENRICHMENT (overlaps existing wiki pages): UCSD M1-M6 supplemental content (100+ files), IBM C1 M2 ecosystem files (7 files), general lessons (2 files)
+  - REDUNDANT: IBM C1 M2 topics already covered by existing wiki pages (data_types, file_formats, languages, sql_vendors, unstructured_data)
+Existing topic pages: 79
+Course Index Automation Trigger check: C4 index has detailed timings (previously processed); no new timing-detailed indexes introduced this session. TRIGGER: INACTIVE.
+Status: INDEXES READ — PROCEEDING TO PHASE 2 PREPARATION
+
+## [Phase 2] Preparation — 2026-07-07
+Protocols loaded: large_files_protocol.md (core engine)
+Skills loaded: none required beyond built-in capabilities
+Build context: scripts/build_wiki.py read (722 lines, 14 SECTIONS, 79 topic cards), wiki_template.html state known
+PDFs: 46 total (all previously converted, no unextracted PDFs)
+Course Index Automation Trigger: INACTIVE (no new timing-detailed indexes)
+Extraction strategy:
+  - C4 M2-M3 (new content): Create new topic pages for SQL DDL operations, keys/indexes/constraints, MySQL/PostgreSQL hands-on
+  - UCSD M1-M6 (enrichment): Subagent parallel enrichment of existing wiki pages (big_data_foundations, data_sources, data_science_process, cloud_computing, hadoop_ecosystem, etc.)
+  - IBM C1 M2 (redundant): Selective enrichment of existing ecosystem pages where novel content exists
+  - General: Enrich data_roles_overview and data_sources where applicable
+Status: READY FOR EXTRACTION — PROCEEDING TO PHASE 3
+
+## [Phase 3] Extraction — Deep Extraction & Enrichment — COMPLETE
+New topic files created:
+  - c4_keys_indexes_and_constraints.md (database hierarchy, PKs/FKs, indexes, all 6 constraint types, normalization 1NF→3NF→BCNF — 16.7 KB)
+  - c4_mysql_and_postgresql.md (MySQL & PostgreSQL hands-on, views, side-by-side comparison — 13.9 KB)
+Existing files enriched:
+  - c4_sql_data_types_and_schema_design.md (expanded with DDL operations, data movement utilities, loading data methods)
+  - big_data_foundations.md (UCSD: applications, machine-gen data, WIFIRE, precision medicine)
+  - big_data_characteristics_deep_dive.md (UCSD: Laney 3 V's origin, Powers of Ten analogy, Google Flu Trends, Amazon Banana Slicer)
+  - data_science_process.md (UCSD: data scientist 3-domain skills, weather report analogy)
+  - modern_data_ecosystem.md (UCSD: application domains table)
+  - cloud_computing_and_distributed_systems.md (UCSD: elasticity definition, rental-car analogy, commodity clusters)
+  - hadoop_ecosystem.md (UCSD: 4 W's of Hadoop, MapReduce pasta sauce analogy, reconsider-Hadoop checklist)
+  - data_sources.md (UCSD + IBM C1 M2: form analogy for sensor data)
+  - data_roles_overview.md (IBM C1 M2: 4 new specialist roles with interaction map)
+  - file_formats.md (IBM C1 M2: delimiter table, XLSX internals, XML parsing strategies, PDF extraction code)
+  - languages_for_data_pros.md (IBM C1 M2: SQL DDL/DML examples)
+  - sql_vendors_dialects.md (IBM C1 M2: current date/time vendor examples)
+  - unstructured_data_storage.md (IBM C1 M2: MongoDB example, graph DB mermaid diagram)
+  - big_data_specialization_ucsd.md (UCSD: expanded module index, case studies, instructor context)
+Total topic pages: 79 → 81
+Cross-references: wired between new C4 pages and existing C4 pages; enrichment cross-refs added to UCSD related pages
+index.md updated with 2 new entries
+Status: EXTRACTION COMPLETE — PROCEEDING TO PHASE 4 BUILD
+
+## [Phase 4] Build — COMPLETE
+HTML rebuilt: wiki.html, output/option_a/index.html, repo-root index.html
+Cards: 80 (NEW: 2, MODIFIED: 14, ORIGINAL: 64)
+File size: 4,996,203 bytes (4.88 MB)
+New topic pages: c4_keys_indexes_and_constraints.md, c4_mysql_and_postgresql.md
+Enriched pages (14): c4_sql_data_types_and_schema_design, big_data_foundations, big_data_characteristics_deep_dive, data_science_process, modern_data_ecosystem, cloud_computing_and_distributed_systems, hadoop_ecosystem, data_sources, data_roles_overview, file_formats, languages_for_data_pros, sql_vendors_dialects, unstructured_data_storage, big_data_specialization_ucsd
+build_wiki.py SECTIONS updated: Data Storage section +2 cards
+Status: HTML RENDERED — PROCEEDING TO PHASE 5 SHIP
