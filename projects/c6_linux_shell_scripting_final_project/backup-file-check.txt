@@ -1,0 +1,5 @@
+total 28
+-rw-r--r-- 1 root root 9522 Jul 20 10:43 'backup-[1784544238].tar.gz'
+-rwxr-xr-x 1 root root 1372 Jul 20 10:43  backup.sh
+drwxr-xr-x 2 root root 4096 Jul 20 10:43  important-documents
+-rw-r--r-- 1 root root 4995 Sep 28  2022  important-documents.zip
