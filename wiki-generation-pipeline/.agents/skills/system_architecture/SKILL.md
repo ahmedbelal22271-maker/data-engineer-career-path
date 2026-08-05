@@ -20,6 +20,9 @@ Before resorting to parallelization or launching multiple subagents, you **must*
 ## Fail-Fast Rule
 - Monitor subagents closely. If they fail or produce bad work, **abandon parallelization immediately**. Fall back to a single, fully-informed agent.
 
+## Subagent Time-Budget & Timeout Policy (Reference)
+Every task-tool subagent must be spawned with a realistic time budget, an enrichment cap, and a live-search cap. Over-budget or inactive subagents are stopped cooperatively and resumed from their on-disk state — never silently re-run. **Enforcement lives in the Parallel Transcript Processor skill's Time-Budget & Timeout Policy** (`.agents/skills/parallel_transcript_processor/SKILL.md`); this section is a pointer only, because this skill is NOT injected every session.
+
 ## Subagent Memory Requirements
 Every subagent must hold the core protocols in its system prompt to be valid. You must use platform-native subagent definition tools to ensure they inherit the Core OS Kernel (`AGENTS.md`).
 

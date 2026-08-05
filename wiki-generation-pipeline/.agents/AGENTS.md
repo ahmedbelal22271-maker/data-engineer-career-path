@@ -56,6 +56,7 @@ Before ANY content enrichment under `updates/`:
 3. **Batch size: up to 10 concurrent tasks per message.** If you have 15 independent files to create, spawn 10 in the first message, then 5 in the second after the first batch completes.
 4. **Use the `task` tool with `subagent_type: "general"`** for content processing tasks. Each subagent gets one self-contained task with all context embedded in the prompt.
 5. **Never pair or merge independent tasks into one agent** to "save on agent count" — this serializes what should be parallel and wastes time.
+6. **Every task-tool subagent gets a realistic time budget at spawn time** (computed per the Time-Budget & Timeout Policy in the Parallel Transcript Processor skill). Over-budget or inactive subagents are stopped cooperatively and resumed from their on-disk state (task_id in-session, fresh spawn cross-session) — never silently re-run. Partial files are never indexed or shipped. Standalone (non-parallel) enrichment sessions are NOT budgeted.
 
 **Triggers that MUST be parallel:**
 - Multiple transcript segments to enrich
@@ -239,6 +240,6 @@ Before ANY modification of files under `.agents/` or `opencode.json`, load the *
 
 **Scope:** AGENTS.md, rules, skills, workflows, root-level files, `opencode.json`.
 
-**Anti-Context-Bloat Mandate:** Any system-file modification must pass the Pipeline Config Manager's Anti-Context-Bloat Audit (Step 2e): no redundant additions, prefer edit over add and on-demand over every-session placement, and clean existing bloat in the edited file. Injected instructions total ~35,600 tokens/session — growth must be justified, not decorative.
+**Anti-Context-Bloat Mandate:** Any system-file modification must pass the Pipeline Config Manager's Anti-Context-Bloat Audit (Step 2e): no redundant additions, prefer edit over add and on-demand over every-session placement, and clean existing bloat in the edited file. Injected instructions total ~39,500 tokens/session (measured 2026-08-05) — growth must be justified, not decorative.
 
 **Consequence:** Modifying system files without loading Pipeline Config Manager first is a BREACH.
