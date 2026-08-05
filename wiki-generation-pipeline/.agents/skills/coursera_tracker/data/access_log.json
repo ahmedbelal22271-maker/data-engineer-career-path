@@ -1,0 +1,242 @@
+[
+  {
+    "timestamp": "2026-07-13T18:11:40.304463+00:00",
+    "url": "https://www.coursera.org/learn/machine-learning",
+    "path": "/learn/machine-learning",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:10.943416+00:00",
+    "url": "https://www.coursera.org/learn/machine-learning",
+    "path": "/learn/machine-learning",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:10.949326+00:00",
+    "url": "https://www.coursera.org/specializations/data-science",
+    "path": "/specializations/data-science",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:10.961426+00:00",
+    "url": "https://www.coursera.org/professional-certificates/google-it",
+    "path": "/professional-certificates/google-it",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:10.977319+00:00",
+    "url": "https://www.coursera.org/api/v1/enrollments",
+    "path": "/api/v1/enrollments",
+    "allowed": false,
+    "reason": "hardcoded block: /api/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:10.995233+00:00",
+    "url": "https://www.coursera.org/lecture/ml/week-1",
+    "path": "/lecture/ml/week-1",
+    "allowed": false,
+    "reason": "matches Disallow: /lecture/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:11.011973+00:00",
+    "url": "https://www.coursera.org/account/settings",
+    "path": "/account/settings",
+    "allowed": false,
+    "reason": "hardcoded block: /account/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:11.029514+00:00",
+    "url": "https://www.coursera.org/search?query=machine+learning",
+    "path": "/search",
+    "allowed": false,
+    "reason": "hardcoded block: /search",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:11.048275+00:00",
+    "url": "https://www.coursera.org/maestro/api/something",
+    "path": "/maestro/api/something",
+    "allowed": false,
+    "reason": "hardcoded block: /maestro/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:12:11.066415+00:00",
+    "url": "https://www.coursera.org/api/utilities/v1/imageproxy/some-image",
+    "path": "/api/utilities/v1/imageproxy/some-image",
+    "allowed": false,
+    "reason": "hardcoded block: /api/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.374344+00:00",
+    "url": "https://www.coursera.org/learn/machine-learning",
+    "path": "/learn/machine-learning",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.375267+00:00",
+    "url": "https://www.coursera.org/specializations/data-science",
+    "path": "/specializations/data-science",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.403298+00:00",
+    "url": "https://www.coursera.org/professional-certificates/google-it",
+    "path": "/professional-certificates/google-it",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.432405+00:00",
+    "url": "https://www.coursera.org/api/v1/enrollments",
+    "path": "/api/v1/enrollments",
+    "allowed": false,
+    "reason": "hardcoded block: /api/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.457112+00:00",
+    "url": "https://www.coursera.org/lecture/ml/week-1",
+    "path": "/lecture/ml/week-1",
+    "allowed": false,
+    "reason": "matches Disallow: /lecture/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.481961+00:00",
+    "url": "https://www.coursera.org/account/settings",
+    "path": "/account/settings",
+    "allowed": false,
+    "reason": "hardcoded block: /account/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.522578+00:00",
+    "url": "https://www.coursera.org/search?query=machine+learning",
+    "path": "/search",
+    "allowed": false,
+    "reason": "hardcoded block: /search",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.566704+00:00",
+    "url": "https://www.coursera.org/maestro/api/something",
+    "path": "/maestro/api/something",
+    "allowed": false,
+    "reason": "hardcoded block: /maestro/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:13.611990+00:00",
+    "url": "https://www.coursera.org/api/utilities/v1/imageproxy/some-image",
+    "path": "/api/utilities/v1/imageproxy/some-image",
+    "allowed": false,
+    "reason": "hardcoded block: /api/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.015438+00:00",
+    "url": "https://www.coursera.org/learn/machine-learning",
+    "path": "/learn/machine-learning",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.016726+00:00",
+    "url": "https://www.coursera.org/specializations/data-science",
+    "path": "/specializations/data-science",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.041078+00:00",
+    "url": "https://www.coursera.org/professional-certificates/google-it",
+    "path": "/professional-certificates/google-it",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.059382+00:00",
+    "url": "https://www.coursera.org/api/v1/enrollments",
+    "path": "/api/v1/enrollments",
+    "allowed": false,
+    "reason": "matches Disallow: /api/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.077027+00:00",
+    "url": "https://www.coursera.org/lecture/ml/week-1",
+    "path": "/lecture/ml/week-1",
+    "allowed": false,
+    "reason": "matches Disallow: /lecture/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.097060+00:00",
+    "url": "https://www.coursera.org/account/settings",
+    "path": "/account/settings",
+    "allowed": false,
+    "reason": "matches Disallow: /account/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.128607+00:00",
+    "url": "https://www.coursera.org/search?query=machine+learning",
+    "path": "/search",
+    "allowed": false,
+    "reason": "matches Disallow: /search",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.166679+00:00",
+    "url": "https://www.coursera.org/maestro/api/something",
+    "path": "/maestro/api/something",
+    "allowed": false,
+    "reason": "matches Disallow: /maestro/api/",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.199255+00:00",
+    "url": "https://www.coursera.org/api/utilities/v1/imageproxy/some-image",
+    "path": "/api/utilities/v1/imageproxy/some-image",
+    "allowed": true,
+    "reason": "matches Allow: /api/utilities/v1/imageproxy",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.316534+00:00",
+    "url": "https://www.coursera.org/learn/ml",
+    "path": "/learn/ml",
+    "allowed": true,
+    "reason": "no blocking rule found",
+    "user_agent": "ClaudeBot"
+  },
+  {
+    "timestamp": "2026-07-13T18:13:49.354183+00:00",
+    "url": "https://www.coursera.org/api/v1/x",
+    "path": "/api/v1/x",
+    "allowed": false,
+    "reason": "matches Disallow: /api/",
+    "user_agent": "ClaudeBot"
+  }
+]
