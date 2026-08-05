@@ -38,8 +38,15 @@ SQL-focused learning path.
 - `SQL Fundamentals Skill Path/`, `Introduction to Snowflake SQL/`, `Data Warehousing concepts/`, `Associate Data Engineer in SQL.pdf`.
 
 ### `projects/`
-Completed course projects.
+Completed course projects — one neat subdirectory per project.
+- **`course2-data-aggregator/`** — Course 2 project: World Bank GDP data aggregator (CSV + API, melt/merge, analysis notebook).
 - **`course3-banks-project/`** — Course 3 Python project: banks ETL pipeline (web scraping, BeautifulSoup, pandas, SQLite). Script, outputs, docs, and screenshots.
+- **`c4_coffee_shop_database_final_project/`** — Course 4 final project: Coffee Shop Database (SQL dumps, generated ERD, task screenshots, views, test script).
+- **`c5_databases_and_sql_for_data_science_final_project/`** — Course 5 final project: Module 5 final project notebook.
+- **`c6_linux_shell_scripting_final_project/`** — Course 6 final project: Linux shell scripting backup automation (backup.sh, crontab schedule, task screenshots).
+- **`c9_data_warehouse_fundamentals_practice_project/`** — Course 9 practice project: consumer electronics retail data warehouse (star schema design, PostgreSQL, docker-compose, CSV data, task screenshots).
+- **`c9_data_warehouse_fundamentals_final_project/`** — Course 9 final project: solid waste management company data warehouse (star schema, GROUPING SETS/ROLLUP/CUBE queries, materialized view, PostgreSQL + pgAdmin).
+- *(prepared, not yet committed)* **`c8_etl_data_pipelines_with_shell_airflow_and_kafka_final_project/`** — Course 8 final project: Build ETL Data Pipelines with BashOperator using Apache Airflow (assignment PDF + enriched handouts).
 
 ### `updates/`
 Transient raw course update files too large or unstructured for the wiki pipeline.
