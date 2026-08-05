@@ -1,0 +1,682 @@
+<!DOCTYPE html><html><head>
+      <title>c8_m4_lab_kafka_python_client_handson</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\marwa\.antigravity-ide\extensions\shd101wyy.markdown-preview-enhanced-0.8.30-universal\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-details{margin:0;padding:0;border:none}.markdown-preview .md-toc summary.md-toc-link-wrapper{cursor:pointer;list-style-position:outside}.markdown-preview .md-toc summary.md-toc-link-wrapper::marker{font-size:.85em}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='0']{margin-left:12px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='1']{margin-left:28px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='2']{margin-left:44px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='3']{margin-left:60px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='4']{margin-left:76px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='5']{margin-left:80px}.markdown-preview a.tag,.markdown-preview a.tag:active,.markdown-preview a.tag:link,.markdown-preview a.tag:visited,.markdown-preview span.tag:not(.token){display:inline-block;background-color:var(--vscode-badge-background,rgba(127,127,127,.18));color:var(--vscode-badge-foreground,currentColor);border-radius:2em;font-size:.85em;font-weight:500;padding:.05em .55em;line-height:1.5;white-space:nowrap;text-decoration:none;text-shadow:none;box-shadow:none;transition:background-color .12s ease,opacity .12s ease}.markdown-preview a.tag{cursor:pointer}.markdown-preview a.tag:focus,.markdown-preview a.tag:hover{background-color:var(--vscode-badge-background,rgba(127,127,127,.32));color:var(--vscode-badge-foreground,currentColor);opacity:.85;text-decoration:none;outline:0}.markdown-preview .wikilink-embed-content{border-left:3px solid var(--vscode-textBlockQuote-border,rgba(128,128,128,.3));background:var(--vscode-textBlockQuote-background,rgba(128,128,128,.05));margin:.5em 0;padding:.5em .75em;border-radius:0 3px 3px 0}.markdown-preview .wikilink-embed-content.wikilink-embed-error{border-left-color:var(--vscode-errorForeground,#cf222e);color:var(--vscode-errorForeground,#cf222e);font-style:italic;opacity:.8}.markdown-preview .wikilink-embed-content h1:first-child,.markdown-preview .wikilink-embed-content h2:first-child,.markdown-preview .wikilink-embed-content h3:first-child,.markdown-preview .wikilink-embed-content h4:first-child,.markdown-preview .wikilink-embed-content h5:first-child,.markdown-preview .wikilink-embed-content h6:first-child{margin-top:.25em}.markdown-preview .wikilink-embed-content .wikilink-embed-content{margin:.25em 0;padding:.25em .5em}.markdown-preview .block-id{display:none}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}.scrollbar-style::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-details{margin:0;padding:0;border:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='0']{padding-left:0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='1']{padding-left:16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='2']{padding-left:32px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='3']{padding-left:48px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='4']{padding-left:64px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='5']{padding-left:80px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<blockquote>
+<p><strong>Course 8:</strong> ETL and Data Pipelines with Shell, Airflow, and Kafka<br>
+<strong>Module 4:</strong> Apache Kafka Streaming Data</p>
+</blockquote>
+<p><mark style="background-color: rgba(255, 235, 59, 0.2);">NEW</mark></p>
+<h1 id="hands-on-lab-kafka-python-client">Hands-on Lab: Kafka Python Client </h1>
+<h2 id="lab-overview">Lab Overview </h2>
+<table>
+<thead>
+<tr>
+<th>Detail</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Estimated time</strong></td>
+<td>30 minutes</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>Skills Network Cloud IDE (Theia + Docker)</td>
+</tr>
+<tr>
+<td><strong>License</strong></td>
+<td>IBM Corporation</td>
+</tr>
+<tr>
+<td><strong>Authors</strong></td>
+<td>Ramesh Sana Reddy, Lavanya T S, Shreya Khurana</td>
+</tr>
+</tbody>
+</table>
+<h2 id="objectives">Objectives </h2>
+<p>After completing this lab, you will be able to:</p>
+<ul>
+<li>Use kafka-python to interact with Kafka server in Python</li>
+<li>Send and receive messages through the Kafka-python client</li>
+</ul>
+<h2 id="about-skills-network-cloud-ide">About Skills Network Cloud IDE </h2>
+<p>Skills Network Cloud IDE (based on Theia and Docker) provides an environment for hands on labs for course and project-related labs. Theia is an open-source IDE (Integrated Development Environment) that can be run on desktop or on the cloud. To complete this lab, we will be using the Cloud IDE based on Theia running in a Docker container.</p>
+<p>[ENRICHED: definition — "Theia" is an open-source IDE framework developed by Eclipse Foundation. It provides a browser-based development environment similar to VS Code, supporting multiple programming languages and extensions. Theia is designed to be cloud-native, making it ideal for educational lab environments where users need consistent, pre-configured development setups.] [Source: <a href="https://theia-ide.org/">https://theia-ide.org/</a>]</p>
+<h2 id="important-notice-about-this-lab-environment">Important Notice About This Lab Environment </h2>
+<p>Please be aware that sessions for this lab environment are not persistent. A new environment is created for you every time you connect to this lab. Any data you may have saved in an earlier session will get lost. To avoid losing your data, please plan to complete these labs in a single session.</p>
+<p>[ENRICHED: context — The non-persistent environment means Kafka data, topics, and configurations exist only during your session. When you disconnect, everything is wiped. This is why the lab walks you through setup from scratch — there is no "resume" path. Plan to complete the entire lab in one sitting.] [Source: UNCERTAIN]</p>
+<hr>
+<h2 id="exercise-1-download-and-extract-kafka">Exercise 1: Download and Extract Kafka </h2>
+<h3 id="step-1--open-a-terminal">Step 1 — Open a terminal </h3>
+<p>Open a new terminal by clicking the menu bar and selecting Terminal-&gt;New Terminal.</p>
+<p>This will open a new terminal at the bottom of the screen.</p>
+<h3 id="step-2--download-kafka">Step 2 — Download Kafka </h3>
+<p>Run the command below to download Kafka:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">wget</span> https://downloads.apache.org/kafka/4.3.1/kafka_2.13-4.3.1.tgz
+</code></pre><p>[ENRICHED: definition — "wget" is a command-line utility for downloading files from the web using HTTP, HTTPS, and FTP protocols. It works non-interactively, making it ideal for automated scripts and lab environments. The name stands for "World Wide Web get."] [Source: <a href="https://www.gnu.org/software/wget/">https://www.gnu.org/software/wget/</a>]</p>
+<p>[ENRICHED: context — The download URL points to Apache Kafka 4.3.1 with Scala 2.13. The "2.13" refers to the Scala version Kafka is built with. Kafka is written in Scala and runs on the JVM (Java Virtual Machine). Version 4.3.1 is the latest stable release as of July 2026. Note: Kafka 3.8.0 is no longer available on the Apache downloads server — older versions are archived at <a href="http://archive.apache.org">archive.apache.org</a>.] [Source: <a href="https://kafka.apache.org/downloads">https://kafka.apache.org/downloads</a>]</p>
+<p>[ENRICHED: correction — The original lab used Kafka 3.8.0 which is no longer available (404 error). Updated to Kafka 4.3.1, the latest stable release. Kafka 4.x dropped ZooKeeper support entirely — KRaft is now the only mode. The commands remain compatible since the binary structure hasn't changed.] [Source: <a href="https://downloads.apache.org/kafka/">https://downloads.apache.org/kafka/</a>]</p>
+<h3 id="step-3--extract-kafka">Step 3 — Extract Kafka </h3>
+<p>Extract Kafka from the zip file by running the command below:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">tar</span> <span class="token parameter variable">-xzf</span> kafka_2.13-4.3.1.tgz
+</code></pre><p>[ENRICHED: definition — "tar" is a tape archive utility used to combine multiple files into a single archive file (tarball) and extract them. The flags "-xzf" mean: -x (extract), -z (decompress with gzip), -f (specify filename). This is the standard way to distribute source code and binaries on Linux/Unix systems.] [Source: <a href="https://www.gnu.org/software/tar/">https://www.gnu.org/software/tar/</a>]</p>
+<p>This creates a new directory <code>kafka_2.13-4.3.1</code> in the current directory.</p>
+<hr>
+<h2 id="exercise-2-configure-kraft-and-start-server">Exercise 2: Configure KRaft and Start Server </h2>
+<h3 id="step-1--navigate-to-kafka-directory">Step 1 — Navigate to Kafka directory </h3>
+<p>Change to the <code>kafka_2.13-4.3.1</code> directory:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> kafka_2.13-4.3.1
+</code></pre><h3 id="step-2--generate-cluster-uuid">Step 2 — Generate Cluster UUID </h3>
+<p>Generate a Cluster UUID that will uniquely identify the Kafka cluster:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token assign-left variable">KAFKA_CLUSTER_ID</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>bin/kafka-storage.sh random-uuid<span class="token variable">)</span></span>"</span>
+</code></pre><p>[ENRICHED: definition — "KRaft" (Kafka Raft) is Kafka's built-in consensus protocol that replaces the need for Apache ZooKeeper. In older Kafka versions (pre-3.x), ZooKeeper was required to manage cluster metadata, leader election, and configuration. KRaft mode embeds this functionality directly into Kafka itself, simplifying deployment and reducing operational overhead. Kafka 3.3+ marks KRaft as production-ready, and ZooKeeper is deprecated as of Kafka 4.0.] [Source: <a href="https://kafka.apache.org/documentation/#kraft">https://kafka.apache.org/documentation/#kraft</a>]</p>
+<p>[ENRICHED: context — The cluster UUID is a unique identifier for your Kafka cluster. It's used by KRaft to coordinate between brokers and maintain cluster state. Each Kafka cluster must have a unique ID to prevent conflicts in multi-cluster environments.] [Source: UNCERTAIN]</p>
+<p>Note: This cluster ID will be used by the KRaft controller.</p>
+<h3 id="step-3--configure-log-directories">Step 3 — Configure log directories </h3>
+<p>KRaft requires the log directories to be configured. Run the following command to configure the log directories passing the cluster ID:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>bin/kafka-storage.sh <span class="token function">format</span> <span class="token parameter variable">-t</span> <span class="token variable">$KAFKA_CLUSTER_ID</span> <span class="token parameter variable">-c</span> config/kraft/server.properties
+</code></pre><p>[ENRICHED: definition — "Log directories" in Kafka are where message data is physically stored on disk. Each topic partition has its own log directory containing segment files. Kafka uses append-only log files for high write throughput and efficient disk I/O.] [Source: <a href="https://kafka.apache.org/documentation/#design">https://kafka.apache.org/documentation/#design</a>]</p>
+<h3 id="step-4--start-kafka-server">Step 4 — Start Kafka server </h3>
+<p>Now that KRaft is configured, you can start the Kafka server by running the following command:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>bin/kafka-server-start.sh config/kraft/server.properties
+</code></pre><p>Note: You can be sure it has started when you see an output contains messages that confirm the Kafka Server started successfully.</p>
+<p>[ENRICHED: context — The server.properties file contains all Kafka broker configuration. Key settings include: <code>broker.id</code> (unique broker identifier), <code>listeners</code> (network endpoints), <code>log.dirs</code> (data storage locations), and <code>num.partitions</code> (default partitions per topic). In KRaft mode, this file also contains controller configuration.] [Source: <a href="https://kafka.apache.org/documentation/#brokerconfigs">https://kafka.apache.org/documentation/#brokerconfigs</a>]</p>
+<hr>
+<h2 id="exercise-3-create-a-topic-in-the-adminpy-file">Exercise 3: Create a Topic in the <a href="http://admin.py">admin.py</a> File </h2>
+<h3 id="step-1--install-kafka-python">Step 1 — Install kafka-python </h3>
+<p>Open a new terminal and navigate to the <code>kafka_2.13-4.3.1</code> directory:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> kafka_2.13-4.3.1
+</code></pre><p>Install the kafka-python package by running the following command:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip3 <span class="token function">install</span> kafka-python
+</code></pre><p>[ENRICHED: definition — "kafka-python" is a pure Python client library for Apache Kafka. It provides a Pythonic interface for interacting with Kafka brokers, including producing messages, consuming messages, and administrative operations. While convenient for development and learning, it has lower performance than C-based alternatives like confluent-kafka-python.] [Source: <a href="https://github.com/dpkp/kafka-python">https://github.com/dpkp/kafka-python</a>]</p>
+<p>[ENRICHED: alternative — For production workloads requiring high throughput, consider using <code>confluent-kafka-python</code> instead. It wraps librdkafka (a C library) and provides 5-10x better performance. Install with <code>pip install confluent-kafka</code>. See the reading material for detailed comparison.] [Source: <a href="https://github.com/confluentinc/confluent-kafka-python">https://github.com/confluentinc/confluent-kafka-python</a>]</p>
+<h3 id="step-2--create-adminpy">Step 2 — Create <a href="http://admin.py">admin.py</a> </h3>
+<p>Create a file named <code>admin.py</code> by running the following command:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">touch</span> admin.py
+</code></pre><p>[ENRICHED: definition — "touch" is a Unix command that creates an empty file if it doesn't exist, or updates the timestamp if it does. It's commonly used to create placeholder files in scripts and lab exercises.] [Source: <a href="https://man7.org/linux/man-pages/man1/touch.1.html">https://man7.org/linux/man-pages/man1/touch.1.html</a>]</p>
+<p>Click the button below to open the file in edit mode and paste the following content in the file and save it.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> kafka<span class="token punctuation">.</span>admin <span class="token keyword keyword-import">import</span> KafkaAdminClient<span class="token punctuation">,</span> NewTopic
+
+admin_client <span class="token operator">=</span> KafkaAdminClient<span class="token punctuation">(</span>
+    bootstrap_servers<span class="token operator">=</span><span class="token string">"localhost:9092"</span><span class="token punctuation">,</span>
+    client_id<span class="token operator">=</span><span class="token string">'test'</span>
+<span class="token punctuation">)</span>
+
+topic_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+new_topic <span class="token operator">=</span> NewTopic<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">"bankbranch"</span><span class="token punctuation">,</span>
+    num_partitions<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>
+    replication_factor<span class="token operator">=</span><span class="token number">1</span>
+<span class="token punctuation">)</span>
+topic_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>new_topic<span class="token punctuation">)</span>
+admin_client<span class="token punctuation">.</span>create_topics<span class="token punctuation">(</span>new_topics<span class="token operator">=</span>topic_list<span class="token punctuation">)</span>
+</code></pre><p><strong>Line-by-line breakdown:</strong></p>
+<p>Line 1: <code>from kafka.admin import KafkaAdminClient, NewTopic</code></p>
+<ul>
+<li>Imports the administrative client class and NewTopic class from kafka-python library</li>
+<li><code>KafkaAdminClient</code>: Used for topic management, cluster information, and other admin operations</li>
+<li><code>NewTopic</code>: A class that defines the configuration for a new topic</li>
+</ul>
+<p>Line 3-5: <code>admin_client = KafkaAdminClient(...)</code></p>
+<ul>
+<li>Creates an administrative client instance</li>
+<li><code>bootstrap_servers="localhost:9092"</code>: Specifies the Kafka broker to connect to (localhost on default port 9092)</li>
+<li><code>client_id='test'</code>: A logical identifier for this client, useful for logging and monitoring</li>
+</ul>
+<p>Line 7: <code>topic_list = []</code></p>
+<ul>
+<li>Initializes an empty list to hold topic definitions</li>
+<li>Kafka supports batch topic creation for efficiency</li>
+</ul>
+<p>Line 8-12: <code>new_topic = NewTopic(...)</code></p>
+<ul>
+<li>Defines a new topic with the following configuration:</li>
+<li><code>name="bankbranch"</code>: The topic name (must be unique in the cluster)</li>
+<li><code>num_partitions=2</code>: The topic will have 2 partitions for parallel processing</li>
+<li><code>replication_factor=1</code>: Each partition will be stored on 1 broker (no replication for this lab)</li>
+</ul>
+<p>Line 13: <code>topic_list.append(new_topic)</code></p>
+<ul>
+<li>Adds the topic definition to the list for batch creation</li>
+</ul>
+<p>Line 14: <code>admin_client.create_topics(new_topics=topic_list)</code></p>
+<ul>
+<li>Sends the topic creation request to the Kafka broker</li>
+<li>Creates all topics in the list in a single API call</li>
+</ul>
+<p><strong>Big picture:</strong> This script creates a topic called "bankbranch" with 2 partitions. In production, you'd typically use replication_factor=3 for fault tolerance. The topic will store ATM transaction data from multiple bank branches.</p>
+<p>[ENRICHED: performance context — Replication factor 3 is the industry standard for production Kafka deployments. With RF=3, you can tolerate up to 2 broker failures while maintaining data availability. The optimal production configuration is: replication_factor=3, min.insync.replicas=2, acks=all — this ensures at least 2 in-sync replicas acknowledge each write before the producer considers it successful. Going beyond RF=3 (e.g., RF=5 or RF=7) is only justified for extremely critical data like financial transactions or audit logs where you need to survive entire rack/datacenter failures, but it comes with significant trade-offs: 5x storage cost, higher network overhead, and increased replication lag. For ATM transaction data like in this lab, RF=3 is optimal — it provides excellent fault tolerance without excessive overhead. [Source: <a href="https://www.conduktor.io/kafka/kafka-topics-choosing-the-replication-factor-and-partitions-count">https://www.conduktor.io/kafka/kafka-topics-choosing-the-replication-factor-and-partitions-count</a>]]</p>
+<p>Note: We are creating a topic "bankbranch" through this code.</p>
+<hr>
+<h2 id="exercise-4-create-the-producerpy-file">Exercise 4: Create the <a href="http://producer.py">producer.py</a> File </h2>
+<p>You need a producer to send messages to Kafka. You will find the code for the producer in the <code>producer.py</code> file.</p>
+<h3 id="step-1--create-producerpy">Step 1 — Create <a href="http://producer.py">producer.py</a> </h3>
+<p>Create a file named <code>producer.py</code> by running the following command:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">touch</span> producer.py
+</code></pre><p>Click the button below to open the file in edit mode and paste the following content in the file and save it.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> kafka <span class="token keyword keyword-import">import</span> KafkaProducer
+<span class="token keyword keyword-import">import</span> json
+
+producer <span class="token operator">=</span> KafkaProducer<span class="token punctuation">(</span>
+    value_serializer<span class="token operator">=</span><span class="token keyword keyword-lambda">lambda</span> v<span class="token punctuation">:</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+producer<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"bankbranch"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'atmid'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'transid'</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+producer<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"bankbranch"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'atmid'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'transid'</span><span class="token punctuation">:</span> <span class="token number">101</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+producer<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+producer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><p><strong>Line-by-line breakdown:</strong></p>
+<p>Line 1: <code>from kafka import KafkaProducer</code></p>
+<ul>
+<li>Imports the KafkaProducer class for publishing messages to Kafka topics</li>
+</ul>
+<p>Line 2: <code>import json</code></p>
+<ul>
+<li>Imports Python's built-in JSON library for serialization</li>
+</ul>
+<p>Line 4-6: <code>producer = KafkaProducer(...)</code></p>
+<ul>
+<li>Creates a producer instance with custom serialization</li>
+<li><code>value_serializer=lambda v: json.dumps(v).encode('utf-8')</code>: A lambda function that:
+<ul>
+<li>Takes a Python dictionary <code>v</code></li>
+<li>Converts it to JSON string with <code>json.dumps(v)</code></li>
+<li>Encodes to UTF-8 bytes with <code>.encode('utf-8')</code></li>
+</ul>
+</li>
+<li><strong>Why bytes?</strong> Kafka stores messages as raw bytes, regardless of format. The serializer converts Python objects to bytes.</li>
+</ul>
+<p>Line 8: <code>producer.send("bankbranch", {'atmid': 1, 'transid': 100})</code></p>
+<ul>
+<li>Sends a message to the "bankbranch" topic</li>
+<li>Message value: <code>{'atmid': 1, 'transid': 100}</code> (ATM ID 1, transaction ID 100)</li>
+<li>The <code>send()</code> method is asynchronous — it returns immediately without waiting for broker acknowledgment</li>
+</ul>
+<p>Line 9: <code>producer.send("bankbranch", {'atmid': 2, 'transid': 101})</code></p>
+<ul>
+<li>Sends a second message with different ATM and transaction IDs</li>
+</ul>
+<p>Line 11: <code>producer.flush()</code></p>
+<ul>
+<li>Blocks until all pending messages are sent to the broker</li>
+<li><strong>Critical for reliability:</strong> Without flush(), messages might be lost if the program exits before they're sent</li>
+</ul>
+<p>[ENRICHED: performance context — <code>producer.flush()</code> is a synchronous operation that forces all buffered messages to be sent immediately and blocks until the broker acknowledges them. Here's why it matters:</p>
+<p><strong>How Kafka's async send works:</strong></p>
+<ol>
+<li>When you call <code>producer.send()</code>, the message goes into an internal buffer — it is NOT sent to the broker immediately</li>
+<li>The producer batches messages together for efficiency (controlled by <code>linger.ms</code> and <code>batch.size</code> configs)</li>
+<li>An internal thread sends batches to the broker in the background</li>
+<li>If your program exits before the background thread sends the batch, <strong>those messages are lost</strong></li>
+</ol>
+<p><strong>What flush() does:</strong></p>
+<ul>
+<li>Makes all buffered records immediately available to send (even if <code>linger.ms</code> &gt; 0)</li>
+<li>Blocks until all pending requests are completed (broker acknowledges or error occurs)</li>
+<li>After <code>flush()</code> returns, every previously sent record has <code>Future.isDone() == true</code></li>
+</ul>
+<p><strong>When to use flush():</strong></p>
+<ul>
+<li>Before exiting a short-lived producer script (like this lab)</li>
+<li>After sending a batch of critical messages you need confirmation on</li>
+<li>When consuming from one system and producing to Kafka (ensures each batch completes)</li>
+</ul>
+<p><strong>When NOT to use flush():</strong></p>
+<ul>
+<li>In high-throughput production producers — calling <code>flush()</code> after every <code>send()</code> turns it into a synchronous producer, killing throughput by 10-100x</li>
+<li>Instead, rely on <code>close()</code> which internally calls <code>flush()</code>, or set <code>delivery.timeout.ms</code> and use callbacks</li>
+</ul>
+<p><strong>Production best practice:</strong> For high-throughput workloads, use async send with callbacks and call <code>flush()</code> only at the end of a batch or before <code>close()</code>. The <code>close()</code> method automatically calls <code>flush()</code> and releases resources, so it's the preferred way to ensure delivery in production. [Source: <a href="https://kafka.apache.org/43/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html">https://kafka.apache.org/43/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html</a>]]</p>
+<p>Line 12: <code>producer.close()</code></p>
+<ul>
+<li>Gracefully closes the producer connection</li>
+<li>Releases network resources and cleans up internal state</li>
+</ul>
+<p><strong>Big picture:</strong> This producer sends two ATM transaction records to Kafka. In a real system, you'd send thousands of messages per second from multiple ATMs. The <code>flush()</code> and <code>close()</code> calls ensure all messages are delivered before the program exits.</p>
+<p>[ENRICHED: clarity — <strong>Do you need both flush() and close()?</strong> Technically, no. <code>close()</code> internally calls <code>flush()</code> first, then releases resources. So calling <code>close()</code> alone would work fine here. The lab shows both for educational purposes — to teach the explicit pattern.</p>
+<p><strong>Why flush() exists as a separate method:</strong></p>
+<ul>
+<li><code>flush()</code> sends all buffered messages but keeps the producer open — useful in long-running producers that process batches periodically</li>
+<li><code>close()</code> calls <code>flush()</code> then kills the producer — use when you're done forever</li>
+</ul>
+<p><strong>When you'd use flush() without close():</strong></p>
+<ul>
+<li>Processing millions of messages in a loop, flushing every N messages</li>
+<li>Need to confirm delivery before continuing business logic</li>
+<li>Transactional workflows where you commit after flushing</li>
+</ul>
+<p><strong>For this simple script:</strong> Just <code>close()</code> would suffice. The explicit <code>flush()</code> before <code>close()</code> is redundant but harmless — it's a teaching pattern, not a production requirement. [Source: <a href="https://kafka.apache.org/43/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html">https://kafka.apache.org/43/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html</a>]]</p>
+<p>In the above code, the producer is sending across two messages through this code. These messages will be received by the consumer.</p>
+<hr>
+<h2 id="exercise-5-create-the-consumerpy-file">Exercise 5: Create the <a href="http://consumer.py">consumer.py</a> File </h2>
+<p>You need a consumer to read messages from Kafka. The code for consumer will be written in the <code>consumer.py</code> file.</p>
+<h3 id="step-1--create-consumerpy">Step 1 — Create <a href="http://consumer.py">consumer.py</a> </h3>
+<p>Create a file named <code>consumer.py</code> by running the following command:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">touch</span> consumer.py
+</code></pre><p>Click the button below to open the file in edit mode and paste the following content in the file and save it.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> kafka <span class="token keyword keyword-import">import</span> KafkaConsumer
+
+consumer <span class="token operator">=</span> KafkaConsumer<span class="token punctuation">(</span>
+    <span class="token string">'bankbranch'</span><span class="token punctuation">,</span>
+    group_id<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>
+    bootstrap_servers<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'localhost:9092'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    auto_offset_reset<span class="token operator">=</span><span class="token string">'earliest'</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>consumer<span class="token punctuation">)</span>
+
+<span class="token keyword keyword-for">for</span> msg <span class="token keyword keyword-in">in</span> consumer<span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>value<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><p><strong>Line-by-line breakdown:</strong></p>
+<p>Line 1: <code>from kafka import KafkaConsumer</code></p>
+<ul>
+<li>Imports the KafkaConsumer class for subscribing to Kafka topics</li>
+</ul>
+<p>Line 3-7: <code>consumer = KafkaConsumer(...)</code></p>
+<ul>
+<li>Creates a consumer instance with configuration:</li>
+<li><code>'bankbranch'</code>: The topic to subscribe to</li>
+<li><code>group_id=None</code>: No consumer group (standalone consumer). In production, use a group ID for load balancing across multiple consumers</li>
+<li><code>bootstrap_servers=['localhost:9092']</code>: The Kafka broker(s) to connect to</li>
+<li><code>auto_offset_reset='earliest'</code>: Start reading from the beginning of the topic (earliest offset). Options: 'earliest', 'latest', 'none'</li>
+</ul>
+<p>Line 9: <code>print("Hello")</code></p>
+<ul>
+<li>Debug output to confirm the consumer started</li>
+</ul>
+<p>Line 10: <code>print(consumer)</code></p>
+<ul>
+<li>Prints the consumer object (shows configuration and connection state)</li>
+</ul>
+<p>Line 12-13: <code>for msg in consumer: ...</code></p>
+<ul>
+<li>Iterates through messages from the topic</li>
+<li><code>msg.value.decode("utf-8")</code>: Decodes the message bytes back to a UTF-8 string</li>
+<li><strong>Important:</strong> The consumer runs indefinitely in a polling loop. It will keep waiting for new messages until interrupted (Ctrl+C)</li>
+</ul>
+<p><strong>Big picture:</strong> This consumer subscribes to the "bankbranch" topic and prints each ATM transaction as it arrives. The <code>auto_offset_reset='earliest'</code> ensures it reads all historical messages, not just new ones. In production, you'd use consumer groups for parallel processing across multiple instances.</p>
+<hr>
+<h2 id="exercise-6-execute-the-three-python-files">Exercise 6: Execute the Three Python Files </h2>
+<h3 id="step-1--run-adminpy-and-producerpy">Step 1 — Run <a href="http://admin.py">admin.py</a> and <a href="http://producer.py">producer.py</a> </h3>
+<p>Execute <code>admin.py</code> and <code>producer.py</code> using the following commands in terminal:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>python3 admin.py
+python3 producer.py
+</code></pre><p>[ENRICHED: context — Run these commands in the terminal where you installed kafka-python. The <a href="http://admin.py">admin.py</a> script creates the topic, and <a href="http://producer.py">producer.py</a> sends messages to it. You should see no output if successful (kafka-python is silent on success).]</p>
+<h3 id="step-2--run-consumerpy">Step 2 — Run <a href="http://consumer.py">consumer.py</a> </h3>
+<p>Open a new terminal and execute the following commands to run <a href="http://consumer.py">consumer.py</a>:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> kafka_2.13-4.3.1
+python3 consumer.py
+</code></pre><p>Your consumer should print the messages sent by the producer as follows:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>Hello
+&lt;kafka.consumer.group_consumer.KafkaConsumer object at 0x...&gt;
+{"atmid": 1, "transid": 100}
+{"atmid": 2, "transid": 101}
+</code></pre><p>[ENRICHED: troubleshooting — If you see no output from the consumer, check that:</p>
+<ol>
+<li>The Kafka server is running (Exercise 2)</li>
+<li>The topic was created (Exercise 3)</li>
+<li>The producer sent messages (Exercise 4)</li>
+<li><code>auto_offset_reset='earliest'</code> is set (not 'latest')</li>
+</ol>
+<p>If you see "NoBrokersAvailable" error, ensure Kafka is listening on localhost:9092.]</p>
+<hr>
+<h2 id="practice-exercise">Practice Exercise </h2>
+<p>Create a new producer from bankbranch in a file named <code>new_producer.py</code> which will take user input as long as the user wants and accept user input for the ATM number they want to transact with (1 or 2) and stream the transaction.</p>
+<p>Observe the consumer getting the events streamed by the producer in real time.</p>
+<h3 id="solution">Solution </h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> kafka <span class="token keyword keyword-import">import</span> KafkaProducer
+<span class="token keyword keyword-import">import</span> json
+
+producer <span class="token operator">=</span> KafkaProducer<span class="token punctuation">(</span>
+    value_serializer<span class="token operator">=</span><span class="token keyword keyword-lambda">lambda</span> v<span class="token punctuation">:</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+transid <span class="token operator">=</span> <span class="token number">100</span>  <span class="token comment"># Starting transaction ID</span>
+
+<span class="token keyword keyword-while">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-try">try</span><span class="token punctuation">:</span>
+        <span class="token comment"># Get ATM number from user</span>
+        atmid <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Enter ATM number (1 or 2) or 0 to exit: "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token keyword keyword-if">if</span> atmid <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"Exiting..."</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-break">break</span>
+
+        <span class="token keyword keyword-if">if</span> atmid <span class="token keyword keyword-not">not</span> <span class="token keyword keyword-in">in</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"Invalid ATM number. Please enter 1 or 2."</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-continue">continue</span>
+
+        <span class="token comment"># Send transaction to Kafka</span>
+        producer<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"bankbranch"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'atmid'</span><span class="token punctuation">:</span> atmid<span class="token punctuation">,</span> <span class="token string">'transid'</span><span class="token punctuation">:</span> transid<span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Sent: ATM </span><span class="token interpolation"><span class="token punctuation">{</span>atmid<span class="token punctuation">}</span></span><span class="token string">, Transaction </span><span class="token interpolation"><span class="token punctuation">{</span>transid<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+        transid <span class="token operator">+=</span> <span class="token number">1</span>  <span class="token comment"># Increment transaction ID</span>
+
+    <span class="token keyword keyword-except">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"\nExiting..."</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-break">break</span>
+    <span class="token keyword keyword-except">except</span> ValueError<span class="token punctuation">:</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"Please enter a valid number."</span><span class="token punctuation">)</span>
+
+producer<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+producer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"Producer closed."</span><span class="token punctuation">)</span>
+</code></pre><p><strong>Line-by-line breakdown:</strong></p>
+<p>Line 1-2: Imports KafkaProducer and json for message serialization</p>
+<p>Line 4-6: Creates producer with JSON serialization (same as before)</p>
+<p>Line 8: <code>transid = 100</code></p>
+<ul>
+<li>Starting transaction ID. In production, this would come from a database or sequence generator</li>
+</ul>
+<p>Line 10: <code>while True:</code></p>
+<ul>
+<li>Infinite loop to continuously accept user input</li>
+<li>The loop runs until the user enters 0 or presses Ctrl+C</li>
+</ul>
+<p>Line 12: <code>atmid = int(input(...))</code></p>
+<ul>
+<li>Prompts user for ATM number and converts to integer</li>
+<li><code>input()</code> blocks until the user types something and presses Enter</li>
+</ul>
+<p>Line 14-15: <code>if atmid == 0: break</code></p>
+<ul>
+<li>Exit condition: user enters 0 to stop</li>
+</ul>
+<p>Line 17-19: <code>if atmid not in [1, 2]: continue</code></p>
+<ul>
+<li>Input validation: only accepts ATM numbers 1 or 2</li>
+<li><code>continue</code> skips the rest of the loop and prompts again</li>
+</ul>
+<p>Line 22: <code>producer.send("bankbranch", {'atmid': atmid, 'transid': transid})</code></p>
+<ul>
+<li>Sends the transaction to Kafka</li>
+<li>The message contains the user-specified ATM number and auto-incremented transaction ID</li>
+</ul>
+<p>Line 23: <code>print(f"Sent: ATM {atmid}, Transaction {transid}")</code></p>
+<ul>
+<li>Confirms the message was sent (asynchronous — may not be delivered yet)</li>
+</ul>
+<p>Line 25: <code>transid += 1</code></p>
+<ul>
+<li>Increments transaction ID for the next message</li>
+</ul>
+<p>Line 28-29: <code>except KeyboardInterrupt: break</code></p>
+<ul>
+<li>Handles Ctrl+C gracefully</li>
+<li>Allows the user to stop the producer with Ctrl+C</li>
+</ul>
+<p>Line 30-31: <code>except ValueError: print(...)</code></p>
+<ul>
+<li>Handles non-integer input (e.g., user types "abc" instead of a number)</li>
+</ul>
+<p>Line 34-35: <code>producer.flush()</code> and <code>producer.close()</code></p>
+<ul>
+<li>Ensures all pending messages are sent before exiting</li>
+<li>Cleans up the producer connection</li>
+</ul>
+<p><strong>Big picture:</strong> This interactive producer simulates a real-world ATM system where transactions arrive in real-time. Run this producer in one terminal and the consumer in another to see live transaction streaming. Each message appears instantly in the consumer terminal.</p>
+<hr>
+<h2 id="troubleshooting-common-errors">Troubleshooting Common Errors </h2>
+<h3 id="kafkatimeouterror-unable-to-bootstrap-from-localhost9092">KafkaTimeoutError: Unable to bootstrap from ['localhost:9092'] </h3>
+<p><strong>Cause:</strong> The Kafka server is not running. All Python scripts (<a href="http://admin.py">admin.py</a>, <a href="http://producer.py">producer.py</a>, <a href="http://consumer.py">consumer.py</a>) require the Kafka server to be running on <code>localhost:9092</code>.</p>
+<p><strong>How to fix:</strong></p>
+<ol>
+<li>Open a <strong>dedicated terminal</strong> for the Kafka server (keep it running)</li>
+<li>Navigate to the Kafka directory:<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> kafka_2.13-4.3.1
+</code></pre>
+</li>
+<li>Start the Kafka server:<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>bin/kafka-server-start.sh config/kraft/server.properties
+</code></pre>
+</li>
+<li>Wait until you see output confirming the server started successfully</li>
+<li><strong>Keep this terminal open</strong> — closing it stops the Kafka server</li>
+<li>In a <strong>separate terminal</strong>, run your Python scripts</li>
+</ol>
+<p>[ENRICHED: troubleshooting — The KafkaTimeoutError occurs because Kafka's async architecture requires a running broker before any client can connect. The Python scripts don't start Kafka — they only connect to it. You need 3 terminals: one for the Kafka server (always running), one for the producer, and one for the consumer. If you close the Kafka server terminal, all producers and consumers will fail with this error. [Source: <a href="https://kafka.apache.org/documentation/#quickstart">https://kafka.apache.org/documentation/#quickstart</a>]]</p>
+<h3 id="filenotfounderror-no-such-file-or-directory">FileNotFoundError: No such file or directory </h3>
+<p><strong>Cause:</strong> You're not in the Kafka directory when running the Python scripts.</p>
+<p><strong>How to fix:</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> kafka_2.13-4.3.1
+python3 admin.py
+</code></pre><h3 id="topicalreadyexistserror">TopicAlreadyExistsError </h3>
+<p><strong>Cause:</strong> You ran <a href="http://admin.py">admin.py</a> multiple times, trying to create a topic that already exists.</p>
+<p><strong>How to fix:</strong> This is expected — the topic was created on the first run. Subsequent runs will show this error, which you can safely ignore.</p>
+<hr>
+<h2 id="authors">Authors </h2>
+<p>Ramesh Sana Reddy<br>
+Lavanya T S<br>
+Shreya Khurana</p>
+<p>© IBM Corporation. All rights reserved.</p>
+<hr>
+<h2 id="enrichment-log">Enrichment Log </h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Location</th>
+<th>Type</th>
+<th>Summary</th>
+<th>Confidence</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>About Skills Network Cloud IDE</td>
+<td>Definition</td>
+<td>Defined "Theia" as open-source IDE framework by Eclipse Foundation</td>
+<td>HIGH</td>
+<td><a href="https://theia-ide.org/">https://theia-ide.org/</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Important Notice section</td>
+<td>Context</td>
+<td>Explained non-persistent environment implications for lab completion</td>
+<td>MEDIUM</td>
+<td>UNCERTAIN</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Exercise 1, Step 2</td>
+<td>Definition</td>
+<td>Defined "wget" as command-line download utility</td>
+<td>HIGH</td>
+<td><a href="https://www.gnu.org/software/wget/">https://www.gnu.org/software/wget/</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Exercise 1, Step 2</td>
+<td>Context</td>
+<td>Explained Kafka version numbering (4.3.1, Scala 2.13) and version availability</td>
+<td>HIGH</td>
+<td><a href="https://kafka.apache.org/downloads">https://kafka.apache.org/downloads</a></td>
+</tr>
+<tr>
+<td>4a</td>
+<td>Exercise 1, Step 2</td>
+<td>Correction</td>
+<td>Updated Kafka version from 3.8.0 to 4.3.1 (3.8.0 no longer available — 404 error)</td>
+<td>HIGH</td>
+<td><a href="https://downloads.apache.org/kafka/">https://downloads.apache.org/kafka/</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Exercise 1, Step 3</td>
+<td>Definition</td>
+<td>Defined "tar" as tape archive utility with flag explanations</td>
+<td>HIGH</td>
+<td><a href="https://www.gnu.org/software/tar/">https://www.gnu.org/software/tar/</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Exercise 2, Step 2</td>
+<td>Definition</td>
+<td>Defined "KRaft" (Kafka Raft) consensus protocol replacing ZooKeeper</td>
+<td>HIGH</td>
+<td><a href="https://kafka.apache.org/documentation/#kraft">https://kafka.apache.org/documentation/#kraft</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Exercise 2, Step 2</td>
+<td>Context</td>
+<td>Explained cluster UUID purpose in KRaft coordination</td>
+<td>MEDIUM</td>
+<td>UNCERTAIN</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Exercise 2, Step 3</td>
+<td>Definition</td>
+<td>Defined "log directories" as physical message storage locations</td>
+<td>HIGH</td>
+<td><a href="https://kafka.apache.org/documentation/#design">https://kafka.apache.org/documentation/#design</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Exercise 2, Step 4</td>
+<td>Context</td>
+<td>Explained server.properties configuration key settings</td>
+<td>HIGH</td>
+<td><a href="https://kafka.apache.org/documentation/#brokerconfigs">https://kafka.apache.org/documentation/#brokerconfigs</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Exercise 3, Step 1</td>
+<td>Definition</td>
+<td>Defined "kafka-python" as pure Python Kafka client library</td>
+<td>HIGH</td>
+<td><a href="https://github.com/dpkp/kafka-python">https://github.com/dpkp/kafka-python</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Exercise 3, Step 1</td>
+<td>Alternative</td>
+<td>Suggested confluent-kafka-python for production workloads</td>
+<td>HIGH</td>
+<td><a href="https://github.com/confluentinc/confluent-kafka-python">https://github.com/confluentinc/confluent-kafka-python</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Exercise 3, Step 2</td>
+<td>Definition</td>
+<td>Defined "touch" as Unix file creation command</td>
+<td>HIGH</td>
+<td><a href="https://man7.org/linux/man-pages/man1/touch.1.html">https://man7.org/linux/man-pages/man1/touch.1.html</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Exercise 3, Step 2</td>
+<td>Code breakdown</td>
+<td>Line-by-line explanation for KafkaAdminClient topic creation</td>
+<td>HIGH</td>
+<td>UNCERTAIN</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Exercise 4</td>
+<td>Code breakdown</td>
+<td>Line-by-line explanation for KafkaProducer message publishing</td>
+<td>HIGH</td>
+<td>UNCERTAIN</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Exercise 5</td>
+<td>Code breakdown</td>
+<td>Line-by-line explanation for KafkaConsumer message consumption</td>
+<td>HIGH</td>
+<td>UNCERTAIN</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Exercise 6</td>
+<td>Troubleshooting</td>
+<td>Added common error diagnosis for consumer issues</td>
+<td>MEDIUM</td>
+<td>UNCERTAIN</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Practice Exercise</td>
+<td>Code breakdown</td>
+<td>Line-by-line explanation for interactive producer with user input</td>
+<td>HIGH</td>
+<td>UNCERTAIN</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Exercise 3, Step 2</td>
+<td>Performance context</td>
+<td>Replication factor best practices: RF=3 standard, RF=5 only for critical data, optimal config with min.insync.replicas=2</td>
+<td>HIGH</td>
+<td><a href="https://www.conduktor.io/kafka/kafka-topics-choosing-the-replication-factor-and-partitions-count">https://www.conduktor.io/kafka/kafka-topics-choosing-the-replication-factor-and-partitions-count</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Exercise 4, Line 11</td>
+<td>Performance context</td>
+<td>Deep dive on producer.flush(): async buffer behavior, why flush() prevents message loss, when to use vs avoid, production best practices</td>
+<td>HIGH</td>
+<td><a href="https://kafka.apache.org/43/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html">https://kafka.apache.org/43/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>Exercise 4, Big picture</td>
+<td>Clarity</td>
+<td>Clarified flush() vs close(): close() internally calls flush(), showing both is redundant but educational; when flush() alone is needed</td>
+<td>HIGH</td>
+<td><a href="https://kafka.apache.org/43/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html">https://kafka.apache.org/43/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>Troubleshooting section</td>
+<td>Troubleshooting</td>
+<td>Added KafkaTimeoutError diagnosis (Kafka server not running), FileNotFoundError fix, TopicAlreadyExistsError explanation</td>
+<td>HIGH</td>
+<td><a href="https://kafka.apache.org/documentation/#quickstart">https://kafka.apache.org/documentation/#quickstart</a></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
