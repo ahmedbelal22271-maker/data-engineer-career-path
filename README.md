@@ -46,7 +46,7 @@ Completed course projects — one neat subdirectory per project.
 - **`c6_linux_shell_scripting_final_project/`** — Course 6 final project: Linux shell scripting backup automation (backup.sh, crontab schedule, task screenshots).
 - **`c9_data_warehouse_fundamentals_practice_project/`** — Course 9 practice project: consumer electronics retail data warehouse (star schema design, PostgreSQL, docker-compose, CSV data, task screenshots).
 - **`c9_data_warehouse_fundamentals_final_project/`** — Course 9 final project: solid waste management company data warehouse (star schema, GROUPING SETS/ROLLUP/CUBE queries, materialized view, PostgreSQL + pgAdmin).
-- *(prepared, not yet committed)* **`c8_etl_data_pipelines_with_shell_airflow_and_kafka_final_project/`** — Course 8 final project: Build ETL Data Pipelines with BashOperator using Apache Airflow (assignment PDF + enriched handouts).
+- **`c8_etl_data_pipelines_with_shell_airflow_and_kafka_final_project/`** — Course 8 final project: Build a Data Pipeline (Batch Airflow ETL + Kafka Streaming ETL with MySQL database, DAGs, producer/consumer scripts, schema, sample dumps, and documentation).
 
 ### `updates/`
 Transient raw course update files too large or unstructured for the wiki pipeline.
@@ -95,6 +95,7 @@ Markdown topic files (~40+) covering:
 | `course_3_python_project/` | 18 files — Course index, M1 ETL, IDE setup, labs, deep-dives + `code/` (project scripts, data, logs) + `screenshots/` (task screenshots) |
 | `course_4_relational_databases/` | 5 files + `assets/` — course index, M1 course intro, information & data models (enriched with ERD types, data independence), ERDs & relationship types |
 | `aws_resources/` | 20 files — AWS explainer pages (01–19 + ecosystem map) covering Spark, Kafka, Kinesis, streaming, security, RabbitMQ |
+| `providers/microsoft/` | Microsoft Learn provider — DP-900 Azure Data Fundamentals course (4 modules mapped to exam domains) + Microsoft Q&A platform reference |
 | `big_data_specialization_ucsd/` | UCSD Big Data Specialization index + Course 1 intro (6 modules, 150+ files) |
 | `general/` | 10 files — data roles, file formats, data types, SQL dialects |
 | `linkedin_posts/` | LinkedIn post drafts with images |
