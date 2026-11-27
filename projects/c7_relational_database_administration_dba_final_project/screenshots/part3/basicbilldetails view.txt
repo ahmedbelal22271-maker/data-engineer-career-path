@@ -1,0 +1,4 @@
+CREATE VIEW basicbilldetails AS
+SELECT customerid, month, billedamount
+FROM billing;
+

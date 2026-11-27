@@ -1,0 +1,19 @@
+-- IBM DBA Final Assignment - Part 1 SQL Commands
+-- Database: tolldata | Schema: toll
+
+-- Task 1.1: Find maximum allowed connections
+SHOW max_connections;
+
+-- Task 1.2: Create a user named backup_operator
+CREATE USER backup_operator WITH PASSWORD 'secure_password_123';
+
+-- Task 1.3: Create a role named backup
+CREATE ROLE backup;
+
+-- Task 1.4: Grant privileges to the role backup
+GRANT CONNECT ON DATABASE tolldata TO backup;
+GRANT USAGE ON SCHEMA toll TO backup;
+GRANT SELECT ON ALL TABLES IN SCHEMA toll TO backup;
+
+-- Task 1.5: Grant the backup role to user backup_operator
+GRANT backup TO backup_operator;

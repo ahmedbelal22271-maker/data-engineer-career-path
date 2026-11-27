@@ -1,0 +1,72 @@
+# Environment Variables & Secrets
+.env
+*.env
+.env.*
+
+# Large Archives & Binaries (>50MB GitHub limits)
+fabric-data-engineering/fabric-data-engineering.pdf
+*.sql.gz
+*flights_RUSSIA_small.sql
+*.tgz
+*.tar.gz
+*.tar
+fullstack-study-pipeline.zip
+*.iso
+*.bin
+*.exe
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*_venv/
+*venv*/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Database temporary / WAL files
+*.db-wal
+*.db-shm
+*.sqlite-wal
+*.sqlite-shm
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Airflow temporary & log files
+airflow/logs/
+airflow/airflow.db-wal
+airflow/airflow.db-shm
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Scratch test files
+Untitled.*
+test.md
