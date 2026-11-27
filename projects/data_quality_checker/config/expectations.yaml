@@ -1,0 +1,77 @@
+dataset: nyc_311_service_requests
+min_rows: 100
+
+columns:
+  unique_key:
+    type: string
+    max_null_pct: 0.0
+    unique: true
+
+  created_date:
+    type: datetime
+    max_null_pct: 0.0
+
+  closed_date:
+    type: datetime
+    max_null_pct: 0.50  # Open requests will not have a closed_date
+
+  agency:
+    type: string
+    max_null_pct: 0.0
+
+  agency_name:
+    type: string
+    max_null_pct: 0.0
+
+  complaint_type:
+    type: string
+    max_null_pct: 0.0
+
+  status:
+    type: string
+    max_null_pct: 0.0
+
+  incident_zip:
+    type: string
+    max_null_pct: 0.15  # Some non-geo complaints lack a zip code
+
+  borough:
+    type: string
+    max_null_pct: 0.05
+    allowed_values:
+      - MANHATTAN
+      - BROOKLYN
+      - QUEENS
+      - BRONX
+      - STATEN ISLAND
+      - Unspecified
+
+  open_data_channel_type:
+    type: string
+    max_null_pct: 0.0
+    allowed_values:
+      - PHONE
+      - ONLINE
+      - MOBILE
+      - OTHER
+      - UNKNOWN
+
+  latitude:
+    type: float
+    min: 40.4   # NYC bounding box
+    max: 41.0
+    max_null_pct: 0.15
+
+  longitude:
+    type: float
+    min: -74.3  # NYC bounding box
+    max: -73.7
+    max_null_pct: 0.15
+
+  x_coordinate_state_plane:
+    type: float
+    max_null_pct: 0.15
+
+  y_coordinate_state_plane:
+    type: float
+    max_null_pct: 0.15

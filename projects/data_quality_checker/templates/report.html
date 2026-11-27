@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Quality Report — {{ report.dataset }}</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 2rem; background: #f8fafc; color: #0f172a; }
+    h1, h2 { margin-bottom: 0.5rem; }
+    .meta { color: #475569; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; }
+    .card-label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; }
+    .card-value { font-size: 1.5rem; font-weight: 700; margin-top: 0.25rem; }
+    .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; }
+    .PASS { background: #dcfce7; color: #166534; }
+    .FAIL { background: #fee2e2; color: #991b1b; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e2e8f0; margin-bottom: 2rem; }
+    th, td { padding: 0.65rem 0.8rem; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
+    th { background: #f1f5f9; font-weight: 600; }
+    tr.fail-row { background: #fef2f2; }
+  </style>
+</head>
+<body>
+  <h1>Data Quality Report: {{ report.dataset }}</h1>
+  <div class="meta">
+    Run ID: <code>{{ trend_summary.current_run_id }}</code> |
+    Ingested At (UTC): <code>{{ metadata.ingested_at }}</code>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">Overall Status</div>
+      <div class="card-value"><span class="badge {{ report.overall_status }}">{{ report.overall_status }}</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Pass Rate</div>
+      <div class="card-value">{{ report.pass_rate }}%</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Pass-Rate Delta</div>
+      <div class="card-value">
+        {% if trend_summary.pass_rate_delta is not none %}
+          {{ "%+.2f"|format(trend_summary.pass_rate_delta) }}%
+        {% else %}
+          N/A (First Run)
+        {% endif %}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Rows Ingested</div>
+      <div class="card-value">{{ metadata.row_count }}</div>
+    </div>
+  </div>
+
+  <h2>Check-by-Check Breakdown ({{ report.passed_checks }}/{{ report.total_checks }} Passed)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Column</th>
+        <th>Check</th>
+        <th>Status</th>
+        <th>Expected</th>
+        <th>Actual</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for check in report.checks %}
+      <tr class="{% if check.status == 'FAIL' %}fail-row{% endif %}">
+        <td><code>{{ check.column }}</code></td>
+        <td>{{ check.check_name }}</td>
+        <td><span class="badge {{ check.status }}">{{ check.status }}</span></td>
+        <td><code>{{ check.expected }}</code></td>
+        <td>{{ check.actual }}</td>
+        <td>{{ check.details }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if trend_summary.worsening_checks %}
+  <h2>Worsening Checks vs. Previous Run</h2>
+  <table>
+    <thead>
+      <tr><th>Column</th><th>Check</th><th>Previous</th><th>Current</th></tr>
+    </thead>
+    <tbody>
+      {% for w in trend_summary.worsening_checks %}
+      <tr>
+        <td><code>{{ w.column }}</code></td>
+        <td>{{ w.check_name }}</td>
+        <td>{{ w.previous }}</td>
+        <td>{{ w.current }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  <h2>Recent Run History (Last {{ recent_runs|length }} Runs)</h2>
+  <table>
+    <thead>
+      <tr><th>Ingested At (UTC)</th><th>Rows</th><th>Passed / Total</th><th>Pass Rate</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      {% for run in recent_runs %}
+      <tr>
+        <td><code>{{ run.ingested_at }}</code></td>
+        <td>{{ run.row_count }}</td>
+        <td>{{ run.passed_checks }} / {{ run.total_checks }}</td>
+        <td>{{ run.pass_rate }}%</td>
+        <td><span class="badge {{ run.overall_status }}">{{ run.overall_status }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
